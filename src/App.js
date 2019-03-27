@@ -11,27 +11,18 @@ import User from "./components/screens/User";
 import Login from "./components/screens/Login";
 import Register from "./components/screens/Register";
 
+import { withAuthentication } from "./components/session";
+
 class App extends Component {
+  state = {
+    authUser: JSON.parse(localStorage.getItem("authUser"))
+  };
+
   render() {
+    const { authUser } = this.state;
     return (
       <Router>
         <Navbar />
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-              Edit <code>src/App.js</code> and save to reload.
-            </p>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-          </header>
-        </div>
         <Route path="/:year" component={Year} />
         <Route path="/:year/:month" component={Month} />
         <Route path="/:year/:month/:day" component={Day} />
@@ -43,4 +34,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withAuthentication(App);
