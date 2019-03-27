@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import styled from "@emotion/styled";
 
 import logo from "./logo.svg";
 import "./App.css";
@@ -13,6 +14,11 @@ import Register from "./components/screens/Register";
 
 import { withAuthentication } from "./components/session";
 
+const RouteLayout = styled.div`
+  margin: 0 auto;
+  max-width: 720px;
+`;
+
 class App extends Component {
   state = {
     authUser: JSON.parse(localStorage.getItem("authUser"))
@@ -23,12 +29,14 @@ class App extends Component {
     return (
       <Router>
         <Navbar />
-        <Route path="/:year" component={Year} />
-        <Route path="/:year/:month" component={Month} />
-        <Route path="/:year/:month/:day" component={Day} />
-        <Route path="/user" component={User} />
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
+        <RouteLayout>
+          <Route path="/:year(\d+)" component={Year} />
+          <Route path="/:year(\d+)/:month(\d+)" component={Month} />
+          <Route path="/:year(\d+)/:month(\d+)/:day(\d+)" component={Day} />
+          <Route path="/user" component={User} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+        </RouteLayout>
       </Router>
     );
   }

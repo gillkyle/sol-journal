@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 
+import { todayUrl, yearUrl, urls } from "../../utils/date";
+
 import SignOut from "../SignOut";
 import { withAuthentication } from "../session";
 
@@ -37,6 +39,8 @@ const Navbar = ({ authUser }) => (
       <NavIcons>
         {authUser ? (
           <React.Fragment>
+            <Link to={yearUrl()}>Year</Link>
+            <Link to={todayUrl()}>Today</Link>
             <Link to={"/user"}>Account</Link>
             <SignOut />
           </React.Fragment>
