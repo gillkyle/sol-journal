@@ -8,6 +8,8 @@ import Day from "./components/screens/Day";
 import Month from "./components/screens/Month";
 import Year from "./components/screens/Year";
 import User from "./components/screens/User";
+import Login from "./components/screens/Login";
+import Register from "./components/screens/Register";
 
 class App extends Component {
   render() {
@@ -34,6 +36,8 @@ class App extends Component {
         <Route path="/:year/:month" component={Month} />
         <Route path="/:year/:month/:day" component={Day} />
         <Route path="/user" component={User} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
       </Router>
     );
   }

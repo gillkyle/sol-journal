@@ -1,5 +1,5 @@
 import React from "react";
-import fire from "../../../fire.js";
+import fire from "../../firebase/fire.js";
 
 class User extends React.Component {
   state = {
