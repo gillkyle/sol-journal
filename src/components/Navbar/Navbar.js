@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SignOut from "../SignOut";
 
 const Navbar = () => (
   <div>
@@ -15,6 +16,9 @@ const Navbar = () => (
       </li>
       <li>
         <Link to={"/register"}>Register</Link>
+      </li>
+      <li>
+        <SignOut />
       </li>
     </ul>
   </div>
