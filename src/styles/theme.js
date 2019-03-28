@@ -2,6 +2,7 @@ const theme = {
   LIGHT: {
     name: "Light",
     colors: {
+      logo: "#344157",
       primary: "#2E3136",
       secondary: "#999",
       tertiary: "#C4C4C4",
@@ -14,6 +15,7 @@ const theme = {
   DARK: {
     name: "Dark",
     colors: {
+      logo: "#EAEAEA",
       primary: "#F3F6F8",
       secondary: "#9Ba3B0",
       tertiary: "#6F7682",

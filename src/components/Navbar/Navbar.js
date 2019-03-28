@@ -6,6 +6,7 @@ import { withTheme } from "emotion-theming";
 
 import { todayUrl, yearUrl } from "../../utils/date";
 
+import Logo from "../Logo";
 import Icon from "../Icon";
 import { withAuthentication } from "../session";
 
@@ -29,10 +30,13 @@ const Nav = styled.div`
   justify-content: space-between;
   align-content: center;
 `;
-const Logo = styled.div``;
+const LogoSection = styled.div`
+  width: 40px;
+`;
 const NavIcons = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   * + * {
     margin-left: 10px;
   }
@@ -41,12 +45,16 @@ const NavIcons = styled.div`
 const Navbar = ({ authUser, theme, toggleTheme }) => (
   <Header>
     <Nav>
-      <Logo>Logo</Logo>
+      <LogoSection>
+        <Logo color={theme.colors.logo} />
+      </LogoSection>
       <NavIcons>
-        <Icon
-          onClick={() => toggleTheme()}
-          name={theme.name === "Dark" ? "Sun" : "Moon"}
-        />
+        <Link to="#">
+          <Icon
+            onClick={() => toggleTheme()}
+            name={theme.name === "Dark" ? "Sun" : "Moon"}
+          />
+        </Link>
         {authUser ? (
           <React.Fragment>
             <Link to={yearUrl()}>

@@ -1,6 +1,9 @@
 * {
   transition: 0.2s all ease-in-out;
 }
+textarea:focus {
+  outline: none;
+}
 body {
   margin: 0;
   padding: 0;

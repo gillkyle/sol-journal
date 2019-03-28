@@ -38,9 +38,7 @@ const Seek = ({ title = "", prev = "", next = "", disableNext, theme }) => (
           disabled={disableNext}
           name="ChevronRight"
           style={{
-            color: disableNext
-              ? theme.colors.quarternary
-              : theme.colors.secondary
+            color: disableNext ? theme.colors.hover : theme.colors.secondary
           }}
         />
       </Link>

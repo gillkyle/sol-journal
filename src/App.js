@@ -15,6 +15,9 @@ import Register from "./components/screens/Register";
 import { withAuthentication } from "./components/session";
 
 const RouteLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   margin: 0 auto;
   padding: 0 10px;
   max-width: 720px;
