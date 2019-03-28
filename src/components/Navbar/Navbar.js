@@ -1,14 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
+import { compose } from "recompose";
+import { withTheme } from "emotion-theming";
 
-import { todayUrl, yearUrl, urls } from "../../utils/date";
+import { todayUrl, yearUrl } from "../../utils/date";
 
+import Icon from "../Icon";
 import SignOut from "../SignOut";
 import { withAuthentication } from "../session";
 
 const Header = styled.div`
-  background-color: #fafbfc;
+  background-color: ${props => props.theme.colors.background};
   height: 60px;
   display: grid;
   grid-template-areas: "... nav ...";
@@ -32,7 +35,7 @@ const NavIcons = styled.div`
   }
 `;
 
-const Navbar = ({ authUser }) => (
+const Navbar = ({ authUser, theme }) => (
   <Header>
     <Nav>
       <Logo>Logo</Logo>
@@ -42,6 +45,7 @@ const Navbar = ({ authUser }) => (
             <Link to={yearUrl()}>Year</Link>
             <Link to={todayUrl()}>Today</Link>
             <Link to={"/user"}>Account</Link>
+            <Icon name="Book" />
             <SignOut />
           </React.Fragment>
         ) : (
@@ -56,4 +60,7 @@ const Navbar = ({ authUser }) => (
   </Header>
 );
 
-export default withAuthentication(Navbar);
+export default compose(
+  withAuthentication,
+  withTheme
+)(Navbar);

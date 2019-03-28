@@ -8,13 +8,15 @@ const SeekHeader = styled.header`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: ${SIZES.normal};
 `;
 const SeekH1 = styled.h1`
   display: block;
   font-size: ${SIZES.normal};
 `;
 const SeekArrows = styled.div``;
+const SeekHr = styled.hr`
+  margin: 0;
+`;
 
 const Seek = ({ title = "", prev = "", next = "" }) => (
   <React.Fragment>
@@ -22,7 +24,7 @@ const Seek = ({ title = "", prev = "", next = "" }) => (
       <SeekH1>{title}</SeekH1>
       <SeekArrows>asdf</SeekArrows>
     </SeekHeader>
-    <hr />
+    <SeekHr />
   </React.Fragment>
 );
 

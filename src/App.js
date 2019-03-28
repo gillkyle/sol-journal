@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import styled from "@emotion/styled";
+import { ThemeProvider } from "emotion-theming";
 
-import logo from "./logo.svg";
 import "./App.css";
+import theme from "./styles/theme";
 import Navbar from "./components/Navbar";
 import Day from "./components/screens/Day";
 import Month from "./components/screens/Month";
@@ -21,23 +22,28 @@ const RouteLayout = styled.div`
 
 class App extends Component {
   state = {
-    authUser: JSON.parse(localStorage.getItem("authUser"))
+    authUser: JSON.parse(localStorage.getItem("authUser")),
+    selectedTheme: "LIGHT"
   };
 
   render() {
-    const { authUser } = this.state;
+    const { authUser, selectedTheme } = this.state;
+
+    const currentTheme = theme[selectedTheme];
     return (
-      <Router>
-        <Navbar />
-        <RouteLayout>
-          <Route path="/:year(\d+)" component={Year} />
-          <Route path="/:year(\d+)/:month(\d+)" component={Month} />
-          <Route path="/:year(\d+)/:month(\d+)/:day(\d+)" component={Day} />
-          <Route path="/user" component={User} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-        </RouteLayout>
-      </Router>
+      <ThemeProvider theme={currentTheme}>
+        <Router>
+          <Navbar />
+          <RouteLayout>
+            <Route path="/:year(\d+)" component={Year} />
+            <Route path="/:year(\d+)/:month(\d+)" component={Month} />
+            <Route path="/:year(\d+)/:month(\d+)/:day(\d+)" component={Day} />
+            <Route path="/user" component={User} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+          </RouteLayout>
+        </Router>
+      </ThemeProvider>
     );
   }
 }
