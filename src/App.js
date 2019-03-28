@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import styled from "@emotion/styled";
 import { ThemeProvider } from "emotion-theming";
 
-import "./App.css";
 import theme from "./styles/theme";
 import Navbar from "./components/Navbar";
 import Day from "./components/screens/Day";
@@ -18,12 +17,28 @@ import { withAuthentication } from "./components/session";
 const RouteLayout = styled.div`
   margin: 0 auto;
   max-width: 720px;
+  min-height: calc(100vh - 60px);
+  background-color: ${props => props.theme.colors.bodyBackground};
 `;
 
 class App extends Component {
   state = {
     authUser: JSON.parse(localStorage.getItem("authUser")),
     selectedTheme: "LIGHT"
+  };
+
+  onChangeTheme = () => {
+    const { selectedTheme } = this.state;
+    const root = document.documentElement;
+    console.log(root);
+    const newTheme = selectedTheme === "LIGHT" ? "DARK" : "LIGHT";
+    root.style.setProperty(
+      "background-color",
+      theme[newTheme].colors.bodyBackground
+    );
+    this.setState(prevState => ({
+      selectedTheme: newTheme
+    }));
   };
 
   render() {
@@ -33,7 +48,7 @@ class App extends Component {
     return (
       <ThemeProvider theme={currentTheme}>
         <Router>
-          <Navbar />
+          <Navbar toggleTheme={this.onChangeTheme} />
           <RouteLayout>
             <Route path="/:year(\d+)" component={Year} />
             <Route path="/:year(\d+)/:month(\d+)" component={Month} />

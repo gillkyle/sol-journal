@@ -11,12 +11,15 @@ import SignOut from "../SignOut";
 import { withAuthentication } from "../session";
 
 const Header = styled.div`
-  background-color: ${props => props.theme.colors.background};
+  background-color: ${props => props.theme.colors.headerBackground};
   height: 60px;
   display: grid;
   grid-template-areas: "... nav ...";
   grid-template-columns: 1fr minmax(240px, 720px) 1fr;
   align-items: center;
+  border-width: 1px;
+  border-color: ${props => props.theme.colors.quarternary};
+  border-style: solid;
 `;
 const Nav = styled.div`
   grid-area: nav;
@@ -35,17 +38,24 @@ const NavIcons = styled.div`
   }
 `;
 
-const Navbar = ({ authUser, theme }) => (
+const Navbar = ({ authUser, theme, toggleTheme }) => (
   <Header>
     <Nav>
       <Logo>Logo</Logo>
       <NavIcons>
+        <Icon onClick={() => toggleTheme()} name="Moon" />
         {authUser ? (
           <React.Fragment>
-            <Link to={yearUrl()}>Year</Link>
-            <Link to={todayUrl()}>Today</Link>
-            <Link to={"/user"}>Account</Link>
-            <Icon name="Book" />
+            <Link to={yearUrl()}>
+              <Icon name="Calendar" />
+            </Link>
+            <Link to={todayUrl()}>
+              <Icon name="Book" />
+            </Link>
+            <Link to={"/user"}>
+              <Icon name="User" />
+            </Link>
+
             <SignOut />
           </React.Fragment>
         ) : (

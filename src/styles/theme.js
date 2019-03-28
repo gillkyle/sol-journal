@@ -5,7 +5,9 @@ const theme = {
       secondary: "#999",
       tertiary: "#C4C4C4",
       quarternary: "#EAEAEA",
-      background: "#FAFBFC"
+      headerBackground: "#FAFBFC",
+      bodyBackground: "#FFF",
+      hover: "hsla(233, 5%, 31%, 0.12)"
     }
   },
   DARK: {
@@ -14,7 +16,9 @@ const theme = {
       secondary: "#9Ba3B0",
       tertiary: "#6F7682",
       quarternary: "#3E4B62",
-      background: "#2E3136"
+      headerBackground: "#272f3d",
+      bodyBackground: "#262B34",
+      hover: "hsla(233, 100%, 96%, 0.12)"
     }
   }
 };
