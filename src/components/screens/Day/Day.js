@@ -16,6 +16,7 @@ const JournalHeading = styled.h2`
 const JournalEntryArea = styled.textarea`
   flex-grow: 1;
   color: ${props => props.theme.colors.primary};
+  caret-color: ${props => props.theme.colors.secondary};
   background-color: transparent;
   line-height: 1.5;
   letter-spacing: 0.5px;
@@ -24,8 +25,16 @@ const JournalEntryArea = styled.textarea`
   resize: none;
   outline: none;
   font-size: ${SIZES.small};
+  border-radius: 3px;
+  margin-top: ${SIZES.tiny};
+  padding-top: 0px;
+  padding-bottom: 0px;
   &::placeholder {
     color: ${props => props.theme.colors.tertiary};
+  }
+  &:focus {
+    box-shadow: 0 0 0 8px ${props => props.theme.colors.bodyBackground},
+      0 0 0 10px ${props => props.theme.colors.hover};
   }
 `;
 
