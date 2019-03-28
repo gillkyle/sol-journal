@@ -7,7 +7,6 @@ import { withTheme } from "emotion-theming";
 import { todayUrl, yearUrl } from "../../utils/date";
 
 import Icon from "../Icon";
-import SignOut from "../SignOut";
 import { withAuthentication } from "../session";
 
 const Header = styled.div`
@@ -16,6 +15,7 @@ const Header = styled.div`
   display: grid;
   grid-template-areas: "... nav ...";
   grid-template-columns: 1fr minmax(240px, 720px) 1fr;
+  grid-gap: 10px;
   align-items: center;
   border-width: 1px;
   border-color: ${props => props.theme.colors.quarternary};
@@ -43,7 +43,10 @@ const Navbar = ({ authUser, theme, toggleTheme }) => (
     <Nav>
       <Logo>Logo</Logo>
       <NavIcons>
-        <Icon onClick={() => toggleTheme()} name="Moon" />
+        <Icon
+          onClick={() => toggleTheme()}
+          name={theme.name === "Dark" ? "Sun" : "Moon"}
+        />
         {authUser ? (
           <React.Fragment>
             <Link to={yearUrl()}>
@@ -55,8 +58,6 @@ const Navbar = ({ authUser, theme, toggleTheme }) => (
             <Link to={"/user"}>
               <Icon name="User" />
             </Link>
-
-            <SignOut />
           </React.Fragment>
         ) : (
           <React.Fragment>

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { withTheme } from "emotion-theming";
+import { Link } from "react-router-dom";
 
 import { SIZES } from "../../styles/constants";
 import Icon from "../Icon";
@@ -25,12 +26,24 @@ const SeekArrows = styled.div`
   grid-gap: 10px;
 `;
 
-const Seek = ({ title = "", prev = "", next = "" }) => (
+const Seek = ({ title = "", prev = "", next = "", disableNext, theme }) => (
   <SeekHeader>
     <SeekH1>{title}</SeekH1>
     <SeekArrows>
-      <Icon name="ChevronLeft" />
-      <Icon name="ChevronRight" />
+      <Link to={prev}>
+        <Icon name="ChevronLeft" />
+      </Link>
+      <Link to={disableNext ? "#" : next}>
+        <Icon
+          disabled={disableNext}
+          name="ChevronRight"
+          style={{
+            color: disableNext
+              ? theme.colors.quarternary
+              : theme.colors.secondary
+          }}
+        />
+      </Link>
     </SeekArrows>
   </SeekHeader>
 );

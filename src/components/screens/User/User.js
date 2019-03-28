@@ -1,6 +1,8 @@
 import React from "react";
 import fire from "../../firebase/fire.js";
 
+import SignOut from "../../SignOut";
+
 class User extends React.Component {
   state = {
     name: ""
@@ -26,16 +28,19 @@ class User extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.addUser}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          onChange={this.updateInput}
-          value={this.state.name}
-        />
-        <button type="submit">Submit</button>
-      </form>
+      <React.Fragment>
+        <SignOut />
+        <form onSubmit={this.addUser}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            onChange={this.updateInput}
+            value={this.state.name}
+          />
+          <button type="submit">Submit</button>
+        </form>
+      </React.Fragment>
     );
   }
 }

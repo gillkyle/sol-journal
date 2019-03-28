@@ -1,5 +1,6 @@
 const theme = {
   LIGHT: {
+    name: "Light",
     colors: {
       primary: "#2E3136",
       secondary: "#999",
@@ -11,6 +12,7 @@ const theme = {
     }
   },
   DARK: {
+    name: "Dark",
     colors: {
       primary: "#F3F6F8",
       secondary: "#9Ba3B0",

@@ -16,6 +16,7 @@ import { withAuthentication } from "./components/session";
 
 const RouteLayout = styled.div`
   margin: 0 auto;
+  padding: 0 10px;
   max-width: 720px;
   min-height: calc(100vh - 60px);
   background-color: ${props => props.theme.colors.bodyBackground};
@@ -30,15 +31,12 @@ class App extends Component {
   onChangeTheme = () => {
     const { selectedTheme } = this.state;
     const root = document.documentElement;
-    console.log(root);
     const newTheme = selectedTheme === "LIGHT" ? "DARK" : "LIGHT";
     root.style.setProperty(
       "background-color",
       theme[newTheme].colors.bodyBackground
     );
-    this.setState(prevState => ({
-      selectedTheme: newTheme
-    }));
+    this.setState({ selectedTheme: newTheme });
   };
 
   render() {
@@ -50,12 +48,20 @@ class App extends Component {
         <Router>
           <Navbar toggleTheme={this.onChangeTheme} />
           <RouteLayout>
-            <Route path="/:year(\d+)" component={Year} />
-            <Route path="/:year(\d+)/:month(\d+)" component={Month} />
-            <Route path="/:year(\d+)/:month(\d+)/:day(\d+)" component={Day} />
-            <Route path="/user" component={User} />
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
+            <Route path="/:year(\d+)" component={Year} exact />
+            <Route
+              path="/:year(\d+)/:month(0[1-9]|1[0-2]+)"
+              component={Month}
+              exact
+            />
+            <Route
+              path="/:year(\d+)/:month(0[1-9]|1[0-2]+)/:day(\d+)"
+              component={Day}
+              exact
+            />
+            <Route path="/user" component={User} exact />
+            <Route path="/login" component={Login} exact />
+            <Route path="/register" component={Register} exact />
           </RouteLayout>
         </Router>
       </ThemeProvider>

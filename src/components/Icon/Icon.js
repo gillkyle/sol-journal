@@ -7,6 +7,7 @@ import {
   ChevronRight,
   Circle,
   Moon,
+  Sun,
   User
 } from "react-feather";
 import { withTheme } from "emotion-theming";
@@ -21,7 +22,7 @@ const IconBase = styled.div`
   transition: 0.1s all ease-in-out;
   color: ${props => props.theme.colors.secondary};
   &:hover {
-    background-color: ${props => props.theme.colors.hover};
+    background-color: ${props => !props.disabled && props.theme.colors.hover};
     cursor: pointer;
   }
 `;
@@ -34,6 +35,7 @@ const Icon = ({ name, ...rest }) => (
     {name === "ChevronRight" && <ChevronRight />}
     {name === "Circle" && <Circle />}
     {name === "Moon" && <Moon />}
+    {name === "Sun" && <Sun />}
     {name === "User" && <User />}
   </IconBase>
 );

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import isToday from "date-fns/is_today";
+import { addYears, subYears, format } from "date-fns";
 
 import Seek from "../../Seek";
 
@@ -10,13 +10,15 @@ class Year extends Component {
         params: { year }
       }
     } = this.props;
+    const currentDate = new Date(year, 0, 1);
+    console.log(currentDate.getFullYear());
     return (
       <div>
         <Seek
           title={year}
-          prev={"Asdf"}
-          next={"asdf"}
-          disableNext={isToday(new Date())}
+          prev={format(subYears(currentDate, 1), "/YYYY")}
+          next={format(addYears(currentDate, 1), "/YYYY")}
+          disableNext={year >= new Date().getFullYear()}
         />
       </div>
     );
