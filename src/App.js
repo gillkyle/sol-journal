@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { BrowserRouter as Router, Route } from "react-router-dom"
+import { compose } from "recompose"
 import styled from "@emotion/styled"
 import { ThemeProvider } from "emotion-theming"
 
@@ -15,6 +16,7 @@ import Login from "./components/screens/Login"
 import Register from "./components/screens/Register"
 
 import { withAuthentication } from "./components/session"
+import { withFirebase } from "./components/firebase"
 
 const RouteLayout = styled.div`
   display: flex;
@@ -30,7 +32,10 @@ const RouteLayout = styled.div`
 class App extends Component {
   state = {
     authUser: JSON.parse(localStorage.getItem("authUser")),
-    selectedTheme: "LIGHT",
+    selectedTheme:
+      new Date().getHours() >= 7 && new Date().getHours() <= 21
+        ? "LIGHT"
+        : "DARK",
   }
 
   onChangeTheme = () => {
@@ -42,6 +47,19 @@ class App extends Component {
       theme[newTheme].colors.bodyBackground
     )
     this.setState({ selectedTheme: newTheme })
+  }
+
+  saveUserSettings = newTheme => {
+    const { authUser, firebase } = this.props
+    firebase.db
+      .collection("users")
+      .doc(authUser.uid)
+      .update({
+        theme: newTheme,
+      })
+      .then(function() {
+        console.log("Updated theme settings")
+      })
   }
 
   render() {
@@ -74,4 +92,7 @@ class App extends Component {
   }
 }
 
-export default withAuthentication(App)
+export default compose(
+  withAuthentication,
+  withFirebase
+)(App)
