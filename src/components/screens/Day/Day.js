@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "@emotion/styled";
 import { compose } from "recompose";
+import { withRouter } from "react-router-dom";
 import { withTheme } from "emotion-theming";
 import { withFirebase } from "../../firebase";
 import { withAuthentication } from "../../session";
@@ -17,7 +18,7 @@ const JournalHeading = styled.h2`
   margin-top: ${SIZES.medium};
 `;
 const JournalEntryArea = styled.textarea`
-  flex-grow: 1;
+  flex-grow: 0.8;
   color: ${props => props.theme.colors.primary};
   caret-color: ${props => props.theme.colors.secondary};
   background-color: transparent;
@@ -41,19 +42,114 @@ const JournalEntryArea = styled.textarea`
   }
 `;
 
+const AUTOSAVE_DELAY = 2000;
+
 class Day extends Component {
-  render() {
+  state = {
+    text: "",
+    loading: true
+  };
+  timeout = 0;
+  retrievedFromServer = false;
+
+  componentDidMount() {
+    const {
+      history,
+      match: {
+        params: { year, month, day }
+      }
+    } = this.props;
+    history.listen((location, action) => {
+      const [blank, year, month, day] = location.pathname.split("/");
+      this.onRouteChanged(year, month, day);
+    });
+    this.getDocRef(year, month, day, false);
+  }
+
+  onRouteChanged = (year, month, day) => {
+    this.setState({ loading: true });
+    this.getDocRef(year, month, day, false);
+  };
+
+  getDocRef = (year, month, day, cacheFirst) => {
+    const { firebase, authUser } = this.props;
+    const getOptions = {
+      source: cacheFirst ? "cache" : "default"
+    };
+    const docRef = firebase.db
+      .collection("entries")
+      .doc(`${year}${month}${day}-${authUser.uid}`);
+    this.getData(docRef, getOptions);
+  };
+
+  getData = (docRef, options) => {
+    docRef
+      .get(options)
+      .then(doc => {
+        if (doc.data()) {
+          this.setState({ text: doc.data().text, loading: false });
+        } else {
+          this.setState({ text: "", loading: false });
+        }
+      })
+      .catch(err => {
+        console.warn("entry not found in cache");
+        // for cache first, server second fetching, dangerous with potential overwriting of data
+        // docRef.get().then(doc => {
+        //   if (doc.data()) {
+        //     this.setState({ text: doc.data().text, loading: false });
+        //   } else {
+        //     this.setState({ text: "", loading: false });
+        //   }
+        // });
+      });
+  };
+
+  onChangeText = e => {
+    if (this.timeout) clearTimeout(this.timeout);
+    const text = e.target.value;
+
+    this.setState({ text });
+    this.timeout = setTimeout(() => {
+      console.log(text);
+      this.saveText(text);
+    }, AUTOSAVE_DELAY);
+  };
+
+  saveText = text => {
     const {
       match: {
         params: { year, month, day }
       },
       firebase,
-      authUser,
+      authUser
     } = this.props;
+    firebase.db
+      .collection("entries")
+      .doc(`${year}${month}${day}-${authUser.uid}`)
+      .set(
+        {
+          text,
+          day: Number(day),
+          year: Number(year),
+          month: Number(month)
+        },
+        {
+          merge: true
+        }
+      );
+  };
+
+  render() {
+    const {
+      match: {
+        params: { year, month, day }
+      },
+      theme
+    } = this.props;
+    const { text, loading } = this.state;
     const currentDay = new Date(year, month - 1, day);
-    console.log(currentDay);
     if (!currentDay) return;
-    firebase.db.collection("entries").doc(`${year}${month}${day}-${authUser.uid}`).get().then(doc => console.log(doc.data()))
 
     return (
       <>
@@ -63,11 +159,26 @@ class Day extends Component {
           next={format(addDays(currentDay, 1), "/YYYY/MM/DD")}
           disableNext={isAfter(currentDay, startOfYesterday())}
         />
-        <JournalHeading>WHAT'S HAPPENED TODAY?</JournalHeading>
-        <JournalEntryArea placeholder="Start writing..." />
+        <JournalHeading>RECORD THOUGHTS ABOUT YOUR DAY</JournalHeading>
+        {loading ? (
+          <div style={{ color: theme.colors.tertiary, fontSize: 12 }}>
+            loading...
+          </div>
+        ) : (
+          <JournalEntryArea
+            placeholder="Start writing..."
+            onChange={e => this.onChangeText(e)}
+            value={text}
+          />
+        )}
       </>
     );
   }
 }
 
-export default compose(withFirebase,withTheme, withAuthentication)(Day);
+export default compose(
+  withFirebase,
+  withTheme,
+  withAuthentication,
+  withRouter
+)(Day);

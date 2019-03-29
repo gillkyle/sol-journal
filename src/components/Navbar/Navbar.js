@@ -49,12 +49,10 @@ const Navbar = ({ authUser, theme, toggleTheme }) => (
         <Logo color={theme.colors.logo} />
       </LogoSection>
       <NavIcons>
-        <Link to="#">
-          <Icon
-            onClick={() => toggleTheme()}
-            name={theme.name === "Dark" ? "Sun" : "Moon"}
-          />
-        </Link>
+        <Icon
+          onClick={() => toggleTheme()}
+          name={theme.name === "Dark" ? "Sun" : "Moon"}
+        />
         {authUser ? (
           <React.Fragment>
             <Link to={yearUrl()}>

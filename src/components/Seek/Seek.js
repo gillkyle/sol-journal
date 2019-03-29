@@ -33,7 +33,7 @@ const Seek = ({ title = "", prev = "", next = "", disableNext, theme }) => (
       <Link to={prev}>
         <Icon name="ChevronLeft" />
       </Link>
-      <Link to={disableNext ? "#" : next}>
+      {disableNext ? (
         <Icon
           disabled={disableNext}
           name="ChevronRight"
@@ -41,7 +41,17 @@ const Seek = ({ title = "", prev = "", next = "", disableNext, theme }) => (
             color: disableNext ? theme.colors.hover : theme.colors.secondary
           }}
         />
-      </Link>
+      ) : (
+        <Link to={next}>
+          <Icon
+            disabled={disableNext}
+            name="ChevronRight"
+            style={{
+              color: disableNext ? theme.colors.hover : theme.colors.secondary
+            }}
+          />
+        </Link>
+      )}
     </SeekArrows>
   </SeekHeader>
 );
