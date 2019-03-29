@@ -18,6 +18,7 @@ const JournalHeading = styled.h2`
   margin-top: ${SIZES.medium};
 `;
 const JournalEntryArea = styled.textarea`
+  font-family: sans-serif;
   flex-grow: 0.8;
   color: ${props => props.theme.colors.primary};
   caret-color: ${props => props.theme.colors.secondary};
