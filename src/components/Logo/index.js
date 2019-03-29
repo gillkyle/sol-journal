@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 const Logo = ({ color }) => {
   return (
@@ -123,7 +123,7 @@ const Logo = ({ color }) => {
         </clipPath>
       </defs>
     </svg>
-  );
-};
+  )
+}
 
-export default Logo;
+export default Logo

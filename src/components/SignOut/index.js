@@ -1,2 +1,2 @@
-import SignOut from "./SignOut";
-export default SignOut;
+import SignOut from "./SignOut"
+export default SignOut

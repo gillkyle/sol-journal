@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import React, { Component } from "react"
+import { withRouter } from "react-router-dom"
 
-import { FirebaseContext } from "../../firebase";
+import { FirebaseContext } from "../../firebase"
 
 const RegisterPage = ({ history }) => (
   <div>
@@ -10,24 +10,24 @@ const RegisterPage = ({ history }) => (
       {firebase => <RegisterForm history={history} firebase={firebase} />}
     </FirebaseContext.Consumer>
   </div>
-);
+)
 
 class RegisterForm extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       username: "",
       email: "",
       passwordOne: "",
       passwordTwo: "",
-      error: null
-    };
+      error: null,
+    }
   }
 
   onSubmit = event => {
-    const { email, passwordOne } = this.state;
-    const { firebase } = this.props;
+    const { email, passwordOne } = this.state
+    const { firebase } = this.props
 
     firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
@@ -37,37 +37,37 @@ class RegisterForm extends Component {
           email: "",
           passwordOne: "",
           passwordTwo: "",
-          error: null
-        });
-        const { user } = result;
-        console.log(user);
+          error: null,
+        })
+        const { user } = result
+        console.log(user)
         firebase.db
           .collection("users")
           .doc(user.uid)
           .set({
             email: user.email,
-            theme: "LIGHT"
-          });
-        this.props.history.push("/home");
+            theme: "LIGHT",
+          })
+        this.props.history.push("/home")
       })
       .catch(error => {
-        this.setState({ error });
-      });
+        this.setState({ error })
+      })
 
-    event.preventDefault();
-  };
+    event.preventDefault()
+  }
 
   onChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
+    this.setState({ [event.target.name]: event.target.value })
+  }
 
   render() {
-    const { username, email, passwordOne, passwordTwo, error } = this.state;
+    const { username, email, passwordOne, passwordTwo, error } = this.state
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === "" ||
       email === "" ||
-      username === "";
+      username === ""
 
     return (
       <form onSubmit={this.onSubmit}>
@@ -105,10 +105,10 @@ class RegisterForm extends Component {
 
         {error && <p>{error.message}</p>}
       </form>
-    );
+    )
   }
 }
 
-export default withRouter(RegisterPage);
+export default withRouter(RegisterPage)
 
-export { RegisterForm };
+export { RegisterForm }

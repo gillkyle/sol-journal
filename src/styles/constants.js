@@ -3,5 +3,6 @@ export const SIZES = {
   small: "1rem",
   normal: "1.25rem",
   medium: "1.5rem",
-  large: "2rem"
-};
+  large: "2rem",
+  maxWidth: "600px",
+}

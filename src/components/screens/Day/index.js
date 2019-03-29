@@ -1,2 +1,2 @@
-import Day from "./Day";
-export default Day;
+import Day from "./Day"
+export default Day

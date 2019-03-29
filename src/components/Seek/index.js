@@ -1,2 +1,2 @@
-import Seek from "./Seek";
-export default Seek;
+import Seek from "./Seek"
+export default Seek

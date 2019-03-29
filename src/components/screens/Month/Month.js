@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import styled from "@emotion/styled";
+import React, { Component } from "react"
+import { Link } from "react-router-dom"
+import styled from "@emotion/styled"
 import {
   isAfter,
   isThisYear,
@@ -8,17 +8,17 @@ import {
   addMonths,
   subMonths,
   getDaysInMonth,
-  startOfMonth
-} from "date-fns";
+  startOfMonth,
+} from "date-fns"
 
-import Seek from "../../Seek";
+import Seek from "../../Seek"
 
 const YearCardGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
   grid-gap: 20px;
   margin-top: 20px;
-`;
+`
 const YearCard = styled.div`
   color: ${props =>
     props.disabled
@@ -26,39 +26,39 @@ const YearCard = styled.div`
       : props.theme.colors.secondary};
   border: 1px solid;
   border-color: ${props => props.theme.colors.quarternary};
-  padding: 30px;
+  padding: 25px;
   border-radius: 5px;
   text-align: center;
   user-select: none;
   &:hover {
     border-color: ${props => !props.disabled && props.theme.colors.tertiary};
   }
-`;
+`
 
 class Month extends Component {
   render() {
     const {
       match: {
-        params: { year, month }
-      }
-    } = this.props;
-    const currentDay = new Date(year, month - 1);
+        params: { year, month },
+      },
+    } = this.props
+    const currentDay = new Date(year, month - 1)
 
     // include all months unless it's this year
-    let dayIndexesToInclude = 31;
+    let dayIndexesToInclude = 31
     if (isThisYear(currentDay)) {
-      dayIndexesToInclude = new Date().getDate();
+      dayIndexesToInclude = new Date().getDate()
     }
 
-    let yearCards = [];
+    let yearCards = []
     for (let i = 0; i < getDaysInMonth(currentDay); i++) {
-      const isDisabled = dayIndexesToInclude <= i;
+      const isDisabled = dayIndexesToInclude <= i
       if (isDisabled) {
         yearCards.push(
           <YearCard disabled={isDisabled} key={i}>
             {i + 1}
           </YearCard>
-        );
+        )
       } else {
         yearCards.push(
           <Link
@@ -68,7 +68,7 @@ class Month extends Component {
           >
             <YearCard key={i}>{i + 1}</YearCard>
           </Link>
-        );
+        )
       }
     }
 
@@ -85,8 +85,8 @@ class Month extends Component {
         />
         <YearCardGrid>{yearCards}</YearCardGrid>
       </>
-    );
+    )
   }
 }
 
-export default Month;
+export default Month

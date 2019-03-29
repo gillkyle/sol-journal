@@ -35,6 +35,7 @@ const Icon = ({ name, ...rest }) => (
     {name === "ChevronLeft" && <ChevronLeft />}
     {name === "ChevronRight" && <ChevronRight />}
     {name === "Circle" && <Circle />}
+    {name === "Edit2" && <Edit2 />}
     {name === "Moon" && <Moon />}
     {name === "Sun" && <Sun />}
     {name === "User" && <User />}

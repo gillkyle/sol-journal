@@ -1,39 +1,39 @@
-import React from "react";
+import React from "react"
 
-import AuthUserContext from "./context";
-import { withFirebase } from "../firebase";
+import AuthUserContext from "./context"
+import { withFirebase } from "../firebase"
 
 const withAuthentication = Component => {
   class WithAuthentication extends React.Component {
     constructor(props) {
-      super(props);
+      super(props)
 
       this.state = {
-        authUser: JSON.parse(localStorage.getItem("authUser"))
-      };
+        authUser: JSON.parse(localStorage.getItem("authUser")),
+      }
     }
 
     componentDidMount() {
       this.listener = this.props.firebase.auth.onAuthStateChanged(
         authUser => {
-          localStorage.setItem("authUser", JSON.stringify(authUser));
-          this.setState({ 
+          localStorage.setItem("authUser", JSON.stringify(authUser))
+          this.setState({
             authUser: {
               uid: authUser.uid,
               email: authUser.email,
               emailVerified: authUser.emailVerified,
-            }
-          });
+            },
+          })
         },
         () => {
-          localStorage.removeItem("authUser");
-          this.setState({ authUser: null });
+          localStorage.removeItem("authUser")
+          this.setState({ authUser: null })
         }
-      );
+      )
     }
 
     componentWillUnmount() {
-      this.listener();
+      this.listener()
     }
 
     render() {
@@ -41,11 +41,11 @@ const withAuthentication = Component => {
         <AuthUserContext.Provider value={this.state.authUser}>
           <Component authUser={this.state.authUser} {...this.props} />
         </AuthUserContext.Provider>
-      );
+      )
     }
   }
 
-  return withFirebase(WithAuthentication);
-};
+  return withFirebase(WithAuthentication)
+}
 
-export default withAuthentication;
+export default withAuthentication

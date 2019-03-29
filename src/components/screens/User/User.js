@@ -1,31 +1,31 @@
-import React from "react";
-import { withFirebase } from "../../firebase";
+import React from "react"
+import { withFirebase } from "../../firebase"
 
-import SignOut from "../../SignOut";
+import SignOut from "../../SignOut"
 
 class User extends React.Component {
   state = {
-    name: ""
-  };
+    name: "",
+  }
 
   updateInput = e => {
     this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
+      [e.target.name]: e.target.value,
+    })
+  }
 
   addUser = e => {
-    e.preventDefault();
-    const { firebase } = this.props;
+    e.preventDefault()
+    const { firebase } = this.props
 
     firebase.db
       .collection("users")
       .doc()
       .add({
-        name: this.state.name
-      });
-    this.setState({ name: "" });
-  };
+        name: this.state.name,
+      })
+    this.setState({ name: "" })
+  }
 
   render() {
     return (
@@ -42,8 +42,8 @@ class User extends React.Component {
           <button type="submit">Submit</button>
         </form>
       </React.Fragment>
-    );
+    )
   }
 }
 
-export default withFirebase(User);
+export default withFirebase(User)

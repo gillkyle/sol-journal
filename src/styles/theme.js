@@ -9,8 +9,8 @@ const theme = {
       quarternary: "#EAEAEA",
       headerBackground: "#FAFBFC",
       bodyBackground: "#FFF",
-      hover: "hsla(233, 5%, 31%, 0.12)"
-    }
+      hover: "hsla(233, 5%, 31%, 0.12)",
+    },
   },
   DARK: {
     name: "Dark",
@@ -22,9 +22,9 @@ const theme = {
       quarternary: "#3E4B62",
       headerBackground: "#272f3d",
       bodyBackground: "#262B34",
-      hover: "hsla(233, 100%, 96%, 0.12)"
-    }
-  }
-};
+      hover: "hsla(233, 100%, 96%, 0.12)",
+    },
+  },
+}
 
-export default theme;
+export default theme

@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { withRouter, Link } from "react-router-dom";
-import { format } from "date-fns";
+import React, { Component } from "react"
+import { withRouter, Link } from "react-router-dom"
+import { format } from "date-fns"
 
-import { FirebaseContext } from "../../firebase";
+import { FirebaseContext } from "../../firebase"
 
 const LoginPage = ({ history }) => (
   <div>
@@ -14,38 +14,38 @@ const LoginPage = ({ history }) => (
       Don't have an account? <Link to={"/register"}>Sign Up</Link>
     </p>
   </div>
-);
+)
 
 class LoginFormBase extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.state = { email: "", password: "", error: null };
+    this.state = { email: "", password: "", error: null }
   }
 
   onSubmit = event => {
-    event.preventDefault();
-    const { email, password } = this.state;
+    event.preventDefault()
+    const { email, password } = this.state
 
     this.props.firebase
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
-        this.setState({ email: "", password: "", error: null });
-        this.props.history.push(format(new Date(), "/YYYY/MM/DD"));
+        this.setState({ email: "", password: "", error: null })
+        this.props.history.push(format(new Date(), "/YYYY/MM/DD"))
       })
       .catch(error => {
-        this.setState({ error });
-      });
-  };
+        this.setState({ error })
+      })
+  }
 
   onChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
+    this.setState({ [event.target.name]: event.target.value })
+  }
 
   render() {
-    const { email, password, error } = this.state;
+    const { email, password, error } = this.state
 
-    const isInvalid = password === "" || email === "";
+    const isInvalid = password === "" || email === ""
 
     return (
       <form onSubmit={this.onSubmit}>
@@ -69,12 +69,12 @@ class LoginFormBase extends Component {
 
         {error && <p>{error.message}</p>}
       </form>
-    );
+    )
   }
 }
 
-const LoginForm = withRouter(LoginFormBase);
+const LoginForm = withRouter(LoginFormBase)
 
-export default LoginPage;
+export default LoginPage
 
-export { LoginForm };
+export { LoginForm }
