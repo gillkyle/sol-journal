@@ -6,6 +6,7 @@ import { withTheme } from "emotion-theming";
 import { withFirebase } from "../../firebase";
 import { withAuthentication } from "../../session";
 import { addDays, subDays, format, isAfter, startOfYesterday } from "date-fns";
+import { BeatLoader } from "react-spinners";
 
 import { SIZES } from "../../../styles/constants";
 
@@ -145,7 +146,8 @@ class Day extends Component {
     const {
       match: {
         params: { year, month, day }
-      }
+      },
+      theme
     } = this.props;
     const { text, loading } = this.state;
     const currentDay = new Date(year, month - 1, day);
@@ -161,7 +163,10 @@ class Day extends Component {
         />
         <JournalHeading>RECORD THOUGHTS ABOUT YOUR DAY</JournalHeading>
         {loading ? (
-          <JournalEntryArea disabled placeholder="Loading..." />
+          // <JournalEntryArea disabled placeholder="Loading..." />
+          <div style={{ marginTop: 10 }}>
+            <BeatLoader color={theme.colors.tertiary} size={10} margin="4px" />
+          </div>
         ) : (
           <JournalEntryArea
             placeholder="Start writing..."

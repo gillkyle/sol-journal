@@ -1,16 +1,17 @@
-import React from "react";
-import styled from "@emotion/styled";
+import React from "react"
+import styled from "@emotion/styled"
 import {
   Book,
   Calendar,
   ChevronLeft,
   ChevronRight,
   Circle,
+  Edit2,
   Moon,
   Sun,
-  User
-} from "react-feather";
-import { withTheme } from "emotion-theming";
+  User,
+} from "react-feather"
+import { withTheme } from "emotion-theming"
 
 const IconBase = styled.div`
   display: flex;
@@ -25,7 +26,7 @@ const IconBase = styled.div`
     background-color: ${props => !props.disabled && props.theme.colors.hover};
     cursor: pointer;
   }
-`;
+`
 
 const Icon = ({ name, ...rest }) => (
   <IconBase {...rest}>
@@ -38,6 +39,6 @@ const Icon = ({ name, ...rest }) => (
     {name === "Sun" && <Sun />}
     {name === "User" && <User />}
   </IconBase>
-);
+)
 
-export default withTheme(Icon);
+export default withTheme(Icon)
