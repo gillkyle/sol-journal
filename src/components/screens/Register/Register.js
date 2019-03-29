@@ -27,10 +27,11 @@ class RegisterForm extends Component {
 
   onSubmit = event => {
     const { username, email, passwordOne } = this.state;
+    const { firebase } = this.props
 
-    this.props.firebase
+    firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
-      .then(authUser => {
+      .then(result => {
         this.setState({
           username: "",
           email: "",
@@ -38,6 +39,12 @@ class RegisterForm extends Component {
           passwordTwo: "",
           error: null
         });
+        const { user } = result
+        console.log(user)
+        firebase.db.collection("users").doc(user.uid).set({
+          email: user.email,
+          theme: "LIGHT"
+        })
         this.props.history.push("/home");
       })
       .catch(error => {
@@ -53,7 +60,6 @@ class RegisterForm extends Component {
 
   render() {
     const { username, email, passwordOne, passwordTwo, error } = this.state;
-
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === "" ||

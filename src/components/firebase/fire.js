@@ -1,5 +1,6 @@
 import app from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
 
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -9,19 +10,16 @@ const config = {
   storageBucket: process.env.REACT_APP_DEV_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_DEV_MESSAGING_SENDER_ID
 };
-console.log("--------------------");
-console.log(process.env.NODE_ENV);
-console.log(process.env.REACT_APP_FIREBASE_API_KEY);
-console.log("--------------------");
 
 class Firebase {
   constructor() {
     app.initializeApp(config);
     this.auth = app.auth();
+    this.db = app.firestore();
   }
 
   // Auth
-  doCreateUserWithEmailAndPassword = (email, password) =>
+  doCreateUserWithEmailAndPassword = (email, password) => 
     this.auth.createUserWithEmailAndPassword(email, password);
 
   doSignInWithEmailAndPassword = (email, password) =>

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import styled from "@emotion/styled";
+import { compose } from "recompose";
 import { withTheme } from "emotion-theming";
+import { withFirebase } from "../../firebase";
+import { withAuthentication } from "../../session";
 import { addDays, subDays, format, isAfter, startOfYesterday } from "date-fns";
 
 import { SIZES } from "../../../styles/constants";
@@ -43,11 +46,14 @@ class Day extends Component {
     const {
       match: {
         params: { year, month, day }
-      }
+      },
+      firebase,
+      authUser,
     } = this.props;
     const currentDay = new Date(year, month - 1, day);
     console.log(currentDay);
     if (!currentDay) return;
+    firebase.db.collection("entries").doc(`${year}${month}${day}-${authUser.uid}`).get().then(doc => console.log(doc.data()))
 
     return (
       <>
@@ -64,4 +70,4 @@ class Day extends Component {
   }
 }
 
-export default withTheme(Day);
+export default compose(withFirebase,withTheme, withAuthentication)(Day);

@@ -1,5 +1,5 @@
 import React from "react";
-import fire from "../../firebase/fire.js";
+import { withFirebase } from "../../firebase";
 
 import SignOut from "../../SignOut";
 
@@ -16,11 +16,9 @@ class User extends React.Component {
 
   addUser = e => {
     e.preventDefault();
-    const db = fire.firestore();
-    db.settings({
-      timestampsInSnapshots: true
-    });
-    const userRef = db.collection("users").add({
+    const { firebase } = this.props
+
+    const userRef = firebase.db.collection("users").doc().add({
       name: this.state.name
     });
     this.setState({ name: "" });
@@ -45,4 +43,4 @@ class User extends React.Component {
   }
 }
 
-export default User;
+export default withFirebase(User);
