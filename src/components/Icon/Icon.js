@@ -17,19 +17,24 @@ const IconBase = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: none;
+  background-color: transparent;
   border-radius: 12px;
   padding: 5px;
   transition: 0.1s all ease-in-out;
   color: ${props => props.theme.colors.secondary};
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px ${props => props.theme.colors.bodyBackground},
+      0 0 0 5px ${props => props.theme.colors.hover};
+  }
   &:hover {
     background-color: ${props => !props.disabled && props.theme.colors.hover};
     cursor: pointer;
   }
 `
 
-const Icon = ({ name, ...rest }) => (
-  <IconBase {...rest}>
+const Icon = ({ name, tabindex, ...rest }) => (
+  <IconBase tabIndex={tabindex} {...rest}>
     {name === "Book" && <Book />}
     {name === "Calendar" && <Calendar />}
     {name === "ChevronLeft" && <ChevronLeft />}

@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import styled from "@emotion/styled"
+import { css, keyframes } from "@emotion/core"
 import { compose } from "recompose"
 import { withRouter } from "react-router-dom"
 import { withTheme } from "emotion-theming"
@@ -31,7 +32,7 @@ const JournalEntryArea = styled.textarea`
   resize: none;
   outline: none;
   font-size: ${SIZES.small};
-  border-radius: 3px;
+  border-radius: 1px;
   margin-top: ${SIZES.tiny};
   padding-top: 0px;
   padding-bottom: 0px;
@@ -42,6 +43,18 @@ const JournalEntryArea = styled.textarea`
     box-shadow: 0 0 0 8px ${props => props.theme.colors.bodyBackground},
       0 0 0 10px ${props => props.theme.colors.hover};
   }
+`
+const fadeKeyFrames = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`
+const LoadingSpinner = styled(BeatLoader)`
+  opacity: 0;
+  animation: fadein 2s;
 `
 
 const AUTOSAVE_DELAY = 2000
@@ -165,7 +178,14 @@ class Day extends Component {
         {loading ? (
           // <JournalEntryArea disabled placeholder="Loading..." />
           <div style={{ marginTop: 10 }}>
-            <BeatLoader color={theme.colors.tertiary} size={10} margin="4px" />
+            <LoadingSpinner
+              color={theme.colors.tertiary}
+              size={10}
+              margin="4px"
+              css={css`
+                animation: ${fadeKeyFrames} 1s ease-in;
+              `}
+            />
           </div>
         ) : (
           <JournalEntryArea

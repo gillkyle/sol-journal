@@ -70,13 +70,15 @@ const Navbar = ({ authUser, theme, toggleTheme }) => (
             <Link to={yearUrl()}>
               <Icon name="Calendar" />
             </Link>
-            <Icon
-              onClick={() => toggleTheme()}
-              name={theme.name === "Dark" ? "Sun" : "Moon"}
-            />
             <Link to={"/user"}>
               <Icon name="User" />
             </Link>
+            <Icon
+              tabindex={0}
+              onClick={() => toggleTheme()}
+              onKeyPress={() => toggleTheme()}
+              name={theme.name === "Dark" ? "Sun" : "Moon"}
+            />
           </React.Fragment>
         ) : (
           <React.Fragment>

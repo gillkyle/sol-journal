@@ -31,7 +31,7 @@ class LoginFormBase extends Component {
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
         this.setState({ email: "", password: "", error: null })
-        this.props.history.push(format(new Date(), "/YYYY/MM/DD"))
+        this.props.history.push(format(new Date(), "/"))
       })
       .catch(error => {
         this.setState({ error })
