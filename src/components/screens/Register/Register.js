@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import { FirebaseContext } from "../../firebase";
 
@@ -26,8 +26,8 @@ class RegisterForm extends Component {
   }
 
   onSubmit = event => {
-    const { username, email, passwordOne } = this.state;
-    const { firebase } = this.props
+    const { email, passwordOne } = this.state;
+    const { firebase } = this.props;
 
     firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
@@ -39,12 +39,15 @@ class RegisterForm extends Component {
           passwordTwo: "",
           error: null
         });
-        const { user } = result
-        console.log(user)
-        firebase.db.collection("users").doc(user.uid).set({
-          email: user.email,
-          theme: "LIGHT"
-        })
+        const { user } = result;
+        console.log(user);
+        firebase.db
+          .collection("users")
+          .doc(user.uid)
+          .set({
+            email: user.email,
+            theme: "LIGHT"
+          });
         this.props.history.push("/home");
       })
       .catch(error => {

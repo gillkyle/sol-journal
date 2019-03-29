@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { addDays, subDays, format, isToday } from "date-fns";
+import { subDays, format, isToday } from "date-fns";
 
 import Seek from "../../Seek";
 
@@ -11,7 +11,6 @@ class Month extends Component {
       }
     } = this.props;
     const currentDay = new Date(year, month - 1);
-    console.log(currentDay);
     return (
       <div>
         <Seek

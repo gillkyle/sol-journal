@@ -1,5 +1,3 @@
-import format from "date-fns/format";
-
 export const pad = n => (n < 10 ? "0" : "") + n;
 
 export const todayUrl = (date = new Date()) =>
@@ -8,7 +6,7 @@ export const todayUrl = (date = new Date()) =>
 export const yearUrl = (date = new Date()) => `/${date.getFullYear()}/`;
 
 export const months = {
-  short: Array.from({ length: 12 }, (x, index) =>
-    new Date(0, index).toLocaleDateString("en-US", { month: "short" })
+  long: Array.from({ length: 12 }, (x, index) =>
+    new Date(0, index).toLocaleDateString("en-US", { month: "long" })
   )
 };

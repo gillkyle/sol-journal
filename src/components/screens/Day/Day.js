@@ -60,7 +60,7 @@ class Day extends Component {
       }
     } = this.props;
     history.listen((location, action) => {
-      const [blank, year, month, day] = location.pathname.split("/");
+      const [, year, month, day] = location.pathname.split("/");
       this.onRouteChanged(year, month, day);
     });
     this.getDocRef(year, month, day, false);
@@ -144,8 +144,7 @@ class Day extends Component {
     const {
       match: {
         params: { year, month, day }
-      },
-      theme
+      }
     } = this.props;
     const { text, loading } = this.state;
     const currentDay = new Date(year, month - 1, day);
@@ -161,9 +160,7 @@ class Day extends Component {
         />
         <JournalHeading>RECORD THOUGHTS ABOUT YOUR DAY</JournalHeading>
         {loading ? (
-          <div style={{ color: theme.colors.tertiary, fontSize: 12 }}>
-            loading...
-          </div>
+          <JournalEntryArea disabled placeholder="Loading..." />
         ) : (
           <JournalEntryArea
             placeholder="Start writing..."

@@ -16,11 +16,14 @@ class User extends React.Component {
 
   addUser = e => {
     e.preventDefault();
-    const { firebase } = this.props
+    const { firebase } = this.props;
 
-    const userRef = firebase.db.collection("users").doc().add({
-      name: this.state.name
-    });
+    firebase.db
+      .collection("users")
+      .doc()
+      .add({
+        name: this.state.name
+      });
     this.setState({ name: "" });
   };
 

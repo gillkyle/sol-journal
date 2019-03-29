@@ -43,7 +43,7 @@ class App extends Component {
   };
 
   render() {
-    const { authUser, selectedTheme } = this.state;
+    const { selectedTheme } = this.state;
 
     const currentTheme = theme[selectedTheme];
     return (

@@ -20,9 +20,9 @@ class Firebase {
       .firestore()
       .enablePersistence()
       .catch(function(err) {
-        if (err.code == "failed-precondition") {
+        if (err.code === "failed-precondition") {
           console.error("firestore won't work offline with multiple tabs open");
-        } else if (err.code == "unimplemented") {
+        } else if (err.code === "unimplemented") {
           console.error(
             "current browser can't take advantage of firestore offline"
           );
