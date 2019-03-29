@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import {
   isAfter,
+  isThisYear,
   format,
   addMonths,
   subMonths,
@@ -42,9 +44,32 @@ class Month extends Component {
     } = this.props;
     const currentDay = new Date(year, month - 1);
 
+    // include all months unless it's this year
+    let dayIndexesToInclude = 31;
+    if (isThisYear(currentDay)) {
+      dayIndexesToInclude = new Date().getDate();
+    }
+
     let yearCards = [];
     for (let i = 0; i < getDaysInMonth(currentDay); i++) {
-      yearCards.push(<YearCard key={i}>{i + 1}</YearCard>);
+      const isDisabled = dayIndexesToInclude <= i;
+      if (isDisabled) {
+        yearCards.push(
+          <YearCard disabled={isDisabled} key={i}>
+            {i + 1}
+          </YearCard>
+        );
+      } else {
+        yearCards.push(
+          <Link
+            key={i}
+            to={format(new Date(year, month - 1, i + 1), "/YYYY/MM/DD")}
+            style={{ textDecoration: "none" }}
+          >
+            <YearCard key={i}>{i + 1}</YearCard>
+          </Link>
+        );
+      }
     }
 
     return (
