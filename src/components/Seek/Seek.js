@@ -14,10 +14,11 @@ const SeekHeader = styled.header`
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-color: ${props => props.theme.colors.quarternary};
+  margin-top: 15px;
 `
 const SeekH1 = styled.h1`
   display: block;
-  font-size: ${SIZES.normal};
+  font-size: ${SIZES.small};
   color: ${props => props.theme.colors.secondary};
 `
 const SeekArrows = styled.div`

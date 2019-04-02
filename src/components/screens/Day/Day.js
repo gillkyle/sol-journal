@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import styled from "@emotion/styled"
-import { css, keyframes } from "@emotion/core"
+/** @jsx jsx */
+import { jsx, css, keyframes } from "@emotion/core"
 import { compose } from "recompose"
 import { withRouter } from "react-router-dom"
 import { withTheme } from "emotion-theming"
@@ -39,6 +40,9 @@ const JournalEntryArea = styled.textarea`
   &::placeholder {
     color: ${props => props.theme.colors.tertiary};
   }
+  &::selection {
+    background: ${props => props.theme.colors.hover};
+  }
   &:focus {
     box-shadow: 0 0 0 8px ${props => props.theme.colors.bodyBackground},
       0 0 0 10px ${props => props.theme.colors.hover};
@@ -54,7 +58,6 @@ const fadeKeyFrames = keyframes`
 `
 const LoadingSpinner = styled(BeatLoader)`
   opacity: 0;
-  animation: fadein 2s;
 `
 
 const AUTOSAVE_DELAY = 2000
@@ -126,7 +129,6 @@ class Day extends Component {
 
     this.setState({ text })
     this.timeout = setTimeout(() => {
-      console.log(text)
       this.saveText(text)
     }, AUTOSAVE_DELAY)
   }
@@ -176,10 +178,9 @@ class Day extends Component {
         />
         <JournalHeading>RECORD THOUGHTS ABOUT YOUR DAY</JournalHeading>
         {loading ? (
-          // <JournalEntryArea disabled placeholder="Loading..." />
           <div style={{ marginTop: 10 }}>
             <LoadingSpinner
-              color={theme.colors.tertiary}
+              color={theme.colors.quarternary}
               size={10}
               margin="4px"
               css={css`
@@ -192,6 +193,9 @@ class Day extends Component {
             placeholder="Start writing..."
             onChange={e => this.onChangeText(e)}
             value={text}
+            css={css`
+              animation: ${fadeKeyFrames} 0.2s ease-in;
+            `}
           />
         )}
       </>
