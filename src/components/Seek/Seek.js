@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 
 import { SIZES } from "../../styles/constants"
 import Icon from "../Icon"
+import { H1 } from "../elements"
 
 const SeekHeader = styled.header`
   display: flex;
@@ -16,11 +17,6 @@ const SeekHeader = styled.header`
   border-color: ${props => props.theme.colors.quarternary};
   margin-top: 15px;
 `
-const SeekH1 = styled.h1`
-  display: block;
-  font-size: ${SIZES.small};
-  color: ${props => props.theme.colors.secondary};
-`
 const SeekArrows = styled.div`
   display: grid;
   grid-template-columns: auto auto;
@@ -29,7 +25,7 @@ const SeekArrows = styled.div`
 
 const Seek = ({ title = "", prev = "", next = "", disableNext, theme }) => (
   <SeekHeader>
-    <SeekH1>{title}</SeekH1>
+    <H1 color={theme.colors.secondary}>{title}</H1>
     <SeekArrows>
       <Link to={prev}>
         <Icon name="ChevronLeft" />

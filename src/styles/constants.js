@@ -5,4 +5,5 @@ export const SIZES = {
   medium: "1.5rem",
   large: "2rem",
   maxWidth: "600px",
+  smallWidth: "300px",
 }

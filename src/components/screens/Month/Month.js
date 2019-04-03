@@ -4,6 +4,7 @@ import styled from "@emotion/styled"
 import {
   isAfter,
   isThisYear,
+  isThisMonth,
   format,
   addMonths,
   subMonths,
@@ -52,7 +53,7 @@ class Month extends Component {
 
     let yearCards = []
     for (let i = 0; i < getDaysInMonth(currentDay); i++) {
-      const isDisabled = dayIndexesToInclude <= i
+      const isDisabled = dayIndexesToInclude <= i && isThisMonth(currentDay)
       if (isDisabled) {
         yearCards.push(
           <YearCard disabled={isDisabled} key={i}>

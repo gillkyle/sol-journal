@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { StyledLink as Link } from "../elements"
 import styled from "@emotion/styled"
 import { compose } from "recompose"
 import { withTheme } from "emotion-theming"

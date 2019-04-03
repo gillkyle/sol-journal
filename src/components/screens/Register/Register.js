@@ -1,18 +1,39 @@
 import React, { Component } from "react"
 import { withRouter } from "react-router-dom"
+import styled from "@emotion/styled"
+import { compose } from "recompose"
+import { withTheme } from "emotion-theming"
+
+import { Input, Button, P } from "../../elements"
+import { SIZES } from "../../../styles/constants"
+import { StyledLink as Link } from "../../elements"
 
 import { FirebaseContext } from "../../firebase"
 
-const RegisterPage = ({ history }) => (
-  <div>
-    <h1>Register</h1>
+const RegisterGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+`
+const RegisterLayout = styled.div`
+  max-width: ${SIZES.smallWidth};
+  width: 100%;
+  align-self: center;
+  margin-top: 20px;
+`
+
+const RegisterPage = ({ history, theme }) => (
+  <RegisterLayout>
     <FirebaseContext.Consumer>
       {firebase => <RegisterForm history={history} firebase={firebase} />}
     </FirebaseContext.Consumer>
-  </div>
+    <P colors={theme.colors} style={{ fontStyle: "italic" }}>
+      Already have an account? <Link to={"/login"}>Login</Link>
+    </P>
+  </RegisterLayout>
 )
 
-class RegisterForm extends Component {
+class RegisterFormBase extends Component {
   constructor(props) {
     super(props)
 
@@ -63,6 +84,7 @@ class RegisterForm extends Component {
 
   render() {
     const { username, email, passwordOne, passwordTwo, error } = this.state
+    const { theme } = this.props
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === "" ||
@@ -71,37 +93,43 @@ class RegisterForm extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <input
-          name="username"
-          value={username}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Full Name"
-        />
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Sign Up
-        </button>
+        <RegisterGrid>
+          <Input
+            colors={theme.colors}
+            name="username"
+            value={username}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Full Name"
+          />
+          <Input
+            colors={theme.colors}
+            name="email"
+            value={email}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Email Address"
+          />
+          <Input
+            colors={theme.colors}
+            name="passwordOne"
+            value={passwordOne}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Password"
+          />
+          <Input
+            colors={theme.colors}
+            name="passwordTwo"
+            value={passwordTwo}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Confirm Password"
+          />
+          <Button colors={theme.colors} disabled={isInvalid} type="submit">
+            Register
+          </Button>
+        </RegisterGrid>
 
         {error && <p>{error.message}</p>}
       </form>
@@ -109,6 +137,11 @@ class RegisterForm extends Component {
   }
 }
 
-export default withRouter(RegisterPage)
+const RegisterForm = compose(
+  withTheme,
+  withRouter
+)(RegisterFormBase)
+
+export default withTheme(RegisterPage)
 
 export { RegisterForm }
