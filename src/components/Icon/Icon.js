@@ -1,12 +1,15 @@
 import React from "react"
 import styled from "@emotion/styled"
 import {
+  ArrowRightCircle,
+  ArrowRight,
   Book,
   Calendar,
   ChevronLeft,
   ChevronRight,
   Circle,
   Edit2,
+  LogIn,
   Moon,
   Sun,
   User,
@@ -33,14 +36,22 @@ const IconBase = styled.div`
   }
 `
 
-const Icon = ({ name, tabindex, ...rest }) => (
+const Icon = ({ name, tabindex, label, ...rest }) => (
   <IconBase tabIndex={tabindex} {...rest}>
+    {label && (
+      <span style={{ margin: "3px -3px 3px 3px", fontWeight: 700 }}>
+        {label}
+      </span>
+    )}
+    {name === "ArrowRightCircle" && <ArrowRightCircle />}
+    {name === "ArrowRight" && <ArrowRight />}
     {name === "Book" && <Book />}
     {name === "Calendar" && <Calendar />}
     {name === "ChevronLeft" && <ChevronLeft />}
     {name === "ChevronRight" && <ChevronRight />}
     {name === "Circle" && <Circle />}
     {name === "Edit2" && <Edit2 />}
+    {name === "LogIn" && <LogIn />}
     {name === "Moon" && <Moon />}
     {name === "Sun" && <Sun />}
     {name === "User" && <User />}

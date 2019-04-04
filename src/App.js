@@ -14,6 +14,7 @@ import Year from "./components/screens/Year"
 import User from "./components/screens/User"
 import Login from "./components/screens/Login"
 import Register from "./components/screens/Register"
+import PrivateRoute from "./components/PrivateRoute"
 
 import { withAuthentication } from "./components/session"
 import { withFirebase } from "./components/firebase"
@@ -63,7 +64,9 @@ class App extends Component {
   }
 
   render() {
-    const { selectedTheme } = this.state
+    const { selectedTheme, authUser } = this.state
+    const { authUser: propAuthUser } = this.props
+    const authed = !!propAuthUser || !!authUser
 
     const currentTheme = theme[selectedTheme]
     return (
@@ -71,13 +74,20 @@ class App extends Component {
         <Router>
           <Navbar toggleTheme={this.onChangeTheme} />
           <RouteLayout>
-            <Route path="/:year(\d+)" component={Year} exact />
-            <Route
+            <PrivateRoute
+              authed={authed}
+              path="/:year(\d+)"
+              component={Year}
+              exact
+            />
+            <PrivateRoute
+              authed={authed}
               path="/:year(\d+)/:month(0[1-9]|1[0-2]+)"
               component={Month}
               exact
             />
-            <Route
+            <PrivateRoute
+              authed={authed}
               path="/:year(\d+)/:month(0[1-9]|1[0-2]+)/:day(\d+)"
               component={Day}
               exact

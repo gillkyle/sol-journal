@@ -1,6 +1,8 @@
 import React from "react"
 import { StyledLink as Link } from "../elements"
 import styled from "@emotion/styled"
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core"
 import { compose } from "recompose"
 import { withTheme } from "emotion-theming"
 
@@ -82,9 +84,11 @@ const Navbar = ({ authUser, theme, toggleTheme }) => (
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <Link to={"/"}>Landing</Link>
-            <Link to={"/login"}>Login</Link>
-            <Link to={"/register"}>Register</Link>
+            {/* <Link to={"/"}>Landing</Link> */}
+            <Link to={"/login"}>
+              <Icon name="LogIn" label="Get Started" />
+            </Link>
+            {/* <Link to={"/register"}>Register</Link> */}
           </React.Fragment>
         )}
       </NavIcons>
