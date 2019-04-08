@@ -5,7 +5,7 @@
   Sol Journal
 </h1>
 
-A simple, minimal, journaling platform that works offline and across all devices. Installable as a PWA on mobile devices for easy access on a phone
+A simple, minimal, journaling platform that works offline and across all devices. Installable as a PWA on mobile devices for easy access on a phone, inspired by [JournalBook](https://github.com/trys/JournalBook)
 
 ## 🚀 Getting Started
 
