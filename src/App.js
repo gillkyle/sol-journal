@@ -14,6 +14,7 @@ import Year from "./components/screens/Year"
 import User from "./components/screens/User"
 import Login from "./components/screens/Login"
 import Register from "./components/screens/Register"
+import Start from "./components/screens/Start"
 import PrivateRoute from "./components/PrivateRoute"
 
 import { withAuthentication } from "./components/session"
@@ -95,6 +96,7 @@ class App extends Component {
             <Route path="/user" component={User} exact />
             <Route path="/login" component={Login} exact />
             <Route path="/register" component={Register} exact />
+            <Route path="/" component={Start} exact />
           </RouteLayout>
         </Router>
       </ThemeProvider>
