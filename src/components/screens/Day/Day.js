@@ -150,6 +150,7 @@ class Day extends Component {
           day: Number(day),
           year: Number(year),
           month: Number(month),
+          userId: authUser.uid,
         },
         {
           merge: true,

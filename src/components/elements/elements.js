@@ -12,6 +12,7 @@ export const H1 = styled.h1`
 `
 
 export const Input = styled.input`
+  color: ${props => props.colors.primary};
   background-color: ${props => props.colors.headerBackground};
   border: none;
   border-radius: 5px;

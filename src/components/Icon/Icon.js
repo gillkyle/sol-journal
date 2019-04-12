@@ -11,6 +11,7 @@ import {
   Edit2,
   LogIn,
   Moon,
+  Search,
   Sun,
   User,
 } from "react-feather"
@@ -53,6 +54,7 @@ const Icon = ({ name, tabindex, label, ...rest }) => (
     {name === "Edit2" && <Edit2 />}
     {name === "LogIn" && <LogIn />}
     {name === "Moon" && <Moon />}
+    {name === "Search" && <Search />}
     {name === "Sun" && <Sun />}
     {name === "User" && <User />}
   </IconBase>

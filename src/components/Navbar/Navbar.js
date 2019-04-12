@@ -72,6 +72,9 @@ const Navbar = ({ authUser, theme, toggleTheme }) => (
             <Link to={yearUrl()}>
               <Icon name="Calendar" />
             </Link>
+            <Link to={"/search"}>
+              <Icon name="Search" />
+            </Link>
             <Link to={"/user"}>
               <Icon name="User" />
             </Link>

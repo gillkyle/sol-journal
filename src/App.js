@@ -13,6 +13,7 @@ import Month from "./components/screens/Month"
 import Year from "./components/screens/Year"
 import User from "./components/screens/User"
 import Login from "./components/screens/Login"
+import Search from "./components/screens/Search"
 import Register from "./components/screens/Register"
 import Start from "./components/screens/Start"
 import PrivateRoute from "./components/PrivateRoute"
@@ -20,6 +21,9 @@ import PrivateRoute from "./components/PrivateRoute"
 import { withAuthentication } from "./components/session"
 import { withFirebase } from "./components/firebase"
 
+const FullscreenLayout = styled.div`
+  background-color: ${props => props.theme.colors.bodyBackground};
+`
 const RouteLayout = styled.div`
   display: flex;
   flex-direction: column;
@@ -42,9 +46,9 @@ class App extends Component {
 
   onChangeTheme = () => {
     const { selectedTheme } = this.state
-    const root = document.documentElement
+    const body = document.body
     const newTheme = selectedTheme === "LIGHT" ? "DARK" : "LIGHT"
-    root.style.setProperty(
+    body.style.setProperty(
       "background-color",
       theme[newTheme].colors.bodyBackground
     )
@@ -73,31 +77,34 @@ class App extends Component {
     return (
       <ThemeProvider theme={currentTheme}>
         <Router>
-          <Navbar toggleTheme={this.onChangeTheme} />
-          <RouteLayout>
-            <PrivateRoute
-              authed={authed}
-              path="/:year(\d+)"
-              component={Year}
-              exact
-            />
-            <PrivateRoute
-              authed={authed}
-              path="/:year(\d+)/:month(0[1-9]|1[0-2]+)"
-              component={Month}
-              exact
-            />
-            <PrivateRoute
-              authed={authed}
-              path="/:year(\d+)/:month(0[1-9]|1[0-2]+)/:day(\d+)"
-              component={Day}
-              exact
-            />
-            <Route path="/user" component={User} exact />
-            <Route path="/login" component={Login} exact />
-            <Route path="/register" component={Register} exact />
-            <Route path="/" component={Start} exact />
-          </RouteLayout>
+          <FullscreenLayout>
+            <Navbar toggleTheme={this.onChangeTheme} />
+            <RouteLayout>
+              <PrivateRoute
+                authed={authed}
+                path="/:year(\d+)"
+                component={Year}
+                exact
+              />
+              <PrivateRoute
+                authed={authed}
+                path="/:year(\d+)/:month(0[1-9]|1[0-2]+)"
+                component={Month}
+                exact
+              />
+              <PrivateRoute
+                authed={authed}
+                path="/:year(\d+)/:month(0[1-9]|1[0-2]+)/:day(\d+)"
+                component={Day}
+                exact
+              />
+              <Route path="/user" component={User} exact />
+              <Route path="/login" component={Login} exact />
+              <Route path="/search" component={Search} exact />
+              <Route path="/register" component={Register} exact />
+              <Route path="/" component={Start} exact />
+            </RouteLayout>
+          </FullscreenLayout>
         </Router>
       </ThemeProvider>
     )

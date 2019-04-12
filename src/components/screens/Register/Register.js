@@ -69,7 +69,7 @@ class RegisterFormBase extends Component {
             email: user.email,
             theme: "LIGHT",
           })
-        this.props.history.push("/home")
+        this.props.history.push("/")
       })
       .catch(error => {
         this.setState({ error })
