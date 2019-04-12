@@ -1,5 +1,5 @@
-import React, { Component } from "react"
-import { withRouter, Link } from "react-router-dom"
+import { Component } from "react"
+import { Link } from "react-router-dom"
 /** @jsx jsx */
 import { jsx, css, keyframes } from "@emotion/core"
 import styled from "@emotion/styled"
@@ -58,8 +58,7 @@ class Search extends Component {
   }
 
   componentDidMount() {
-    const entries = this.getEntries()
-    console.log(entries)
+    this.getEntries()
   }
 
   onChange = event => {
@@ -70,7 +69,7 @@ class Search extends Component {
 
   filterEntries = searchTerm => {
     const { allEntries } = this.state
-    if (searchTerm == "") {
+    if (searchTerm === "") {
       this.setState({ entries: allEntries })
     } else {
       const filteredEntries = allEntries.filter(entry => {
@@ -87,7 +86,6 @@ class Search extends Component {
       .where("userId", "==", authUser.uid)
       .get()
     const entries = entriesRef.docs.map(doc => doc.data())
-    console.log(entries)
     // const sortedEntries = entries.sort((a, b) => {
     //   return (
     //     new Date(b.year, b.month - 1, b.day) -

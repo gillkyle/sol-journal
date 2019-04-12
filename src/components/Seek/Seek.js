@@ -2,7 +2,6 @@ import React from "react"
 import styled from "@emotion/styled"
 import { withTheme } from "emotion-theming"
 
-import { SIZES } from "../../styles/constants"
 import Icon from "../Icon"
 import { H1 } from "../elements"
 import { StyledLink as Link } from "../elements"

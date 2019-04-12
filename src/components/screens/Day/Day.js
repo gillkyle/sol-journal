@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React from "react"
 import styled from "@emotion/styled"
 /** @jsx jsx */
 import { jsx, css, keyframes } from "@emotion/core"
@@ -62,7 +62,7 @@ const LoadingSpinner = styled(BeatLoader)`
 
 const AUTOSAVE_DELAY = 2000
 
-class Day extends Component {
+class Day extends React.Component {
   state = {
     text: "",
     loading: true,

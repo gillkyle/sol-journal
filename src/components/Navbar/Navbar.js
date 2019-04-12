@@ -2,7 +2,7 @@ import React from "react"
 import { StyledLink as Link } from "../elements"
 import styled from "@emotion/styled"
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core"
+import { jsx } from "@emotion/core"
 import { compose } from "recompose"
 import { withTheme } from "emotion-theming"
 

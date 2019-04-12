@@ -1,4 +1,3 @@
-import React from "react"
 import { withTheme } from "emotion-theming"
 import { Link } from "react-router-dom"
 import styled from "@emotion/styled"
