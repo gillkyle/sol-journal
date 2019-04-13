@@ -47,6 +47,7 @@ The minimal landing page starter comes with a few plugins installed already, but
 
 - 🔥 Firestore: Cloud firestore persists registered users to a users document and saved journal entries to an entries document
 - 🎨 Dark Theme: the `src/styles/theme.js` file contains a set of colors and default styles that are applied to components with Emotion. A default light and dark theme are already in the file.
+- 🔍 Search: Full-text search of a user's entries stored in Firestore for quick access
 - ➗ Functions: Firebase functions are initialized in the `functions` directory, serverless functions managed by Firebase can be setup here (note: with the free Spark plan, functions can't make requests to external API's like Algolia)
 
 ## 💫 Deploy
