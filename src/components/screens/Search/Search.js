@@ -85,7 +85,7 @@ class Search extends Component {
       .collection("entries")
       .where("userId", "==", authUser.uid)
       .get()
-    const entries = entriesRef.docs.map(doc => doc.data())
+    const entries = entriesRef.docs.map(doc => doc.data()).reverse()
     // const sortedEntries = entries.sort((a, b) => {
     //   return (
     //     new Date(b.year, b.month - 1, b.day) -

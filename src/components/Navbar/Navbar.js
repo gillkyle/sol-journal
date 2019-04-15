@@ -45,6 +45,9 @@ const LogoSection = styled.div`
 const LogoText = styled.span`
   color: ${props => props.color};
   margin-left: 5px;
+  @media (max-width: 400px) {
+    display: none;
+  }
 `
 const NavIcons = styled.div`
   display: flex;

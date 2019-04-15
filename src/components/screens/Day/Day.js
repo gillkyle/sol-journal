@@ -13,6 +13,7 @@ import { BeatLoader } from "react-spinners"
 import { SIZES } from "../../../styles/constants"
 
 import Seek from "../../Seek"
+import Icon from "../../Icon"
 
 const JournalHeading = styled.h2`
   font-weight: 700;
@@ -47,6 +48,11 @@ const JournalEntryArea = styled.textarea`
     box-shadow: 0 0 0 8px ${props => props.theme.colors.bodyBackground},
       0 0 0 10px ${props => props.theme.colors.hover};
   }
+`
+const Buttons = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
 `
 const fadeKeyFrames = keyframes`
   from {
@@ -133,6 +139,20 @@ class Day extends React.Component {
     }, AUTOSAVE_DELAY)
   }
 
+  onInsertTime = () => {
+    const entryTextArea = document.getElementById("entry-text-area")
+    const cursorIndex = entryTextArea.selectionStart
+    const { text } = this.state
+    const insertAt = (str, sub, pos) =>
+      `${str.slice(0, pos)}${sub}${str.slice(pos)}`
+    const newText = insertAt(text, format(new Date(), "h:mma "), cursorIndex)
+    this.setState({
+      text: newText,
+    })
+    entryTextArea.focus()
+    this.saveText(newText)
+  }
+
   saveText = text => {
     const {
       match: {
@@ -172,7 +192,7 @@ class Day extends React.Component {
     return (
       <>
         <Seek
-          title={format(currentDay, "YYYY MMM DD")}
+          title={format(currentDay, "YYYY MMM DD - dddd")}
           prev={format(subDays(currentDay, 1), "/YYYY/MM/DD")}
           next={format(addDays(currentDay, 1), "/YYYY/MM/DD")}
           disableNext={isAfter(currentDay, startOfYesterday())}
@@ -190,14 +210,25 @@ class Day extends React.Component {
             />
           </div>
         ) : (
-          <JournalEntryArea
-            placeholder="Start writing..."
-            onChange={e => this.onChangeText(e)}
-            value={text}
-            css={css`
-              animation: ${fadeKeyFrames} 0.2s ease-in;
-            `}
-          />
+          <>
+            <JournalEntryArea
+              id="entry-text-area"
+              placeholder="Start writing..."
+              onChange={e => this.onChangeText(e)}
+              value={text}
+              css={css`
+                animation: ${fadeKeyFrames} 0.2s ease-in;
+              `}
+            />
+            <Buttons>
+              <Icon
+                name="Clock"
+                label="Quick Add Time"
+                labelRight
+                onClick={() => this.onInsertTime()}
+              />{" "}
+            </Buttons>
+          </>
         )}
       </>
     )

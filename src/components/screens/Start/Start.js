@@ -23,12 +23,15 @@ class Start extends Component {
       <StartGrid>
         <div style={{ margin: 10 }}>
           Use your journal as a place to record thoughts and events from the
-          day. Your journal works offline and from any device. You can add it to
-          your homescreen for faster access and write from a mobile device or
-          type up your entries from your computer.
+          day.
+        </div>
+        <div style={{ margin: 10 }}>
+          Your journal works offline and from any device. You can add it to your
+          homescreen for faster access and write from a mobile device or type up
+          your entries from your computer.
         </div>
         <Link to={todayUrl()} style={{ textDecoration: "none" }}>
-          <Button colors={theme.colors}>Begin Writing</Button>
+          <Button colors={theme.colors}>Write Today</Button>
         </Link>
       </StartGrid>
     )

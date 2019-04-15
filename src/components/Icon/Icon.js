@@ -8,6 +8,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Circle,
+  Clock,
   Edit2,
   LogIn,
   Moon,
@@ -37,9 +38,9 @@ const IconBase = styled.div`
   }
 `
 
-const Icon = ({ name, tabindex, label, ...rest }) => (
+const Icon = ({ name, tabindex, label, labelRight, ...rest }) => (
   <IconBase tabIndex={tabindex} {...rest}>
-    {label && (
+    {label && !labelRight && (
       <span style={{ margin: "3px -3px 3px 3px", fontWeight: 700 }}>
         {label}
       </span>
@@ -51,12 +52,23 @@ const Icon = ({ name, tabindex, label, ...rest }) => (
     {name === "ChevronLeft" && <ChevronLeft />}
     {name === "ChevronRight" && <ChevronRight />}
     {name === "Circle" && <Circle />}
+    {name === "Clock" && <Clock />}
     {name === "Edit2" && <Edit2 />}
     {name === "LogIn" && <LogIn />}
     {name === "Moon" && <Moon />}
     {name === "Search" && <Search />}
     {name === "Sun" && <Sun />}
     {name === "User" && <User />}
+    {label && labelRight && (
+      <span
+        style={{
+          margin: "3px -3px 3px 3px",
+          fontWeight: 700,
+        }}
+      >
+        {label}
+      </span>
+    )}
   </IconBase>
 )
 
