@@ -1,68 +1,65 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <img alt="preview of page" src="https://raw.githubusercontent.com/gillkyle/images/master/Dark-Light.png" />
+</p>
+<h1 align="center">
+  Sol Journal
+</h1>
 
-## Available Scripts
+A simple, minimal, journaling platform that works offline and across all devices. Installable as a PWA on mobile devices for easy access on a phone, inspired by [JournalBook](https://github.com/trys/JournalBook)
 
-In the project directory, you can run:
+## 🚀 Getting Started
 
-### `npm start`
+Sol Journal uses firebase to support offline functionality and authentication, a new Firebase app will need to be setup with Firestore as a database, be sure to add documents for `users` and `entries`, as well as enabling email for user authentication.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Install dependencies:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+```bash
+npm install
+```
 
-### `npm test`
+or
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+yarn
+```
 
-### `npm run build`
+Then configure a file in `.env` with the following keys from firebase:
+```env
+REACT_APP_FIREBASE_API_KEY=<BUNCHofRandomNumbersAndChars>
+REACT_APP_DEV_AUTH_DOMAIN=<your-id.firebaseapp.com>
+REACT_APP_DEV_DATABASE_URL=<https://your-id.firebaseapp.com>
+REACT_APP_DEV_PROJECT_ID=<your-id>
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Navigate into the project directory, and then launch the site with this command:
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+```bash
+yarn develop
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The site will be opened up in your default browser on http://localhost:3000
 
-### `npm run eject`
+Edit code in the `/src`, save your changes, and they'll reload instantly in the browser.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🧐 What's inside?
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The minimal landing page starter comes with a few plugins installed already, but it's main focus is on staying simple and looking clean. These things are included by default:
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- 🔥 Firestore: Cloud firestore persists registered users to a users document and saved journal entries to an entries document
+- 🎨 Dark Theme: the `src/styles/theme.js` file contains a set of colors and default styles that are applied to components with Emotion. A default light and dark theme are already in the file.
+- 🔍 Search: Full-text search of a user's entries stored in Firestore for quick access
+- ➗ Functions: Firebase functions are initialized in the `functions` directory, serverless functions managed by Firebase can be setup here (note: with the free Spark plan, functions can't make requests to external API's like Algolia)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 💫 Deploy
 
-## Learn More
+To create an optimized build of the site run this command:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+yarn build
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+A `/build` folder will be assembled that can be deployed with this command:
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+```bash
+firebase deploy
+```
