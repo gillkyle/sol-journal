@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="preview of page" src="https://raw.githubusercontent.com/gillkyle/images/master/Dark-Light.png" />
+  <img alt="preview of page" src="https://raw.githubusercontent.com/gillkyle/images/master/hero-mixed.png" />
 </p>
 <h1 align="center">
   Sol Journal
