@@ -219,6 +219,10 @@ class Day extends React.Component {
       .then(() => {
         this.setState({ saving: false, lastSavedAt: new Date() })
       })
+      .catch(() => {
+        console.warn("saving will occur when back online")
+        this.setState({ saving: false })
+      })
   }
 
   render() {
@@ -249,7 +253,7 @@ class Day extends React.Component {
         <EntryHeading>
           <JournalHeading>RECORD THOUGHTS ABOUT YOUR DAY</JournalHeading>
           <EntryInfo>
-            <SavedMessaged>
+            {online && <SavedMessaged>
               {saving ? (
                 <>
                   Saving
@@ -266,7 +270,7 @@ class Day extends React.Component {
               ) : (
                 "Unsaved changes"
               )}
-            </SavedMessaged>
+            </SavedMessaged>}
             {!online && <OfflineNotice>Offline</OfflineNotice>}
           </EntryInfo>
         </EntryHeading>
