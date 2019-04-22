@@ -15,15 +15,30 @@ import { SIZES } from "../../../styles/constants"
 import Seek from "../../Seek"
 import Icon from "../../Icon"
 
+const EntryHeading = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: ${SIZES.medium};
+`
 const JournalHeading = styled.h2`
   font-weight: 700;
   font-size: ${SIZES.tiny};
   color: ${props => props.theme.colors.secondary};
-  margin-top: ${SIZES.medium};
+  display: block;
+`
+const SavedMessaged = styled.div`
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 5px;
+  color: ${props => props.theme.colors.secondary};
+  font-size: ${SIZES.tiny};
+  user-select: none;
 `
 const JournalEntryArea = styled.textarea`
   font-family: sans-serif;
-  flex-grow: 0.8;
+  flex-grow: 0.85;
   color: ${props => props.theme.colors.primary};
   caret-color: ${props => props.theme.colors.secondary};
   background-color: transparent;
@@ -72,6 +87,9 @@ class Day extends React.Component {
   state = {
     text: "",
     loading: true,
+    saving: false,
+    lastSavedAt: new Date(),
+    lastEditedAt: new Date(),
   }
   timeout = 0
   retrievedFromServer = false
@@ -133,7 +151,7 @@ class Day extends React.Component {
     if (this.timeout) clearTimeout(this.timeout)
     const text = e.target.value
 
-    this.setState({ text })
+    this.setState({ text, lastEditedAt: new Date() })
     this.timeout = setTimeout(() => {
       this.saveText(text)
     }, AUTOSAVE_DELAY)
@@ -154,6 +172,7 @@ class Day extends React.Component {
   }
 
   saveText = text => {
+    this.setState({ saving: true })
     const {
       match: {
         params: { year, month, day },
@@ -176,6 +195,9 @@ class Day extends React.Component {
           merge: true,
         }
       )
+      .then(() => {
+        this.setState({ saving: false, lastSavedAt: new Date() })
+      })
   }
 
   render() {
@@ -185,7 +207,7 @@ class Day extends React.Component {
       },
       theme,
     } = this.props
-    const { text, loading } = this.state
+    const { text, loading, saving, lastSavedAt, lastEditedAt } = this.state
     const currentDay = new Date(year, month - 1, day)
     if (!currentDay) return
 
@@ -197,7 +219,27 @@ class Day extends React.Component {
           next={format(addDays(currentDay, 1), "/YYYY/MM/DD")}
           disableNext={isAfter(currentDay, startOfYesterday())}
         />
-        <JournalHeading>RECORD THOUGHTS ABOUT YOUR DAY</JournalHeading>
+        <EntryHeading>
+          <JournalHeading>RECORD THOUGHTS ABOUT YOUR DAY</JournalHeading>
+          <SavedMessaged>
+            {saving ? (
+              <>
+                Saving
+                <LoadingSpinner
+                  color={theme.colors.quarternary}
+                  size={5}
+                  css={css`
+                    animation: 1s ease-in;
+                  `}
+                />
+              </>
+            ) : lastSavedAt >= lastEditedAt ? (
+              `Last saved at ${format(lastSavedAt, "h:mma")}`
+            ) : (
+              "Unsaved changes"
+            )}
+          </SavedMessaged>
+        </EntryHeading>
         {loading ? (
           <div style={{ marginTop: 10 }}>
             <LoadingSpinner
