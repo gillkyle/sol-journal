@@ -8,6 +8,7 @@ import { withRouter } from "react-router-dom"
 import { withTheme } from "emotion-theming"
 import { withFirebase } from "../../firebase"
 import { withAuthentication } from "../../session"
+import { OnlineContext } from "../../context/online"
 import { addDays, subDays, format, isAfter, startOfYesterday } from "date-fns"
 import { BeatLoader } from "react-spinners"
 
@@ -23,6 +24,11 @@ const EntryHeading = styled.div`
   justify-content: space-between;
   margin-top: ${SIZES.medium};
 `
+const EntryInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
 const JournalHeading = styled.h2`
   font-weight: 700;
   font-size: ${SIZES.tiny};
@@ -36,6 +42,13 @@ const SavedMessaged = styled.div`
   color: ${props => props.theme.colors.secondary};
   font-size: ${SIZES.tiny};
   user-select: none;
+`
+const OfflineNotice = styled.div`
+  padding: 5px;
+  color: ${props => props.theme.colors.secondary};
+  border: 1px solid;
+  border-color: ${props => props.theme.colors.tertiary};
+  border-radius: 3px;
 `
 const JournalEntryArea = styled.textarea`
   font-family: sans-serif;
@@ -95,6 +108,8 @@ class Day extends React.Component {
   timeout = 0
   retrievedFromServer = false
 
+  static contextType = OnlineContext
+
   componentDidMount() {
     const {
       history,
@@ -137,6 +152,7 @@ class Day extends React.Component {
       })
       .catch(err => {
         console.warn("entry not found in cache")
+        this.setState({ loading: false})
         // for cache first, server second fetching, dangerous with potential overwriting of data
         // docRef.get().then(doc => {
         //   if (doc.data()) {
@@ -184,10 +200,7 @@ class Day extends React.Component {
 
   saveText = (text, year, month, day) => {
     this.setState({ saving: true })
-    const {
-      firebase,
-      authUser,
-    } = this.props
+    const { firebase, authUser } = this.props
     firebase.db
       .collection("entries")
       .doc(`${year}${month}${day}-${authUser.uid}`)
@@ -215,6 +228,7 @@ class Day extends React.Component {
       },
       theme,
     } = this.props
+    const online = this.context
     const { text, loading, saving, lastSavedAt, lastEditedAt } = this.state
     const currentDay = new Date(year, month - 1, day)
     if (!currentDay) return
@@ -222,7 +236,10 @@ class Day extends React.Component {
 
     return (
       <>
-        <Prompt when={!hasSavedChanges} message="You have unsaved changes, are you sure you want to leave?" />
+        <Prompt
+          when={!hasSavedChanges}
+          message="You have unsaved changes, are you sure you want to leave?"
+        />
         <Seek
           title={format(currentDay, "YYYY MMM DD - dddd")}
           prev={format(subDays(currentDay, 1), "/YYYY/MM/DD")}
@@ -231,24 +248,27 @@ class Day extends React.Component {
         />
         <EntryHeading>
           <JournalHeading>RECORD THOUGHTS ABOUT YOUR DAY</JournalHeading>
-          <SavedMessaged>
-            {saving ? (
-              <>
-                Saving
-                <LoadingSpinner
-                  color={theme.colors.quarternary}
-                  size={5}
-                  css={css`
-                    animation: 1s ease-in;
-                  `}
-                />
-              </>
-            ) : hasSavedChanges ? (
-              `Last saved at ${format(lastSavedAt, "h:mma")}`
-            ) : (
-              "Unsaved changes"
-            )}
-          </SavedMessaged>
+          <EntryInfo>
+            <SavedMessaged>
+              {saving ? (
+                <>
+                  Saving
+                  <LoadingSpinner
+                    color={theme.colors.quarternary}
+                    size={5}
+                    css={css`
+                      animation: 1s ease-in;
+                    `}
+                  />
+                </>
+              ) : hasSavedChanges ? (
+                `Last saved at ${format(lastSavedAt, "h:mma")}`
+              ) : (
+                "Unsaved changes"
+              )}
+            </SavedMessaged>
+            {!online && <OfflineNotice>Offline</OfflineNotice>}
+          </EntryInfo>
         </EntryHeading>
         {loading ? (
           <div style={{ marginTop: 10 }}>

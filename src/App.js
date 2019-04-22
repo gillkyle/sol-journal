@@ -18,6 +18,7 @@ import Register from "./components/screens/Register"
 import Start from "./components/screens/Start"
 import PrivateRoute from "./components/PrivateRoute"
 
+import { OnlineContext } from "./components/context/online"
 import { withAuthentication } from "./components/session"
 import { withFirebase } from "./components/firebase"
 
@@ -42,6 +43,17 @@ class App extends Component {
       new Date().getHours() >= 7 && new Date().getHours() <= 21
         ? "LIGHT"
         : "DARK",
+    online: navigator.onLine,
+  }
+
+  componentDidMount() {
+    window.addEventListener('online', () => {
+      this.setState({ online: true })
+    });
+    
+    window.addEventListener('offline', () => {
+      this.setState({ online: false })
+    });
   }
 
   onChangeTheme = () => {
@@ -69,43 +81,45 @@ class App extends Component {
   }
 
   render() {
-    const { selectedTheme, authUser } = this.state
+    const { selectedTheme, authUser, online } = this.state
     const { authUser: propAuthUser } = this.props
     const authed = !!propAuthUser || !!authUser
 
     const currentTheme = theme[selectedTheme]
     return (
       <ThemeProvider theme={currentTheme}>
-        <Router>
-          <FullscreenLayout>
-            <Navbar toggleTheme={this.onChangeTheme} />
-            <RouteLayout>
-              <PrivateRoute
-                authed={authed}
-                path="/:year(\d+)"
-                component={Year}
-                exact
-              />
-              <PrivateRoute
-                authed={authed}
-                path="/:year(\d+)/:month(0[1-9]|1[0-2]+)"
-                component={Month}
-                exact
-              />
-              <PrivateRoute
-                authed={authed}
-                path="/:year(\d+)/:month(0[1-9]|1[0-2]+)/:day(\d+)"
-                component={Day}
-                exact
-              />
-              <Route path="/user" component={User} exact />
-              <Route path="/login" component={Login} exact />
-              <Route path="/search" component={Search} exact />
-              <Route path="/register" component={Register} exact />
-              <Route path="/" component={Start} exact />
-            </RouteLayout>
-          </FullscreenLayout>
-        </Router>
+        <OnlineContext.Provider value={online}>
+          <Router>
+            <FullscreenLayout>
+              <Navbar toggleTheme={this.onChangeTheme} />
+              <RouteLayout>
+                <PrivateRoute
+                  authed={authed}
+                  path="/:year(\d+)"
+                  component={Year}
+                  exact
+                />
+                <PrivateRoute
+                  authed={authed}
+                  path="/:year(\d+)/:month(0[1-9]|1[0-2]+)"
+                  component={Month}
+                  exact
+                />
+                <PrivateRoute
+                  authed={authed}
+                  path="/:year(\d+)/:month(0[1-9]|1[0-2]+)/:day(\d+)"
+                  component={Day}
+                  exact
+                />
+                <Route path="/user" component={User} exact />
+                <Route path="/login" component={Login} exact />
+                <Route path="/search" component={Search} exact />
+                <Route path="/register" component={Register} exact />
+                <Route path="/" component={Start} exact />
+              </RouteLayout>
+            </FullscreenLayout>
+          </Router>
+        </OnlineContext.Provider>
       </ThemeProvider>
     )
   }
