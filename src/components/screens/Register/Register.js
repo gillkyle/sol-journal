@@ -67,7 +67,6 @@ class RegisterFormBase extends Component {
           .doc(user.uid)
           .set({
             email: user.email,
-            theme: "LIGHT",
           })
         this.props.history.push("/")
       })
