@@ -41,14 +41,16 @@ The site will be opened up in your default browser on http://localhost:3000
 
 Edit code in the `/src`, save your changes, and they'll reload instantly in the browser.
 
-## 🧐 What's inside?
+## 🧐 Features
 
-The minimal landing page starter comes with a few plugins installed already, but it's main focus is on staying simple and looking clean. These things are included by default:
+In the spirit of minimalism, key features are what are in place for a quick, lightweight journaling experience that can work across devices, including:
 
-- 🔥 Firestore: Cloud firestore persists registered users to a users document and saved journal entries to an entries document
-- 🎨 Dark Theme: the `src/styles/theme.js` file contains a set of colors and default styles that are applied to components with Emotion. A default light and dark theme are already in the file.
-- 🔍 Search: Full-text search of a user's entries stored in Firestore for quick access
-- ➗ Functions: Firebase functions are initialized in the `functions` directory, serverless functions managed by Firebase can be setup here (note: with the free Spark plan, functions can't make requests to external API's like Algolia)
+- 🔥 Authentication: Cloud firestore persists registered users to a users document and saved journal entries to an entries document
+- 🎨 Dark Theme: the `src/styles/theme.js` file contains a set of colors and default styles that are applied to components with Emotion. A default light and dark theme are already in the file
+- 🔍 Search: Full-text search of a user's entries stored in Firestore for quick access to past entries
+- 🖥 Mobile Friendly: Designed to look great on mobile as well as desktop, with easy navigation on both
+- 💡 PWA: Being a progressive web app makes it installable from Chrome/Safari on desktop, or be added to the homescreen on iOS/Android
+- 🔌 Offline Support: Read/write when you're offline and let the updates happen when your connection is restored  
 
 ## 💫 Deploy
 
