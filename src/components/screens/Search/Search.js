@@ -104,6 +104,7 @@ class Search extends Component {
       <SearchLayout>
         <SearchGrid>
           <Input
+          autoFocus={true}
             value={searchInput}
             onChange={e => this.onChange(e)}
             type="text"

@@ -3,6 +3,7 @@ import styled from "@emotion/styled"
 /** @jsx jsx */
 import { jsx, css, keyframes } from "@emotion/core"
 import { compose } from "recompose"
+import { Prompt } from "react-router"
 import { withRouter } from "react-router-dom"
 import { withTheme } from "emotion-theming"
 import { withFirebase } from "../../firebase"
@@ -150,10 +151,15 @@ class Day extends React.Component {
   onChangeText = e => {
     if (this.timeout) clearTimeout(this.timeout)
     const text = e.target.value
+    const {
+      match: {
+        params: { year, month, day },
+      },
+    } = this.props
 
     this.setState({ text, lastEditedAt: new Date() })
     this.timeout = setTimeout(() => {
-      this.saveText(text)
+      this.saveText(text, year, month, day)
     }, AUTOSAVE_DELAY)
   }
 
@@ -161,6 +167,11 @@ class Day extends React.Component {
     const entryTextArea = document.getElementById("entry-text-area")
     const cursorIndex = entryTextArea.selectionStart
     const { text } = this.state
+    const {
+      match: {
+        params: { year, month, day },
+      },
+    } = this.props
     const insertAt = (str, sub, pos) =>
       `${str.slice(0, pos)}${sub}${str.slice(pos)}`
     const newText = insertAt(text, format(new Date(), "h:mma "), cursorIndex)
@@ -168,15 +179,12 @@ class Day extends React.Component {
       text: newText,
     })
     entryTextArea.focus()
-    this.saveText(newText)
+    this.saveText(newText, year, month, day)
   }
 
-  saveText = text => {
+  saveText = (text, year, month, day) => {
     this.setState({ saving: true })
     const {
-      match: {
-        params: { year, month, day },
-      },
       firebase,
       authUser,
     } = this.props
@@ -210,9 +218,11 @@ class Day extends React.Component {
     const { text, loading, saving, lastSavedAt, lastEditedAt } = this.state
     const currentDay = new Date(year, month - 1, day)
     if (!currentDay) return
+    const hasSavedChanges = lastSavedAt >= lastEditedAt
 
     return (
       <>
+        <Prompt when={!hasSavedChanges} message="You have unsaved changes, are you sure you want to leave?" />
         <Seek
           title={format(currentDay, "YYYY MMM DD - dddd")}
           prev={format(subDays(currentDay, 1), "/YYYY/MM/DD")}
@@ -233,7 +243,7 @@ class Day extends React.Component {
                   `}
                 />
               </>
-            ) : lastSavedAt >= lastEditedAt ? (
+            ) : hasSavedChanges ? (
               `Last saved at ${format(lastSavedAt, "h:mma")}`
             ) : (
               "Unsaved changes"
@@ -255,6 +265,7 @@ class Day extends React.Component {
           <>
             <JournalEntryArea
               id="entry-text-area"
+              autoFocus={true}
               placeholder="Start writing..."
               onChange={e => this.onChangeText(e)}
               value={text}
