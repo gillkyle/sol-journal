@@ -1,7 +1,6 @@
 <p align="center">
   <img alt="preview of page" width="50%" src="https://raw.githubusercontent.com/gillkyle/images/master/sol-journal-logo.png" />
 </p>
-
 <h2 align="center">
   Personal Journaling Platform
 </h2>
@@ -11,8 +10,6 @@ Sol Journal is a simple, minimal, journaling platform that works offline and acr
 <p align="center">
   <img alt="preview of page" src="https://raw.githubusercontent.com/gillkyle/images/master/hero-mixed.png" />
 </p>
-
-<hr />
 
 ## Introduction
 
@@ -73,10 +70,11 @@ In the spirit of minimalism, key features are what are in place for a quick, lig
 
 - 🔥 Authentication: Cloud firestore persists registered users to a users document and saved journal entries to an entries document
 - 🎨 Dark Theme: the `src/styles/theme.js` file contains a set of colors and default styles that are applied to components with Emotion. A default light and dark theme are already in the file
-- 🔍 Search: Full-text search of a user's entries stored in Firestore for quick access to past entries
-- 🖥 Mobile Friendly: Designed to look great on mobile as well as desktop, with easy navigation on both
-- 💡 PWA: Being a progressive web app makes it installable from Chrome/Safari on desktop, or be added to the homescreen on iOS/Android
-- 🔌 Offline Support: Read/write when you're offline and let the updates happen when your connection is restored  
+- 🔍 Search: full-text search of a user's entries stored in Firestore for quick access to past entries
+- 🖥 Mobile Friendly: designed to look great on mobile as well as desktop, with easy navigation on both
+- 💡 PWA: being a progressive web app makes it installable from Chrome/Safari on desktop, or be added to the homescreen on iOS/Android
+- 🔌 Offline Support: read/write when you're offline and let the updates happen when your connection is restored  
+- 🗄 Export: backup all of your entries at any time to save your data
 
 ## Deploy
 
