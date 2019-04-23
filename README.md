@@ -58,12 +58,16 @@ or
 yarn
 ```
 
-Then configure a file in a new `.env` file with the following keys from firebase:
+Then configure a file in a new `.env` file (using the `.env.sample` file as a reference) with the following keys from the firebase console:
 ```env
 REACT_APP_FIREBASE_API_KEY=<BUNCHofRandomNumbersAndChars>
-REACT_APP_DEV_AUTH_DOMAIN=<your-id.firebaseapp.com>
-REACT_APP_DEV_DATABASE_URL=<https://your-id.firebaseapp.com>
-REACT_APP_DEV_PROJECT_ID=<your-id>
+REACT_APP_DEV_AUTH_DOMAIN=<name>.firebaseapp.com
+REACT_APP_DEV_DATABASE_URL=https://<name>.firebaseio.com
+REACT_APP_DEV_PROJECT_ID=<name>
+REACT_APP_DEV_STORAGE_BUCKET=<name>.appspot.com
+REACT_APP_DEV_MESSAGING_SENDER_ID=############
+
+REACT_APP_CONFIRMATION_EMAIL_REDIRECT=https://<name>.firebaseapp.com
 ```
 
 Navigate into the project directory, and then launch the site with this command:
