@@ -62,6 +62,7 @@ class RegisterFormBase extends Component {
         })
         const { user } = result
         console.log(user)
+        user.sendEmailVerification()
         firebase.db
           .collection("users")
           .doc(user.uid)

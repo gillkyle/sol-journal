@@ -86,15 +86,42 @@ class User extends React.Component {
   }
 
   render() {
-    const { authUser, theme } = this.props
+    const { authUser, theme, firebase } = this.props
     const { exporting, files } = this.state
     return (
       <ProfileGrid>
         <ProfileSection>
           <ProfileSectionHeader>
             User: <ProfileSectionText>{authUser.email}</ProfileSectionText>
+            <div>
+              <ProfileSectionText style={{ fontWeight: 400 }}>
+                {authUser.emailVerified
+                  ? "Email has been verified"
+                  : "Email not verified"}
+              </ProfileSectionText>
+            </div>
           </ProfileSectionHeader>
           <SignOut />
+        </ProfileSection>
+        <ProfileSection>
+          <ProfileSectionHeader>
+            Reset Password{" "}
+            <div>
+              <ProfileSectionText style={{ fontWeight: 400 }}>
+                send an email with reset instructions
+              </ProfileSectionText>
+            </div>
+          </ProfileSectionHeader>
+
+          <Button
+            colors={theme.colors}
+            onClick={() => {
+              console.log("reset!")
+              firebase.doPasswordReset(authUser.email)
+            }}
+          >
+            Send Reset
+          </Button>
         </ProfileSection>
         <ProfileSection>
           <ProfileSectionHeader>

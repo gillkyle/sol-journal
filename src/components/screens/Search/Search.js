@@ -122,7 +122,7 @@ class Search extends Component {
                 `}
               />
             </div>
-          ) : (
+          ) : entries.length > 0 ? (
             entries.map((entry, index) => (
               <Link
                 key={index}
@@ -150,6 +150,17 @@ class Search extends Component {
                 </SearchResult>
               </Link>
             ))
+          ) : (
+            <div
+              css={css`
+                text-align: center;
+                font-style: italic;
+                color: ${theme.colors.tertiary};
+                margin-top: 5px;
+              `}
+            >
+              No entries to display
+            </div>
           )}
         </SearchGrid>
       </SearchLayout>
