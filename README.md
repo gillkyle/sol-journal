@@ -26,6 +26,18 @@ There are 2 ways to get started using Sol Journal:
 
 Sol Journal uses firebase to support offline functionality and authentication, meaning a new Firebase app will need to be setup with Firestore as a database if you wish to host it yourself. Be sure to add documents for `users` and `entries`, as well as enabling email for user authentication.
 
+## Features
+
+In the spirit of minimalism, key features are what are in place for a quick, lightweight journaling experience that can work across devices, including:
+
+- 🔥 Authentication: Cloud firestore persists registered users to a users document and saved journal entries to an entries document
+- 🎨 Dark Theme: the `src/styles/theme.js` file contains a set of colors and default styles that are applied to components with Emotion. A default light and dark theme are already in the file
+- 🔍 Search: full-text search of a user's entries stored in Firestore for quick access to past entries
+- 🖥 Mobile Friendly: designed to look great on mobile as well as desktop, with easy navigation on both
+- 💡 PWA: being a progressive web app makes it installable from Chrome/Safari on desktop, or be added to the homescreen on iOS/Android
+- 🔌 Offline Support: read/write when you're offline and let the updates happen when your connection is restored  
+- 🗄 Export: backup all of your entries at any time to save your data
+
 ## Developing
 
 Clone the project:
@@ -63,18 +75,6 @@ yarn develop
 The site will be opened up in your default browser on http://localhost:3000
 
 Edit code in the `/src`, save your changes, and they'll reload instantly in the browser.
-
-## Features
-
-In the spirit of minimalism, key features are what are in place for a quick, lightweight journaling experience that can work across devices, including:
-
-- 🔥 Authentication: Cloud firestore persists registered users to a users document and saved journal entries to an entries document
-- 🎨 Dark Theme: the `src/styles/theme.js` file contains a set of colors and default styles that are applied to components with Emotion. A default light and dark theme are already in the file
-- 🔍 Search: full-text search of a user's entries stored in Firestore for quick access to past entries
-- 🖥 Mobile Friendly: designed to look great on mobile as well as desktop, with easy navigation on both
-- 💡 PWA: being a progressive web app makes it installable from Chrome/Safari on desktop, or be added to the homescreen on iOS/Android
-- 🔌 Offline Support: read/write when you're offline and let the updates happen when your connection is restored  
-- 🗄 Export: backup all of your entries at any time to save your data
 
 ## Deploy
 
