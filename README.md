@@ -5,7 +5,7 @@
   Personal Journaling Platform
 </h2>
 
-Sol Journal is a simple, minimal, journaling platform that works offline and across all devices. It can be self-hosted through Firebase and then installed as a PWA, on mobile devices for easy access on a phone, or on Desktops. Inspired by [JournalBook](https://github.com/trys/JournalBook)
+Sol Journal is a simple, minimal, journaling platform that works offline and across all devices. It can be self-hosted through Firebase and then installed as a PWA, on mobile devices for easy access on a phone, or on Desktops. 
 
 <p align="center">
   <img alt="preview of page" src="https://raw.githubusercontent.com/gillkyle/images/master/hero-mixed.png" />
@@ -13,7 +13,7 @@ Sol Journal is a simple, minimal, journaling platform that works offline and acr
 
 ## Introduction
 
-Journaling is a keystone habit that can improve your happiness and [overall health](https://psycnet.apa.org/record/2004-16777-010). Writing in a journal with pen and paper is effective, but not as easily accessible, maintained, or preserved.
+Journaling is a keystone habit that can improve your happiness and [overall health](https://psycnet.apa.org/record/2004-16777-010). Writing in a journal with pen and paper is effective, but not as easily accessible, maintained, or preserved as taking advantage of digital platforms.
 
 Having a journal that is available on any device makes journaling easier. Being tailored specifically to journaling makes it less cumbersome than trying to utilize a note taking app or document for recording thoughts and impressions.
 
@@ -93,3 +93,7 @@ A `/build` folder will be assembled that can be deployed with this command:
 ```bash
 firebase deploy
 ```
+
+## Inspiration
+
+Sol Journal is inspired by [JournalBook](https://github.com/trys/JournalBook) and borrows much of its design and navigation.
