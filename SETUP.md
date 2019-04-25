@@ -2,6 +2,7 @@
 
 Setting up Sol Journal requires a free Firebase account since many of the features rely on built in Firebase capabilities to allow functionality offline. The free plan gives you 50,000 reads and 20,000 writes per day, meaning you can easily run a personal version for yourself.
 
+
 ## Setting up Firebase
 
 You will need a Google account to create a Firebase project, then navigate to the Firebase Console: https://console.firebase.google.com/
@@ -69,3 +70,21 @@ In order to prevent would be hackers or nefarious folks from messing with data i
 ![](https://raw.githubusercontent.com/gillkyle/images/master/sol-journal-setup/14.png)
 
 ##### Configuration
+
+## Code Setup
+
+Having node installed is a prerequistie, you can follow instructions to get it setup yourself.
+
+You will need to install the firebase command line tools to deploy the site
+
+```bash
+npm install -g firebase-tools
+```
+
+With the command line tools installed you will need to login to firebase from the terminal with the account you setup on Firebase
+
+```bash
+firebase login
+```
+
+Follow the prompted instructions to connect your account.
