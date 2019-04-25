@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="preview of page" width="50%" src="https://raw.githubusercontent.com/gillkyle/images/master/sol-journal-logo.png" />
+  <img alt="logomark" width="50%" src="https://raw.githubusercontent.com/gillkyle/images/master/sol-journal-logo.png" />
 </p>
 <h2 align="center">
   Personal Journaling Platform
