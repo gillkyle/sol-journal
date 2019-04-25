@@ -152,7 +152,8 @@ class Day extends React.Component {
       })
       .catch(err => {
         console.warn("entry not found in cache")
-        this.setState({ loading: false})
+        // no doc was found, so reset the entry area to blank
+        this.setState({ loading: false, text: "" })
         // for cache first, server second fetching, dangerous with potential overwriting of data
         // docRef.get().then(doc => {
         //   if (doc.data()) {
@@ -253,24 +254,26 @@ class Day extends React.Component {
         <EntryHeading>
           <JournalHeading>RECORD THOUGHTS ABOUT YOUR DAY</JournalHeading>
           <EntryInfo>
-            {online && <SavedMessaged>
-              {saving ? (
-                <>
-                  Saving
-                  <LoadingSpinner
-                    color={theme.colors.quarternary}
-                    size={5}
-                    css={css`
-                      animation: 1s ease-in;
-                    `}
-                  />
-                </>
-              ) : hasSavedChanges ? (
-                `Last saved at ${format(lastSavedAt, "h:mma")}`
-              ) : (
-                "Unsaved changes"
-              )}
-            </SavedMessaged>}
+            {online && (
+              <SavedMessaged>
+                {saving ? (
+                  <>
+                    Saving
+                    <LoadingSpinner
+                      color={theme.colors.quarternary}
+                      size={5}
+                      css={css`
+                        animation: 1s ease-in;
+                      `}
+                    />
+                  </>
+                ) : hasSavedChanges ? (
+                  `Last saved at ${format(lastSavedAt, "h:mma")}`
+                ) : (
+                  "Unsaved changes"
+                )}
+              </SavedMessaged>
+            )}
             {!online && <OfflineNotice>Offline</OfflineNotice>}
           </EntryInfo>
         </EntryHeading>

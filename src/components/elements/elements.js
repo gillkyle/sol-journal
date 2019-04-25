@@ -61,6 +61,7 @@ export const StyledLink = withTheme(styled(Link)`
   text-decoration: none;
   border-radius: 12px;
   outline: none;
+  color: ${props => props.theme.colors.primary};
   &:focus {
     box-shadow: 0 0 0 3px ${props => props.theme.colors.bodyBackground},
       0 0 0 5px ${props => props.theme.colors.hover};
