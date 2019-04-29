@@ -111,9 +111,14 @@ class App extends Component {
                   component={Day}
                   exact
                 />
+                <PrivateRoute
+                  authed={authed}
+                  path="/search"
+                  component={Search}
+                  exact
+                />
                 <Route path="/user" component={User} exact />
                 <Route path="/login" component={Login} exact />
-                <Route path="/search" component={Search} exact />
                 <Route path="/register" component={Register} exact />
                 <Route path="/" component={Start} exact />
               </RouteLayout>
