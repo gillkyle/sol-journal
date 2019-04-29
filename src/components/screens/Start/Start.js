@@ -3,16 +3,14 @@ import { Link } from "react-router-dom"
 import styled from "@emotion/styled"
 import { withTheme } from "emotion-theming"
 
-import { Button } from "../../elements"
+import { Button, P } from "../../elements"
 import { todayUrl } from "../../../utils/date"
 
+const Title = styled.h1``
 const StartGrid = styled.div`
-  margin: 0 auto;
-  text-align: center;
   margin-top: 30px;
-  max-width: 350px;
   line-height: 1.5;
-  color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.primary};
   height: 100%;
 `
 
@@ -21,17 +19,14 @@ class Start extends Component {
     const { theme } = this.props
     return (
       <StartGrid>
-        <div style={{ margin: 10 }}>
-          Use your journal as a place to record thoughts and events from the
-          day.
-        </div>
-        <div style={{ margin: 10 }}>
-          Your journal works offline and from any device. You can add it to your
-          homescreen for faster access and write from a mobile device or type up
-          your entries from your computer.
-        </div>
+        <Title>Record what's on your mind, from anywhere</Title>
+        <P style={{ letterSpacing: 1.1, marginBottom: 30 }}>
+          Journaling can improve your health and help you take inventory of your
+          day. Sol Journal works offline and from any device. Use it as a place
+          to record thoughts and events from the day.
+        </P>
         <Link to={todayUrl()} style={{ textDecoration: "none" }}>
-          <Button colors={theme.colors}>Write Today</Button>
+          <Button colors={theme.colors}>Write about today</Button>
         </Link>
       </StartGrid>
     )

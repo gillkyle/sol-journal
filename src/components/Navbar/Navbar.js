@@ -1,4 +1,5 @@
 import React from "react"
+import { withRouter } from "react-router-dom"
 import { StyledLink as Link } from "../elements"
 import styled from "@emotion/styled"
 /** @jsx jsx */
@@ -41,6 +42,9 @@ const LogoSection = styled.div`
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 18px;
+  &:hover {
+    cursor: pointer;
+  }
 `
 const LogoText = styled.span`
   color: ${props => props.color};
@@ -58,10 +62,10 @@ const NavIcons = styled.div`
   }
 `
 
-const Navbar = ({ authUser, theme, toggleTheme }) => (
+const Navbar = ({ authUser, theme, toggleTheme, history }) => (
   <Header>
     <Nav>
-      <LogoSection>
+      <LogoSection onClick={() => history.push("/")}>
         <Logo color={theme.colors.logo} />
         <LogoText color={theme.colors.primary}>SOL</LogoText>{" "}
         <LogoText color={theme.colors.secondary}>JOURNAL</LogoText>
@@ -104,5 +108,6 @@ const Navbar = ({ authUser, theme, toggleTheme }) => (
 
 export default compose(
   withAuthentication,
-  withTheme
+  withTheme,
+  withRouter
 )(Navbar)

@@ -47,13 +47,13 @@ class App extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('online', () => {
+    window.addEventListener("online", () => {
       this.setState({ online: true })
-    });
-    
-    window.addEventListener('offline', () => {
+    })
+
+    window.addEventListener("offline", () => {
       this.setState({ online: false })
-    });
+    })
   }
 
   onChangeTheme = () => {

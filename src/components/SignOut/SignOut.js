@@ -7,7 +7,12 @@ import { Button } from "../elements"
 import { withFirebase } from "../firebase"
 
 const SignOutButton = ({ firebase, theme }) => (
-  <Button colors={theme.colors} type="button" onClick={firebase.doSignOut}>
+  <Button
+    fontSize="small"
+    colors={theme.colors}
+    type="button"
+    onClick={firebase.doSignOut}
+  >
     Sign Out
   </Button>
 )

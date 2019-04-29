@@ -114,6 +114,7 @@ class User extends React.Component {
           </ProfileSectionHeader>
 
           <Button
+            fontSize="small"
             colors={theme.colors}
             onClick={() => {
               console.log("reset!")
@@ -139,6 +140,7 @@ class User extends React.Component {
               style={{ textDecoration: "none" }}
             >
               <Button
+                fontSize="small"
                 colors={theme.colors}
                 onClick={() => {
                   setTimeout(() => {
@@ -151,7 +153,11 @@ class User extends React.Component {
               </Button>
             </a>
           ) : (
-            <Button colors={theme.colors} onClick={() => this.prepareExport()}>
+            <Button
+              fontSize="small"
+              colors={theme.colors}
+              onClick={() => this.prepareExport()}
+            >
               {exporting ? (
                 <BeatLoader
                   color={theme.colors.secondary}
