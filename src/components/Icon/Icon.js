@@ -9,10 +9,15 @@ import {
   ChevronRight,
   Circle,
   Clock,
+  CloudOff,
+  Download,
   Edit2,
   LogIn,
+  Monitor,
   Moon,
+  Package,
   Search,
+  Smartphone,
   Sun,
   User,
 } from "react-feather"
@@ -34,31 +39,36 @@ const IconBase = styled.div`
   }
   &:hover {
     background-color: ${props => !props.disabled && props.theme.colors.hover};
-    cursor: pointer;
+    cursor: ${props => !props.disabled && "pointer"};
   }
 `
 
-const Icon = ({ name, tabindex, label, labelRight, ...rest }) => (
+const Icon = ({ name, tabindex, label, labelRight, size, ...rest }) => (
   <IconBase tabIndex={tabindex} {...rest}>
     {label && !labelRight && (
       <span style={{ margin: "3px -3px 3px 3px", fontWeight: 700 }}>
         {label}
       </span>
     )}
-    {name === "ArrowRightCircle" && <ArrowRightCircle />}
-    {name === "ArrowRight" && <ArrowRight />}
-    {name === "Book" && <Book />}
-    {name === "Calendar" && <Calendar />}
-    {name === "ChevronLeft" && <ChevronLeft />}
-    {name === "ChevronRight" && <ChevronRight />}
-    {name === "Circle" && <Circle />}
-    {name === "Clock" && <Clock />}
-    {name === "Edit2" && <Edit2 />}
-    {name === "LogIn" && <LogIn />}
-    {name === "Moon" && <Moon />}
-    {name === "Search" && <Search />}
-    {name === "Sun" && <Sun />}
-    {name === "User" && <User />}
+    {name === "ArrowRightCircle" && <ArrowRightCircle size={size} />}
+    {name === "ArrowRight" && <ArrowRight size={size} />}
+    {name === "Book" && <Book size={size} />}
+    {name === "Calendar" && <Calendar size={size} />}
+    {name === "ChevronLeft" && <ChevronLeft size={size} />}
+    {name === "ChevronRight" && <ChevronRight size={size} />}
+    {name === "Circle" && <Circle size={size} />}
+    {name === "Clock" && <Clock size={size} />}
+    {name === "CloudOff" && <CloudOff size={size} />}
+    {name === "Download" && <Download size={size} />}
+    {name === "Edit2" && <Edit2 size={size} />}
+    {name === "LogIn" && <LogIn size={size} />}
+    {name === "Monitor" && <Monitor size={size} />}
+    {name === "Moon" && <Moon size={size} />}
+    {name === "Package" && <Package size={size} />}
+    {name === "Search" && <Search size={size} />}
+    {name === "Smartphone" && <Smartphone size={size} />}
+    {name === "Sun" && <Sun size={size} />}
+    {name === "User" && <User size={size} />}
     {label && labelRight && (
       <span
         style={{
