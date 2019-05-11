@@ -17,6 +17,7 @@ const SearchGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 10px;
+  margin-bottom: 60px;
 `
 const SearchLayout = styled.div`
   width: 100%;
@@ -123,33 +124,36 @@ class Search extends Component {
               />
             </div>
           ) : entries.length > 0 ? (
-            entries.map((entry, index) => (
-              <Link
-                key={index}
-                to={`${entry.year}/${pad(entry.month)}/${pad(entry.day)}`}
-                style={{ textDecoration: "none" }}
-              >
-                <SearchResult
-                  css={css`
-                    animation: ${fadeKeyFrames} 0.2s ease-in;
-                  `}
-                >
-                  <div
-                    css={css`
-                      font-style: italic;
-                      color: ${theme.colors.secondary};
-                      margin-bottom: 5px;
-                    `}
+            entries.map(
+              (entry, index) =>
+                entry.text.length > 1 && (
+                  <Link
+                    key={index}
+                    to={`${entry.year}/${pad(entry.month)}/${pad(entry.day)}`}
+                    style={{ textDecoration: "none" }}
                   >
-                    {entry.day}/{entry.month}/{entry.year}
-                  </div>
-                  <div>
-                    {entry.text.substring(0, 128)}
-                    {entry.text.length >= 128 && "..."}
-                  </div>
-                </SearchResult>
-              </Link>
-            ))
+                    <SearchResult
+                      css={css`
+                        animation: ${fadeKeyFrames} 0.2s ease-in;
+                      `}
+                    >
+                      <div
+                        css={css`
+                          font-style: italic;
+                          color: ${theme.colors.secondary};
+                          margin-bottom: 5px;
+                        `}
+                      >
+                        {entry.day}/{entry.month}/{entry.year}
+                      </div>
+                      <div>
+                        {entry.text.substring(0, 128)}
+                        {entry.text.length >= 128 && "..."}
+                      </div>
+                    </SearchResult>
+                  </Link>
+                )
+            )
           ) : (
             <div
               css={css`

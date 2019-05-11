@@ -16,6 +16,8 @@ import Login from "./components/screens/Login"
 import Search from "./components/screens/Search"
 import Register from "./components/screens/Register"
 import Start from "./components/screens/Start"
+import Terms from "./components/screens/Terms"
+import Privacy from "./components/screens/Privacy"
 import PrivateRoute from "./components/PrivateRoute"
 
 import { OnlineContext } from "./components/context/online"
@@ -117,9 +119,16 @@ class App extends Component {
                   component={Search}
                   exact
                 />
-                <Route path="/user" component={User} exact />
+                <PrivateRoute
+                  authed={authed}
+                  path="/user"
+                  component={User}
+                  exact
+                />
                 <Route path="/login" component={Login} exact />
                 <Route path="/register" component={Register} exact />
+                <Route path="/terms" component={Terms} exact />
+                <Route path="/privacy" component={Privacy} exact />
                 <Route path="/" component={Start} exact />
               </RouteLayout>
             </FullscreenLayout>

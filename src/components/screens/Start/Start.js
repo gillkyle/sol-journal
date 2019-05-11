@@ -42,8 +42,10 @@ const Footer = styled.footer`
   text-align: center;
   color: ${props => props.theme.colors.secondary};
 `
-const FooterLink = styled.a`
+const FooterLink = styled(Link)`
   cursor: pointer;
+  color: ${props => props.theme.colors.secondary};
+  text-decoration: none;
   margin: 10px;
   &:hover {
     color: ${props => props.theme.colors.tertiary};
@@ -133,8 +135,8 @@ class Start extends Component {
           </div>
           <div>
             <FooterLink>View on GitHub</FooterLink>
-            <FooterLink>Terms of Service</FooterLink>
-            <FooterLink>Privacy Policy</FooterLink>
+            <FooterLink to="terms">Terms of Service</FooterLink>
+            <FooterLink to="privacy">Privacy Policy</FooterLink>
           </div>
           <div>&copy; 2019</div>
         </Footer>
