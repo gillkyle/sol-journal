@@ -96,7 +96,7 @@ class Start extends Component {
           day. Sol Journal works offline and from any device. Use it as a place
           to record thoughts and events from the day.
         </P>
-        <Link to={todayUrl()} style={{ textDecoration: "none" }}>
+        <Link to={`/app${todayUrl()}`} style={{ textDecoration: "none" }}>
           <Button colors={theme.colors}>Write about today</Button>
         </Link>
         <div

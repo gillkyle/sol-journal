@@ -1,5 +1,5 @@
-import React from 'react'
+import React from "react"
 
 export const OnlineContext = React.createContext({
-  online: navigator.onLine,
-});
+  online: typeof window !== "undefined" && navigator && navigator.onLine,
+})

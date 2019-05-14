@@ -5,6 +5,6 @@ import theme from "./src/styles/theme"
 
 export const wrapRootElement = ({ element }) => (
   <FirebaseContext.Provider value={new Firebase()}>
-    <ThemeProvider theme={theme.DARK}>{element}</ThemeProvider>
+    <ThemeProvider theme={theme.LIGHT}>{element}</ThemeProvider>
   </FirebaseContext.Provider>
 )

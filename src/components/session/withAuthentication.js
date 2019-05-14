@@ -8,8 +8,12 @@ const withAuthentication = Component => {
     constructor(props) {
       super(props)
 
-      this.state = {
-        authUser: JSON.parse(localStorage.getItem("authUser")),
+      if (typeof window !== "undefined") {
+        this.state = {
+          authUser: JSON.parse(localStorage.getItem("authUser")),
+        }
+      } else {
+        this.state = { authUser: null }
       }
     }
 

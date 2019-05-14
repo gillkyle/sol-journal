@@ -13,21 +13,25 @@ const config = {
 
 class Firebase {
   constructor() {
-    app.initializeApp(config)
-    this.auth = app.auth()
-    this.db = app.firestore()
-    app
-      .firestore()
-      .enablePersistence()
-      .catch(function(err) {
-        if (err.code === "failed-precondition") {
-          console.error("firestore won't work offline with multiple tabs open")
-        } else if (err.code === "unimplemented") {
-          console.error(
-            "current browser can't take advantage of firestore offline"
-          )
-        }
-      })
+    if (typeof window !== "undefined") {
+      app.initializeApp(config)
+      this.auth = app.auth()
+      this.db = app.firestore()
+      app
+        .firestore()
+        .enablePersistence()
+        .catch(function(err) {
+          if (err.code === "failed-precondition") {
+            console.error(
+              "firestore won't work offline with multiple tabs open"
+            )
+          } else if (err.code === "unimplemented") {
+            console.error(
+              "current browser can't take advantage of firestore offline"
+            )
+          }
+        })
+    }
   }
 
   // Auth

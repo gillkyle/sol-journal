@@ -40,12 +40,10 @@ const RouteLayout = styled.div`
 
 class App extends Component {
   state = {
-    authUser: JSON.parse(localStorage.getItem("authUser")),
     selectedTheme:
       new Date().getHours() >= 7 && new Date().getHours() <= 21
         ? "LIGHT"
         : "DARK",
-    online: navigator.onLine,
   }
 
   componentDidMount() {
@@ -55,6 +53,11 @@ class App extends Component {
 
     window.addEventListener("offline", () => {
       this.setState({ online: false })
+    })
+
+    this.setState({
+      authUser: JSON.parse(localStorage.getItem("authUser")),
+      online: navigator.onLine,
     })
   }
 
