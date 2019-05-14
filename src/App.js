@@ -97,39 +97,39 @@ class App extends Component {
               <RouteLayout>
                 <PrivateRoute
                   authed={authed}
-                  path="/:year(\d+)"
+                  path="/app/:year(\d+)"
                   component={Year}
                   exact
                 />
                 <PrivateRoute
                   authed={authed}
-                  path="/:year(\d+)/:month(0[1-9]|1[0-2]+)"
+                  path="/app/:year(\d+)/:month(0[1-9]|1[0-2]+)"
                   component={Month}
                   exact
                 />
                 <PrivateRoute
                   authed={authed}
-                  path="/:year(\d+)/:month(0[1-9]|1[0-2]+)/:day(\d+)"
+                  path="/app/:year(\d+)/:month(0[1-9]|1[0-2]+)/:day(\d+)"
                   component={Day}
                   exact
                 />
                 <PrivateRoute
                   authed={authed}
-                  path="/search"
+                  path="/app/search"
                   component={Search}
                   exact
                 />
                 <PrivateRoute
                   authed={authed}
-                  path="/user"
+                  path="/app/user"
                   component={User}
                   exact
                 />
-                <Route path="/login" component={Login} exact />
-                <Route path="/register" component={Register} exact />
-                <Route path="/terms" component={Terms} exact />
-                <Route path="/privacy" component={Privacy} exact />
-                <Route path="/" component={Start} exact />
+                <Route path="/app/login" component={Login} exact />
+                <Route path="/app/register" component={Register} exact />
+                <Route path="/app/terms" component={Terms} exact />
+                <Route path="/app/privacy" component={Privacy} exact />
+                <Route path="/app" component={Start} exact />
               </RouteLayout>
             </FullscreenLayout>
           </Router>

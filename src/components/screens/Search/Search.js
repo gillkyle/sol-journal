@@ -1,5 +1,5 @@
 import { Component } from "react"
-import { Link } from "react-router-dom"
+import { AppLink as Link } from "../../elements"
 /** @jsx jsx */
 import { jsx, css, keyframes } from "@emotion/core"
 import styled from "@emotion/styled"

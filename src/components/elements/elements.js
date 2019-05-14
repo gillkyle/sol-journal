@@ -1,3 +1,4 @@
+import React from "react"
 import { withTheme } from "emotion-theming"
 import { Link } from "react-router-dom"
 import styled from "@emotion/styled"
@@ -57,7 +58,9 @@ export const P = styled.p`
   color: ${props => props.theme.colors.secondary};
 `
 
-export const StyledLink = withTheme(styled(Link)`
+export const AppLink = props => <Link {...props} to={"/app" + props.to} />
+
+export const StyledLink = withTheme(styled(AppLink)`
   text-decoration: none;
   border-radius: 12px;
   outline: none;
