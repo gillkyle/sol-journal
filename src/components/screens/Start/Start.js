@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { AppLink as Link } from "../../elements"
+import { Link } from "gatsby"
 import styled from "@emotion/styled"
 import { withTheme } from "emotion-theming"
 
@@ -11,12 +11,14 @@ import Logo from "../../Logo"
 
 const StartGrid = styled.div`
   margin-top: 30px;
+  text-align: center;
   line-height: 1.5;
   color: ${props => props.theme.colors.primary};
   height: 100%;
 `
 const FeatureGrid = styled.div`
   display: grid;
+  text-align: left;
   grid-template-rows: 1fr;
   grid-gap: 30px;
 `
@@ -97,7 +99,7 @@ class Start extends Component {
           to record thoughts and events from the day.
         </P>
         <Link to={`/app${todayUrl()}`} style={{ textDecoration: "none" }}>
-          <Button colors={theme.colors}>Write about today</Button>
+          <Button colors={theme.colors}>Start Writing</Button>
         </Link>
         <div
           style={{

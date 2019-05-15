@@ -1,20 +1,17 @@
 import React from "react"
-import { Route, Redirect } from "react-router-dom"
+import { Redirect, Location } from "@reach/router"
 
 const PrivateRoute = ({ component: Component, authed, ...rest }) => {
   return (
-    <Route
-      {...rest}
-      render={props =>
+    <Location>
+      {({ location }) =>
         authed === true ? (
-          <Component {...props} />
+          <Component {...rest} />
         ) : (
-          <Redirect
-            to={{ pathname: "/login", state: { from: props.location } }}
-          />
+          <Redirect to="/app/login" from={location.pathname} />
         )
       }
-    />
+    </Location>
   )
 }
 

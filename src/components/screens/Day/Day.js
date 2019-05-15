@@ -4,7 +4,7 @@ import styled from "@emotion/styled"
 import { jsx, css, keyframes } from "@emotion/core"
 import { compose } from "recompose"
 import { Prompt } from "react-router"
-import { withRouter } from "react-router-dom"
+import { createHistory } from "@reach/router"
 import { withTheme } from "emotion-theming"
 import { withFirebase } from "../../firebase"
 import { withAuthentication } from "../../session"
@@ -106,19 +106,15 @@ class Day extends React.Component {
     lastEditedAt: new Date(),
   }
   timeout = 0
-  retrievedFromServer = false
 
   static contextType = OnlineContext
 
   componentDidMount() {
-    const {
-      history,
-      match: {
-        params: { year, month, day },
-      },
-    } = this.props
-    history.listen((location, action) => {
-      const [, year, month, day] = location.pathname.split("/")
+    const { year, month, day } = this.props
+    const history = createHistory(window)
+    history.listen(({ location }) => {
+      console.log(location)
+      const [, , year, month, day] = location.pathname.split("/")
       this.onRouteChanged(year, month, day)
     })
     this.getDocRef(year, month, day, false)
@@ -168,11 +164,7 @@ class Day extends React.Component {
   onChangeText = e => {
     if (this.timeout) clearTimeout(this.timeout)
     const text = e.target.value
-    const {
-      match: {
-        params: { year, month, day },
-      },
-    } = this.props
+    const { year, month, day } = this.props
 
     this.setState({ text, lastEditedAt: new Date() })
     this.timeout = setTimeout(() => {
@@ -184,11 +176,7 @@ class Day extends React.Component {
     const entryTextArea = document.getElementById("entry-text-area")
     const cursorIndex = entryTextArea.selectionStart
     const { text } = this.state
-    const {
-      match: {
-        params: { year, month, day },
-      },
-    } = this.props
+    const { year, month, day } = this.props
     const insertAt = (str, sub, pos) =>
       `${str.slice(0, pos)}${sub}${str.slice(pos)}`
     const newText = insertAt(text, format(new Date(), "h:mma "), cursorIndex)
@@ -227,12 +215,7 @@ class Day extends React.Component {
   }
 
   render() {
-    const {
-      match: {
-        params: { year, month, day },
-      },
-      theme,
-    } = this.props
+    const { year, month, day, theme } = this.props
     const online = this.context
     const { text, loading, saving, lastSavedAt, lastEditedAt } = this.state
     const currentDay = new Date(year, month - 1, day)
@@ -241,10 +224,10 @@ class Day extends React.Component {
 
     return (
       <>
-        <Prompt
+        {/* <Prompt
           when={!hasSavedChanges}
           message="You have unsaved changes, are you sure you want to leave?"
-        />
+        /> */}
         <Seek
           title={format(currentDay, "YYYY MMM DD - dddd")}
           prev={format(subDays(currentDay, 1), "/YYYY/MM/DD")}
@@ -318,6 +301,5 @@ class Day extends React.Component {
 export default compose(
   withFirebase,
   withTheme,
-  withAuthentication,
-  withRouter
+  withAuthentication
 )(Day)

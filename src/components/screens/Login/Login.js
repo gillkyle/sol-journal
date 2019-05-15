@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { withRouter } from "react-router-dom"
+import { navigate } from "gatsby"
 import styled from "@emotion/styled"
 import { compose } from "recompose"
 import { format } from "date-fns"
@@ -23,10 +23,10 @@ const LoginLayout = styled.div`
   margin-top: 20px;
 `
 
-const LoginPage = ({ history, theme }) => (
+const LoginPage = ({ theme }) => (
   <LoginLayout>
     <FirebaseContext.Consumer>
-      {firebase => <LoginForm history={history} firebase={firebase} />}
+      {firebase => <LoginForm firebase={firebase} />}
     </FirebaseContext.Consumer>
     <P colors={theme.colors} style={{ fontStyle: "italic" }}>
       Don't have an account? <Link to={"/register"}>Sign Up</Link>
@@ -49,7 +49,7 @@ class LoginFormBase extends Component {
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
         this.setState({ email: "", password: "", error: null })
-        this.props.history.push(format(new Date(), "/"))
+        navigate(`app/${format(new Date(), "/")}`)
       })
       .catch(error => {
         this.setState({ error })
@@ -95,10 +95,7 @@ class LoginFormBase extends Component {
   }
 }
 
-const LoginForm = compose(
-  withTheme,
-  withRouter
-)(LoginFormBase)
+const LoginForm = compose(withTheme)(LoginFormBase)
 
 export default withTheme(LoginPage)
 

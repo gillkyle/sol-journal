@@ -31,11 +31,7 @@ const MonthCard = styled.div`
 
 class Year extends Component {
   render() {
-    const {
-      match: {
-        params: { year },
-      },
-    } = this.props
+    const { year } = this.props
     const currentDate = new Date(year, 0, 1)
 
     // include all months unless it's this year

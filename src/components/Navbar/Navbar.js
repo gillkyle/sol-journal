@@ -1,5 +1,5 @@
 import React from "react"
-import { withRouter } from "react-router-dom"
+import { navigate } from "gatsby"
 import { StyledLink as Link } from "../elements"
 import styled from "@emotion/styled"
 /** @jsx jsx */
@@ -62,10 +62,10 @@ const NavIcons = styled.div`
   }
 `
 
-const Navbar = ({ authUser, theme, toggleTheme, history }) => (
+const Navbar = ({ authUser, theme, toggleTheme }) => (
   <Header>
     <Nav>
-      <LogoSection onClick={() => history.push("/")}>
+      <LogoSection onClick={() => navigate("/app")}>
         <Logo color={theme.colors.logo} />
         <LogoText color={theme.colors.primary}>SOL</LogoText>{" "}
         <LogoText color={theme.colors.secondary}>JOURNAL</LogoText>
@@ -96,7 +96,7 @@ const Navbar = ({ authUser, theme, toggleTheme, history }) => (
           <React.Fragment>
             {/* <Link to={"/"}>Landing</Link> */}
             <Link to={"/login"}>
-              <Icon name="LogIn" label="Get Started" />
+              <Icon name="LogIn" label="Login" />
             </Link>
             {/* <Link to={"/register"}>Register</Link> */}
           </React.Fragment>
@@ -108,6 +108,5 @@ const Navbar = ({ authUser, theme, toggleTheme, history }) => (
 
 export default compose(
   withAuthentication,
-  withTheme,
-  withRouter
+  withTheme
 )(Navbar)

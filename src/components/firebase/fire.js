@@ -43,7 +43,7 @@ class Firebase {
 
   doSignOut = () => {
     this.auth.signOut()
-    window.location.replace("/login")
+    window.location.replace("/app/login")
   }
 
   doPasswordReset = email => this.auth.sendPasswordResetEmail(email)

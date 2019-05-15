@@ -1,6 +1,6 @@
 import React from "react"
 import { withTheme } from "emotion-theming"
-import { Link } from "react-router-dom"
+import { Link } from "gatsby"
 import styled from "@emotion/styled"
 
 import { SIZES } from "../../styles/constants"

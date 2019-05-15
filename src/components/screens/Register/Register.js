@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import { withRouter } from "react-router-dom"
 import styled from "@emotion/styled"
 import { compose } from "recompose"
 import { withTheme } from "emotion-theming"
@@ -137,10 +136,7 @@ class RegisterFormBase extends Component {
   }
 }
 
-const RegisterForm = compose(
-  withTheme,
-  withRouter
-)(RegisterFormBase)
+const RegisterForm = compose(withTheme)(RegisterFormBase)
 
 export default withTheme(RegisterPage)
 

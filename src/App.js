@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { Router } from "@reach/router"
 import { compose } from "recompose"
 import styled from "@emotion/styled"
 import { ThemeProvider } from "emotion-theming"
@@ -15,9 +15,7 @@ import User from "./components/screens/User"
 import Login from "./components/screens/Login"
 import Search from "./components/screens/Search"
 import Register from "./components/screens/Register"
-import Start from "./components/screens/Start"
-import Terms from "./components/screens/Terms"
-import Privacy from "./components/screens/Privacy"
+import Welcome from "./components/screens/Welcome"
 import PrivateRoute from "./components/PrivateRoute"
 
 import { OnlineContext } from "./components/context/online"
@@ -94,25 +92,25 @@ class App extends Component {
     return (
       <ThemeProvider theme={currentTheme}>
         <OnlineContext.Provider value={online}>
-          <Router>
-            <FullscreenLayout>
-              <Navbar toggleTheme={this.onChangeTheme} />
-              <RouteLayout>
+          <FullscreenLayout>
+            <Navbar toggleTheme={this.onChangeTheme} />
+            <RouteLayout>
+              <Router>
                 <PrivateRoute
                   authed={authed}
-                  path="/app/:year(\d+)"
+                  path="/app/:year"
                   component={Year}
                   exact
                 />
                 <PrivateRoute
                   authed={authed}
-                  path="/app/:year(\d+)/:month(0[1-9]|1[0-2]+)"
+                  path="/app/:year/:month"
                   component={Month}
                   exact
                 />
                 <PrivateRoute
                   authed={authed}
-                  path="/app/:year(\d+)/:month(0[1-9]|1[0-2]+)/:day(\d+)"
+                  path="/app/:year/:month/:day"
                   component={Day}
                   exact
                 />
@@ -128,14 +126,18 @@ class App extends Component {
                   component={User}
                   exact
                 />
-                <Route path="/app/login" component={Login} exact />
-                <Route path="/app/register" component={Register} exact />
-                <Route path="/app/terms" component={Terms} exact />
-                <Route path="/app/privacy" component={Privacy} exact />
-                <Route path="/app" component={Start} exact />
-              </RouteLayout>
-            </FullscreenLayout>
-          </Router>
+                <PrivateRoute
+                  authed={authed}
+                  path="/app"
+                  component={Welcome}
+                  exact
+                />
+                <Login path="/app/login" />
+                <Register path="/app/register" />
+                {/* <Start path="/app" /> */}
+              </Router>
+            </RouteLayout>
+          </FullscreenLayout>
         </OnlineContext.Provider>
       </ThemeProvider>
     )
