@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import styled from "@emotion/styled"
+import { navigate } from "gatsby"
 import { compose } from "recompose"
 import { withTheme } from "emotion-theming"
 
@@ -21,10 +22,10 @@ const RegisterLayout = styled.div`
   margin-top: 20px;
 `
 
-const RegisterPage = ({ history, theme }) => (
+const RegisterPage = ({ theme }) => (
   <RegisterLayout>
     <FirebaseContext.Consumer>
-      {firebase => <RegisterForm history={history} firebase={firebase} />}
+      {firebase => <RegisterForm firebase={firebase} />}
     </FirebaseContext.Consumer>
     <P colors={theme.colors} style={{ fontStyle: "italic" }}>
       Already have an account? <Link to={"/login"}>Login</Link>
@@ -68,7 +69,7 @@ class RegisterFormBase extends Component {
           .set({
             email: user.email,
           })
-        this.props.history.push("/")
+        navigate("app/")
       })
       .catch(error => {
         this.setState({ error })
