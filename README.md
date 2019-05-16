@@ -5,7 +5,7 @@
   Personal Journaling Platform
 </h2>
 
-Sol Journal is a simple, minimal, journaling platform that works offline and across all devices. It can be self-hosted through Firebase and then installed as a PWA, on mobile devices for easy access on a phone, or on Desktops. 
+Sol Journal is a simple, minimal, journaling platform that works offline and across all devices. It can be self-hosted through Firebase and then installed as a PWA, on mobile devices for easy access on a phone, or on Desktops.
 
 <p align="center">
   <img alt="preview of page" src="https://raw.githubusercontent.com/gillkyle/images/master/hero-mixed.png" />
@@ -35,7 +35,7 @@ In the spirit of minimalism, key features are what are in place for a quick, lig
 - 🔍 Search: full-text search of a user's entries stored in Firestore for quick access to past entries
 - 🖥 Mobile Friendly: designed to look great on mobile as well as desktop, with easy navigation on both
 - 💡 PWA: being a progressive web app makes it installable from Chrome/Safari on desktop, or be added to the homescreen on iOS/Android
-- 🔌 Offline Support: read/write when you're offline and let the updates happen when your connection is restored  
+- 🔌 Offline Support: read/write when you're offline and let the updates happen when your connection is restored
 - 🗄 Export: backup all of your entries at any time to save your data
 
 ## Developing
@@ -59,15 +59,16 @@ yarn
 ```
 
 Then configure a file in a new `.env` file (using the `.env.sample` file as a reference) with the following keys from the firebase console:
-```env
-REACT_APP_FIREBASE_API_KEY=<BUNCHofRandomNumbersAndChars>
-REACT_APP_DEV_AUTH_DOMAIN=<name>.firebaseapp.com
-REACT_APP_DEV_DATABASE_URL=https://<name>.firebaseio.com
-REACT_APP_DEV_PROJECT_ID=<name>
-REACT_APP_DEV_STORAGE_BUCKET=<name>.appspot.com
-REACT_APP_DEV_MESSAGING_SENDER_ID=############
 
-REACT_APP_CONFIRMATION_EMAIL_REDIRECT=https://<name>.firebaseapp.com
+```env
+GATSBY_FIREBASE_API_KEY=<BUNCHofRandomNumbersAndChars>
+GATSBY_DEV_AUTH_DOMAIN=<name>.firebaseapp.com
+GATSBY_DEV_DATABASE_URL=https://<name>.firebaseio.com
+GATSBY_DEV_PROJECT_ID=<name>
+GATSBY_DEV_STORAGE_BUCKET=<name>.appspot.com
+GATSBY_DEV_MESSAGING_SENDER_ID=############
+
+GATSBY_CONFIRMATION_EMAIL_REDIRECT=https://<name>.firebaseapp.com
 ```
 
 Navigate into the project directory, and then launch the site with this command:
