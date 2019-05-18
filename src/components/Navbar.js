@@ -10,9 +10,9 @@ import { withTheme } from "emotion-theming"
 import { SIZES } from "styles/constants"
 import { todayUrl, yearUrl } from "utils/date"
 
-import Logo from "../Logo"
-import Icon from "../Icon"
-import { withAuthentication } from "../session"
+import Logo from "components/Logo"
+import Icon from "components/Icon"
+import { withAuthentication } from "components/session"
 
 const Header = styled.div`
   background-color: ${props => props.theme.colors.headerBackground};

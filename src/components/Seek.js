@@ -2,9 +2,9 @@ import React from "react"
 import styled from "@emotion/styled"
 import { withTheme } from "emotion-theming"
 
-import Icon from "../Icon"
-import { H1 } from "../elements"
-import { StyledLink as Link } from "../elements"
+import Icon from "components/Icon"
+import { H1 } from "components/elements"
+import { StyledLink as Link } from "components/elements"
 
 const SeekHeader = styled.header`
   display: flex;
