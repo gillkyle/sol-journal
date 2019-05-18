@@ -1,14 +1,14 @@
 import React, { Component } from "react"
 import styled from "@emotion/styled"
-import { navigate } from "gatsby"
+import { navigate, Link } from "gatsby"
 import { compose } from "recompose"
 import { withTheme } from "emotion-theming"
 
-import { Input, Button, P } from "../../elements"
-import { SIZES } from "../../../styles/constants"
-import { StyledLink as Link } from "../../elements"
-
-import { FirebaseContext } from "../../firebase"
+import { SimpleNavbar } from "../components/Navbar"
+import { Input, Button, P } from "../components/elements"
+import { SIZES } from "../styles/constants"
+import Layout from "../components/Layout"
+import { FirebaseContext } from "../components/firebase"
 
 const RegisterGrid = styled.div`
   display: grid;
@@ -18,19 +18,21 @@ const RegisterGrid = styled.div`
 const RegisterLayout = styled.div`
   max-width: ${SIZES.smallWidth};
   width: 100%;
-  align-self: center;
-  margin-top: 20px;
+  margin: 20px auto;
 `
 
 const RegisterPage = ({ theme }) => (
-  <RegisterLayout>
-    <FirebaseContext.Consumer>
-      {firebase => <RegisterForm firebase={firebase} />}
-    </FirebaseContext.Consumer>
-    <P colors={theme.colors} style={{ fontStyle: "italic" }}>
-      Already have an account? <Link to={"/login"}>Login</Link>
-    </P>
-  </RegisterLayout>
+  <Layout>
+    <SimpleNavbar />
+    <RegisterLayout>
+      <FirebaseContext.Consumer>
+        {firebase => <RegisterForm firebase={firebase} />}
+      </FirebaseContext.Consumer>
+      <P colors={theme.colors} style={{ fontStyle: "italic" }}>
+        Already have an account? <Link to={"/login"}>Login</Link>
+      </P>
+    </RegisterLayout>
+  </Layout>
 )
 
 class RegisterFormBase extends Component {

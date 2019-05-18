@@ -1,2 +1,3 @@
-import Navbar from "./Navbar"
+import Navbar, { SimpleNavbar } from "./Navbar"
 export default Navbar
+export { SimpleNavbar }

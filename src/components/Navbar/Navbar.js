@@ -1,6 +1,6 @@
 import React from "react"
-import { navigate } from "gatsby"
-import { StyledLink as Link } from "../elements"
+import { navigate, Link } from "gatsby"
+import { StyledLink } from "../../components/elements"
 import styled from "@emotion/styled"
 /** @jsx jsx */
 import { jsx } from "@emotion/core"
@@ -73,18 +73,18 @@ const Navbar = ({ authUser, theme, toggleTheme }) => (
       <NavIcons>
         {authUser ? (
           <React.Fragment>
-            <Link to={todayUrl()}>
+            <StyledLink to={todayUrl()}>
               <Icon name="Edit2" />
-            </Link>
-            <Link to={yearUrl()}>
+            </StyledLink>
+            <StyledLink to={yearUrl()}>
               <Icon name="Calendar" />
-            </Link>
-            <Link to={"/search"}>
+            </StyledLink>
+            <StyledLink to={"/search"}>
               <Icon name="Search" />
-            </Link>
-            <Link to={"/user"}>
+            </StyledLink>
+            <StyledLink to={"/user"}>
               <Icon name="User" />
-            </Link>
+            </StyledLink>
             <Icon
               tabindex={0}
               onClick={() => toggleTheme()}
@@ -93,18 +93,37 @@ const Navbar = ({ authUser, theme, toggleTheme }) => (
             />
           </React.Fragment>
         ) : (
-          <React.Fragment>
-            {/* <Link to={"/"}>Landing</Link> */}
-            <Link to={"/login"}>
-              <Icon name="LogIn" label="Login" />
-            </Link>
-            {/* <Link to={"/register"}>Register</Link> */}
-          </React.Fragment>
+          <Link to={"/login"} style={{ textDecoration: "none" }}>
+            <Icon name="ArrowRight" label="Login" size={20} />
+          </Link>
         )}
       </NavIcons>
     </Nav>
   </Header>
 )
+
+const SimpleNav = ({ theme, toggleTheme }) => (
+  <Header>
+    <Nav>
+      <LogoSection onClick={() => navigate("/")}>
+        <Logo color={theme.colors.logo} />
+        <LogoText color={theme.colors.primary}>SOL</LogoText>{" "}
+        <LogoText color={theme.colors.secondary}>JOURNAL</LogoText>
+      </LogoSection>
+      <NavIcons>
+        {/* <Tooltip title="Login"> */}
+        <Link to={"/login"} style={{ textDecoration: "none" }}>
+          <Icon name="ArrowRight" label="Login" size={20} />
+        </Link>
+        {/* </Tooltip> */}
+      </NavIcons>
+    </Nav>
+  </Header>
+)
+
+const SimpleNavbar = withTheme(SimpleNav)
+
+export { SimpleNavbar }
 
 export default compose(
   withAuthentication,

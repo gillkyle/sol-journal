@@ -17,6 +17,12 @@ import { SIZES } from "../../../styles/constants"
 import Seek from "../../Seek"
 import Icon from "../../Icon"
 
+const Main = styled.main`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+`
 const EntryHeading = styled.div`
   display: flex;
   flex-direction: row;
@@ -58,6 +64,7 @@ const JournalEntryArea = styled.textarea`
   background-color: transparent;
   line-height: 1.5;
   letter-spacing: 0.5px;
+  height: calc(100vh - 275px);
   width: 100%;
   border: none;
   resize: none;

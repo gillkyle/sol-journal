@@ -1,15 +1,15 @@
 import React, { Component } from "react"
-import { navigate } from "gatsby"
+import { navigate, Link } from "gatsby"
 import styled from "@emotion/styled"
 import { compose } from "recompose"
 import { format } from "date-fns"
 import { withTheme } from "emotion-theming"
 
-import { Input, Button, P } from "../../elements"
-import { SIZES } from "../../../styles/constants"
-import { StyledLink as Link } from "../../elements"
-
-import { FirebaseContext } from "../../firebase"
+import { SimpleNavbar } from "../components/Navbar"
+import { Input, Button, P } from "../components/elements"
+import { SIZES } from "../styles/constants"
+import Layout from "../components/Layout"
+import { FirebaseContext } from "../components/firebase"
 
 const LoginGrid = styled.div`
   display: grid;
@@ -19,19 +19,21 @@ const LoginGrid = styled.div`
 const LoginLayout = styled.div`
   max-width: ${SIZES.smallWidth};
   width: 100%;
-  align-self: center;
-  margin-top: 20px;
+  margin: 20px auto;
 `
 
 const LoginPage = ({ theme }) => (
-  <LoginLayout>
-    <FirebaseContext.Consumer>
-      {firebase => <LoginForm firebase={firebase} />}
-    </FirebaseContext.Consumer>
-    <P colors={theme.colors} style={{ fontStyle: "italic" }}>
-      Don't have an account? <Link to={"/register"}>Sign Up</Link>
-    </P>
-  </LoginLayout>
+  <Layout>
+    <SimpleNavbar />
+    <LoginLayout>
+      <FirebaseContext.Consumer>
+        {firebase => <LoginForm firebase={firebase} />}
+      </FirebaseContext.Consumer>
+      <P colors={theme.colors} style={{ fontStyle: "italic" }}>
+        Don't have an account? <Link to={"/register"}>Sign Up</Link>
+      </P>
+    </LoginLayout>
+  </Layout>
 )
 
 class LoginFormBase extends Component {

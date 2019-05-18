@@ -12,9 +12,7 @@ import Day from "./components/screens/Day"
 import Month from "./components/screens/Month"
 import Year from "./components/screens/Year"
 import User from "./components/screens/User"
-import Login from "./components/screens/Login"
 import Search from "./components/screens/Search"
-import Register from "./components/screens/Register"
 import Welcome from "./components/screens/Welcome"
 import PrivateRoute from "./components/PrivateRoute"
 
@@ -70,19 +68,6 @@ class App extends Component {
     this.setState({ selectedTheme: newTheme })
   }
 
-  saveUserSettings = newTheme => {
-    const { authUser, firebase } = this.props
-    firebase.db
-      .collection("users")
-      .doc(authUser.uid)
-      .update({
-        theme: newTheme,
-      })
-      .then(function() {
-        console.log("Updated theme settings")
-      })
-  }
-
   render() {
     const { selectedTheme, authUser, online } = this.state
     const { authUser: propAuthUser } = this.props
@@ -95,7 +80,7 @@ class App extends Component {
           <FullscreenLayout>
             <Navbar toggleTheme={this.onChangeTheme} />
             <RouteLayout>
-              <Router>
+              <Router style={{ flex: 1 }}>
                 <PrivateRoute
                   authed={authed}
                   path="/app/:year"
@@ -126,15 +111,7 @@ class App extends Component {
                   component={User}
                   exact
                 />
-                <PrivateRoute
-                  authed={authed}
-                  path="/app"
-                  component={Welcome}
-                  exact
-                />
-                <Login path="/app/login" />
-                <Register path="/app/register" />
-                {/* <Start path="/app" /> */}
+                <Welcome authed={authed} path="/app" exact />
               </Router>
             </RouteLayout>
           </FullscreenLayout>

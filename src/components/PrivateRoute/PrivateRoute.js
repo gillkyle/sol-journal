@@ -8,7 +8,7 @@ const PrivateRoute = ({ component: Component, authed, ...rest }) => {
         authed === true ? (
           <Component {...rest} />
         ) : (
-          <Redirect to="/app/login" from={location.pathname} />
+          <Redirect to="/login" from={location.pathname} />
         )
       }
     </Location>
