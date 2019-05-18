@@ -3,8 +3,6 @@ import styled from "@emotion/styled"
 /** @jsx jsx */
 import { jsx, css, keyframes } from "@emotion/core"
 import { compose } from "recompose"
-import { Prompt } from "react-router"
-import { createHistory } from "@reach/router"
 import { withTheme } from "emotion-theming"
 import { withFirebase } from "../../firebase"
 import { withAuthentication } from "../../session"
@@ -118,13 +116,25 @@ class Day extends React.Component {
 
   componentDidMount() {
     const { year, month, day } = this.props
-    const history = createHistory(window)
-    history.listen(({ location }) => {
-      console.log(location)
-      const [, , year, month, day] = location.pathname.split("/")
-      this.onRouteChanged(year, month, day)
-    })
     this.getDocRef(year, month, day, false)
+  }
+
+  componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    if (this.props.uri !== prevProps.uri) {
+      console.log("here we go")
+      const [
+        ,
+        ,
+        prevYear,
+        prevMonth,
+        prevDay,
+      ] = prevProps.location.pathname.split("/")
+      const { text } = this.state
+      this.saveText(text, prevYear, prevMonth, prevDay)
+      const [, , year, month, day] = this.props.location.pathname.split("/")
+      this.onRouteChanged(year, month, day)
+    }
   }
 
   onRouteChanged = (year, month, day) => {
@@ -231,10 +241,6 @@ class Day extends React.Component {
 
     return (
       <>
-        {/* <Prompt
-          when={!hasSavedChanges}
-          message="You have unsaved changes, are you sure you want to leave?"
-        /> */}
         <Seek
           title={format(currentDay, "YYYY MMM DD - dddd")}
           prev={format(subDays(currentDay, 1), "/YYYY/MM/DD")}

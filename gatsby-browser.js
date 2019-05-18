@@ -8,8 +8,3 @@ export const wrapRootElement = ({ element }) => (
     <ThemeProvider theme={theme.LIGHT}>{element}</ThemeProvider>
   </FirebaseContext.Provider>
 )
-
-export const onRouteUpdate = ({ location, prevLocation }) => {
-  console.log("new pathname", location.pathname)
-  console.log("old pathname", prevLocation ? prevLocation.pathname : null)
-}
