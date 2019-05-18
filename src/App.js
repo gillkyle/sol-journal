@@ -80,7 +80,7 @@ class App extends Component {
           <FullscreenLayout>
             <Navbar toggleTheme={this.onChangeTheme} />
             <RouteLayout>
-              <Router style={{ flex: 1 }}>
+              <Router>
                 <PrivateRoute
                   authed={authed}
                   path="/app/:year"

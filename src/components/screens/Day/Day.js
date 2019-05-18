@@ -62,7 +62,7 @@ const JournalEntryArea = styled.textarea`
   background-color: transparent;
   line-height: 1.5;
   letter-spacing: 0.5px;
-  height: calc(100vh - 275px);
+  height: calc(100vh - 300px);
   width: 100%;
   border: none;
   resize: none;

@@ -4,16 +4,24 @@ import { Global, css } from "@emotion/core"
 import styled from "@emotion/styled"
 
 import { SimpleNavbar } from "../Navbar"
+import { withTheme } from "emotion-theming"
 
-export default ({ children }) => (
+const Layout = ({ children, theme }) => (
   <>
     <Helmet title="Sol Journal" />
     <Global
       styles={css`
         * {
-          transition: 0.2s border-color ease-in-out, 0.2s fill ease-in-out,
+          /* transition: 0.2s border-color ease-in-out, 0.2s fill ease-in-out,
             0.2s box-shadow ease-in-out, 0.2s background-color ease-in-out,
-            0.2s color ease-in-out;
+            0.2s color ease-in-out; */
+          overflow: -moz-scrollbars-none;
+        }
+        *::-webkit-scrollbar {
+          width: 0 !important;
+        }
+        html {
+          background-color: ${theme.colors.bodyBackground};
         }
         h1 {
           font-family: "Montserrat", -apple-system, BlinkMacSystemFont,
@@ -23,6 +31,7 @@ export default ({ children }) => (
         body {
           margin: 0;
           padding: 0;
+          min-height: 100vh;
           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
             "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
             "Helvetica Neue", sans-serif;
@@ -34,3 +43,5 @@ export default ({ children }) => (
     {children}
   </>
 )
+
+export default withTheme(Layout)
