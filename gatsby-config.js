@@ -2,6 +2,8 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-offline`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-emotion`,
     },
@@ -30,6 +32,23 @@ module.exports = {
         theme_color: `#FFF`,
         display: `standalone`,
         icon: `src/img/splash.png`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/img`,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-module-resolver",
+      options: {
+        root: "./src",
+        aliases: {
+          components: "./components",
+          img: "./img",
+        },
       },
     },
   ],

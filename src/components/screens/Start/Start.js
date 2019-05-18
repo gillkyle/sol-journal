@@ -1,5 +1,6 @@
 import React, { Component } from "react"
-import { Link } from "gatsby"
+import { Link, StaticQuery, graphql } from "gatsby"
+import Img from "gatsby-image"
 import styled from "@emotion/styled"
 import { withTheme } from "emotion-theming"
 
@@ -8,6 +9,8 @@ import { Button, P } from "../../elements"
 import { todayUrl } from "../../../utils/date"
 import Icon from "../../Icon"
 import Logo from "../../Logo"
+import LandingGraphicLight from "../../../img/landing-graphic-light.svg"
+import LandingGraphicDark from "../../../img/landing-graphic-dark.svg"
 
 const StartGrid = styled.div`
   margin-top: 30px;
@@ -101,6 +104,55 @@ class Start extends Component {
         <Link to={`/app${todayUrl()}`} style={{ textDecoration: "none" }}>
           <Button colors={theme.colors}>Start Writing</Button>
         </Link>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            margin: "30 auto",
+            maxHeight: 350,
+          }}
+        >
+          <StaticQuery
+            query={graphql`
+              query {
+                landingGraphicLight: file(
+                  relativePath: { eq: "landing-graphic-light.png" }
+                ) {
+                  childImageSharp {
+                    fluid(maxWidth: 320) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
+                }
+                landingGraphicDark: file(
+                  relativePath: { eq: "landing-graphic-dark.png" }
+                ) {
+                  childImageSharp {
+                    fluid(maxWidth: 320) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
+                }
+              }
+            `}
+            render={data => {
+              return theme.name === "Light" ? (
+                <Img
+                  style={{
+                    maxWidth: 320,
+                    width: "100%",
+                    maxHeight: 350,
+                    height: "100%",
+                  }}
+                  fluid={data.landingGraphicLight.childImageSharp.fluid}
+                />
+              ) : (
+                <Img fluid={data.LandingGraphicDark.childImageSharp.fluid} />
+              )
+            }}
+          />
+        </div>
         <div
           style={{
             margin: "60px 0px",
