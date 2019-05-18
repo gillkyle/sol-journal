@@ -1,6 +1,6 @@
 import React from "react"
 import { SimpleNavbar } from "components/Navbar"
-import Index from "components/screens/Start/index"
+import Index from "routes/Start"
 import Layout from "components/Layout"
 import Container from "components/container"
 

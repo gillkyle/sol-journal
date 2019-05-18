@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet"
 import { Global, css } from "@emotion/core"
 import styled from "@emotion/styled"
 
-import { SimpleNavbar } from "../Navbar"
+import { SimpleNavbar } from "components/Navbar"
 import { withTheme } from "emotion-theming"
 
 const Layout = ({ children, theme }) => (

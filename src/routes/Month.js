@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import { AppLink as Link } from "components/elements"
 import styled from "@emotion/styled"
 import {
   isAfter,
@@ -12,7 +11,8 @@ import {
   startOfMonth,
 } from "date-fns"
 
-import Seek from "../../Seek"
+import { AppLink as Link } from "components/elements"
+import Seek from "components/Seek"
 
 const YearCardGrid = styled.div`
   display: grid;

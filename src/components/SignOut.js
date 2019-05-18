@@ -2,9 +2,9 @@ import React from "react"
 import { compose } from "recompose"
 import { withTheme } from "emotion-theming"
 
-import { Button } from "../elements"
+import { Button } from "components/elements"
 
-import { withFirebase } from "../firebase"
+import { withFirebase } from "components/firebase"
 
 const SignOutButton = ({ firebase, theme }) => (
   <Button

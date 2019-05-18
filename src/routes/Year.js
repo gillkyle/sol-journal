@@ -1,11 +1,11 @@
 import React, { Component } from "react"
-import { AppLink as Link } from "components/elements"
-import styled from "@emotion/styled"
 import { addYears, subYears, format, isThisYear, getMonth } from "date-fns"
+import styled from "@emotion/styled"
 import { withTheme } from "emotion-theming"
 
+import { AppLink as Link } from "components/elements"
+import Seek from "components/Seek"
 import { months } from "utils/date"
-import Seek from "../../Seek"
 
 const MonthCardGrid = styled.div`
   display: grid;

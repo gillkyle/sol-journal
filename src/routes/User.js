@@ -5,12 +5,11 @@ import { compose } from "recompose"
 import { format } from "date-fns"
 import { BeatLoader } from "react-spinners"
 
+import { SIZES } from "styles/constants"
 import { withFirebase } from "components/firebase"
 import { withAuthentication } from "components/session"
-import { SIZES } from "styles/constants"
-
-import SignOut from "../../SignOut"
-import { Button } from "../../elements"
+import SignOut from "components/SignOut"
+import { Button } from "components/elements"
 
 const ProfileGrid = styled.div`
   display: grid;
