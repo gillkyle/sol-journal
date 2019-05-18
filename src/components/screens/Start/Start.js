@@ -7,8 +7,8 @@ import { withTheme } from "emotion-theming"
 import { SIZES } from "styles/constants"
 import { Button, P } from "components/elements"
 import { todayUrl } from "utils/date"
-import Icon from "../../Icon"
-import Logo from "../../Logo"
+import Icon from "component/Icon"
+import Logo from "component/Logo"
 
 const StartGrid = styled.div`
   margin-top: 30px;

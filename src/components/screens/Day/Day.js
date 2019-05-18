@@ -13,15 +13,9 @@ import { OnlineContext } from "components/context/online"
 
 import { SIZES } from "styles/constants"
 
-import Seek from "../../Seek"
-import Icon from "../../Icon"
+import Seek from "components/Seek"
+import Icon from "components/Icon"
 
-const Main = styled.main`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-`
 const EntryHeading = styled.div`
   display: flex;
   flex-direction: row;
@@ -53,6 +47,7 @@ const OfflineNotice = styled.div`
   color: ${props => props.theme.colors.secondary};
   border: 1px solid;
   border-color: ${props => props.theme.colors.tertiary};
+  font-size: ${SIZES.tiny};
   border-radius: 3px;
 `
 const JournalEntryArea = styled.textarea`
