@@ -1,8 +1,8 @@
 import React from "react"
 
-import { P } from "../components/elements"
-import Layout from "../components/Layout"
-import Container from "../components/container"
+import { P } from "components/elements"
+import Layout from "components/Layout"
+import Container from "components/container"
 
 const Terms = () => (
   <Layout>

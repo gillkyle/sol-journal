@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { AppLink as Link } from "../../../components/elements"
+import { AppLink as Link } from "components/elements"
 import styled from "@emotion/styled"
 import {
   isAfter,

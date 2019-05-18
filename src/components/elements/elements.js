@@ -3,7 +3,7 @@ import { withTheme } from "emotion-theming"
 import { Link } from "gatsby"
 import styled from "@emotion/styled"
 
-import { SIZES } from "../../styles/constants"
+import { SIZES } from "styles/constants"
 
 export const H1 = styled.h1`
   display: block;

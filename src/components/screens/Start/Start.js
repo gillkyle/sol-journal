@@ -4,13 +4,11 @@ import Img from "gatsby-image"
 import styled from "@emotion/styled"
 import { withTheme } from "emotion-theming"
 
-import { SIZES } from "../../../styles/constants"
-import { Button, P } from "../../elements"
-import { todayUrl } from "../../../utils/date"
+import { SIZES } from "styles/constants"
+import { Button, P } from "components/elements"
+import { todayUrl } from "utils/date"
 import Icon from "../../Icon"
 import Logo from "../../Logo"
-import LandingGraphicLight from "../../../img/landing-graphic-light.svg"
-import LandingGraphicDark from "../../../img/landing-graphic-dark.svg"
 
 const StartGrid = styled.div`
   margin-top: 30px;

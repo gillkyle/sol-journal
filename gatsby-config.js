@@ -48,6 +48,8 @@ module.exports = {
         aliases: {
           components: "./components",
           img: "./img",
+          styles: "./styles",
+          utils: "./utils",
         },
       },
     },

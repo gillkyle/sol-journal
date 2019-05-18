@@ -1,16 +1,17 @@
 import React from "react"
+import { addDays, subDays, format, isAfter, startOfYesterday } from "date-fns"
+import { BeatLoader } from "react-spinners"
 import styled from "@emotion/styled"
 /** @jsx jsx */
 import { jsx, css, keyframes } from "@emotion/core"
 import { compose } from "recompose"
 import { withTheme } from "emotion-theming"
-import { withFirebase } from "../../firebase"
-import { withAuthentication } from "../../session"
-import { OnlineContext } from "../../context/online"
-import { addDays, subDays, format, isAfter, startOfYesterday } from "date-fns"
-import { BeatLoader } from "react-spinners"
 
-import { SIZES } from "../../../styles/constants"
+import { withFirebase } from "components/firebase"
+import { withAuthentication } from "components/session"
+import { OnlineContext } from "components/context/online"
+
+import { SIZES } from "styles/constants"
 
 import Seek from "../../Seek"
 import Icon from "../../Icon"

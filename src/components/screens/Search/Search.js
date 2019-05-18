@@ -1,5 +1,4 @@
 import { Component } from "react"
-import { AppLink as Link } from "../../elements"
 /** @jsx jsx */
 import { jsx, css, keyframes } from "@emotion/core"
 import styled from "@emotion/styled"
@@ -7,11 +6,11 @@ import { compose } from "recompose"
 import { withTheme } from "emotion-theming"
 import { BeatLoader } from "react-spinners"
 
-import { Input } from "../../elements"
-import { pad } from "../../../utils/date"
-
-import { withFirebase } from "../../firebase"
-import { withAuthentication } from "../../session"
+import { AppLink as Link } from "components/elements"
+import { Input } from "components/elements"
+import { withFirebase } from "components/firebase"
+import { withAuthentication } from "components/session"
+import { pad } from "utils/date"
 
 const SearchGrid = styled.div`
   display: grid;

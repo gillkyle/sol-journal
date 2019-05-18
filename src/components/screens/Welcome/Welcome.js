@@ -3,10 +3,9 @@ import { Link } from "gatsby"
 import styled from "@emotion/styled"
 import { withTheme } from "emotion-theming"
 
-import { SIZES } from "../../../styles/constants"
-import { Button, P } from "../../elements"
-import { todayUrl } from "../../../utils/date"
-import Logo from "../../Logo"
+import { Button, P } from "components/elements"
+import Logo from "components/Logo"
+import { todayUrl } from "utils/date"
 
 const WelcomeGrid = styled.div`
   margin-top: 30px;
@@ -37,9 +36,8 @@ class Welcome extends Component {
       <WelcomeGrid>
         <h1>Your Space for Wandering Thoughts and Ideas</h1>
         <P style={{ letterSpacing: 1.1, marginBottom: 30 }}>
-          Journaling can improve your health and help you take inventory of your
-          day. Sol Journal works offline and from any device. Use it as a place
-          to record thoughts and events from the day.
+          This your space for wandering thoughts and ideas. Write about whatever
+          comes to mind.
         </P>
         <Link to={`/app${todayUrl()}`} style={{ textDecoration: "none" }}>
           <Button colors={theme.colors}>Write about today</Button>

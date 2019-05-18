@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "@emotion/styled"
 
-import { SIZES } from "../styles/constants"
+import { SIZES } from "styles/constants"
 
 const Container = styled.div`
   display: flex;

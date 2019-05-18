@@ -4,11 +4,11 @@ import { navigate, Link } from "gatsby"
 import { compose } from "recompose"
 import { withTheme } from "emotion-theming"
 
-import { SimpleNavbar } from "../components/Navbar"
-import { Input, Button, P } from "../components/elements"
-import { SIZES } from "../styles/constants"
-import Layout from "../components/Layout"
-import { FirebaseContext } from "../components/firebase"
+import { SimpleNavbar } from "components/Navbar"
+import { Input, Button, P } from "components/elements"
+import Layout from "components/Layout"
+import { FirebaseContext } from "components/firebase"
+import { SIZES } from "styles/constants"
 
 const RegisterGrid = styled.div`
   display: grid;

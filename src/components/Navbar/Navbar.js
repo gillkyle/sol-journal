@@ -1,14 +1,14 @@
 import React from "react"
 import { navigate, Link } from "gatsby"
-import { StyledLink } from "../../components/elements"
+import { StyledLink } from "components/elements"
 import styled from "@emotion/styled"
 /** @jsx jsx */
 import { jsx } from "@emotion/core"
 import { compose } from "recompose"
 import { withTheme } from "emotion-theming"
 
-import { SIZES } from "../../styles/constants"
-import { todayUrl, yearUrl } from "../../utils/date"
+import { SIZES } from "styles/constants"
+import { todayUrl, yearUrl } from "utils/date"
 
 import Logo from "../Logo"
 import Icon from "../Icon"
