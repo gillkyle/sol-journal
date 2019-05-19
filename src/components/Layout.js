@@ -3,7 +3,6 @@ import { Helmet } from "react-helmet"
 import { Global, css } from "@emotion/core"
 import styled from "@emotion/styled"
 
-import { SimpleNavbar } from "components/Navbar"
 import { withTheme } from "emotion-theming"
 
 const Layout = ({ children, theme }) => (
@@ -12,9 +11,9 @@ const Layout = ({ children, theme }) => (
     <Global
       styles={css`
         * {
-          /* transition: 0.2s border-color ease-in-out, 0.2s fill ease-in-out,
+          transition: 0.2s border-color ease-in-out, 0.2s fill ease-in-out,
             0.2s box-shadow ease-in-out, 0.2s background-color ease-in-out,
-            0.2s color ease-in-out; */
+            0.2s color ease-in-out;
           overflow: -moz-scrollbars-none;
         }
         *::-webkit-scrollbar {

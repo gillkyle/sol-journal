@@ -6,9 +6,9 @@ import { withTheme } from "emotion-theming"
 
 import { SIZES } from "styles/constants"
 import { Button, P } from "components/elements"
-import { todayUrl } from "utils/date"
 import Icon from "components/Icon"
-import Logo from "components/Logo"
+import Footer from "components/Footer"
+import { todayUrl } from "utils/date"
 
 const StartGrid = styled.div`
   margin-top: 30px;
@@ -38,21 +38,6 @@ const FeatureTitle = styled.div`
 `
 const FeatureDescription = styled.div`
   color: ${props => props.theme.colors.secondary};
-`
-const Footer = styled.footer`
-  margin-top: 120px;
-  padding: 30px 0px;
-  text-align: center;
-  color: ${props => props.theme.colors.secondary};
-`
-const FooterLink = styled(Link)`
-  cursor: pointer;
-  color: ${props => props.theme.colors.secondary};
-  text-decoration: none;
-  margin: 10px;
-  &:hover {
-    color: ${props => props.theme.colors.tertiary};
-  }
 `
 
 const features = [
@@ -107,7 +92,7 @@ class Start extends Component {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            margin: "30 auto",
+            marginTop: 30,
             maxHeight: 350,
           }}
         >
@@ -181,17 +166,7 @@ class Start extends Component {
             </FeatureRow>
           ))}
         </FeatureGrid>
-        <Footer>
-          <div>
-            <Logo color={theme.colors.logo} />
-          </div>
-          <div>
-            <FooterLink>View on GitHub</FooterLink>
-            <FooterLink to="terms">Terms of Service</FooterLink>
-            <FooterLink to="privacy">Privacy Policy</FooterLink>
-          </div>
-          <div>&copy; 2019</div>
-        </Footer>
+        <Footer />
       </StartGrid>
     )
   }

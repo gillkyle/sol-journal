@@ -5,6 +5,7 @@ import { withTheme } from "emotion-theming"
 
 import { Button, P } from "components/elements"
 import Logo from "components/Logo"
+import Footer from "components/Footer"
 import { todayUrl } from "utils/date"
 
 const WelcomeGrid = styled.div`
@@ -12,21 +13,6 @@ const WelcomeGrid = styled.div`
   line-height: 1.5;
   color: ${props => props.theme.colors.primary};
   height: 100%;
-`
-const Footer = styled.footer`
-  margin-top: 120px;
-  padding: 30px 0px;
-  text-align: center;
-  color: ${props => props.theme.colors.secondary};
-`
-const FooterLink = styled(Link)`
-  cursor: pointer;
-  color: ${props => props.theme.colors.secondary};
-  text-decoration: none;
-  margin: 10px;
-  &:hover {
-    color: ${props => props.theme.colors.tertiary};
-  }
 `
 
 class Welcome extends Component {
@@ -42,17 +28,7 @@ class Welcome extends Component {
         <Link to={`/app${todayUrl()}`} style={{ textDecoration: "none" }}>
           <Button colors={theme.colors}>Write about today</Button>
         </Link>
-        <Footer>
-          <div>
-            <Logo color={theme.colors.logo} />
-          </div>
-          <div>
-            <FooterLink>View on GitHub</FooterLink>
-            <FooterLink to="terms">Terms of Service</FooterLink>
-            <FooterLink to="privacy">Privacy Policy</FooterLink>
-          </div>
-          <div>&copy; 2019</div>
-        </Footer>
+        <Footer />
       </WelcomeGrid>
     )
   }

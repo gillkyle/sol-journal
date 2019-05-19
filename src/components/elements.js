@@ -34,23 +34,24 @@ export const Input = styled.input`
 
 export const Button = styled.button`
   display: inline;
-  background-color: ${props => props.colors.primary};
+  color: ${props => props.colors.primary};
+  background-color: ${props => props.colors.button};
+  border-color: ${props => props.colors.quarternary};
   padding: 12px 50px;
   min-height: 45px;
   border-radius: 5px;
   border: 0px solid;
-  border-color: ${props => props.colors.quarternary};
-  color: ${props => props.colors.quarternary};
+  font-family: Montserrat;
   font-size: ${props => SIZES[props.fontSize || "normal"]};
   font-weight: 700;
   outline: none;
   &:hover {
     cursor: pointer;
-    background-color: ${props => props.colors.secondary};
+    background-color: ${props => props.colors.hover};
+    box-shadow: 0 0 0 3px ${props => props.colors.bodyBackground},
+      0 0 0 5px ${props => props.colors.button};
   }
   &:focus {
-    box-shadow: 0 0 0 3px ${props => props.colors.bodyBackground},
-      0 0 0 5px ${props => props.colors.secondary};
   }
 `
 
