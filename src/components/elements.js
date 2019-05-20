@@ -11,6 +11,18 @@ export const H1 = styled.h1`
   color: ${props => props.color};
 `
 
+export const SimpleH1 = styled.h1`
+  color: ${props => props.color};
+`
+
+export const SimpleH2 = styled.h1`
+  color: ${props => props.color};
+`
+
+export const Em = styled.em`
+  color: ${props => props.color};
+`
+
 export const Input = styled.input`
   color: ${props => props.colors.primary};
   background-color: ${props => props.colors.headerBackground};

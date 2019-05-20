@@ -1,15 +1,21 @@
 import React from "react"
-import { ThemeProvider } from "emotion-theming"
-import Firebase, { FirebaseContext } from "./src/components/firebase"
-import theme from "./src/styles/theme"
-
-const selectedTheme =
-  new Date().getHours() >= 7 && new Date().getHours() <= 21 ? "LIGHT" : "DARK"
+import { ThemeProvider as EmotionThemeProvider } from "emotion-theming"
+import Firebase, { FirebaseContext } from "components/firebase"
+import theme from "styles/theme"
+import ThemeTogglerContext, { ThemeToggler } from "components/context/theme"
 
 export const wrapRootElement = ({ element }) => {
   return (
     <FirebaseContext.Provider value={new Firebase()}>
-      <ThemeProvider theme={theme[selectedTheme]}>{element}</ThemeProvider>
+      <ThemeToggler>
+        <ThemeTogglerContext.Consumer>
+          {({ themeName }) => (
+            <EmotionThemeProvider theme={theme[themeName]}>
+              {element}
+            </EmotionThemeProvider>
+          )}
+        </ThemeTogglerContext.Consumer>
+      </ThemeToggler>
     </FirebaseContext.Provider>
   )
 }

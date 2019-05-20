@@ -13,6 +13,7 @@ import { todayUrl, yearUrl } from "utils/date"
 import Logo from "components/Logo"
 import Icon from "components/Icon"
 import { withAuthentication } from "components/session"
+import ThemeTogglerContext from "components/context/theme"
 
 const Header = styled.div`
   background-color: ${props => props.theme.colors.headerBackground};
@@ -93,16 +94,24 @@ const Navbar = ({ authUser, theme, toggleTheme }) => (
             />
           </React.Fragment>
         ) : (
-          <Link to={"/login"} style={{ textDecoration: "none" }}>
-            <Icon name="ArrowRight" label="Login" size={20} />
-          </Link>
+          <>
+            <Link to={"/login"} style={{ textDecoration: "none" }}>
+              <Icon name="ArrowRight" label="Login" size={20} />
+            </Link>
+            <Icon
+              tabindex={0}
+              onClick={() => toggleTheme()}
+              onKeyPress={() => toggleTheme()}
+              name={theme.name === "Dark" ? "Sun" : "Moon"}
+            />
+          </>
         )}
       </NavIcons>
     </Nav>
   </Header>
 )
 
-const SimpleNav = ({ theme, toggleTheme }) => (
+const SimpleNav = ({ authUser, theme }) => (
   <Header>
     <Nav>
       <LogoSection onClick={() => navigate("/")}>
@@ -111,17 +120,34 @@ const SimpleNav = ({ theme, toggleTheme }) => (
         <LogoText color={theme.colors.secondary}>JOURNAL</LogoText>
       </LogoSection>
       <NavIcons>
-        {/* <Tooltip title="Login"> */}
-        <Link to={"/login"} style={{ textDecoration: "none" }}>
-          <Icon name="ArrowRight" label="Login" size={20} />
-        </Link>
-        {/* </Tooltip> */}
+        {authUser ? (
+          <StyledLink to={"/"}>
+            <Icon name="Circle" />
+          </StyledLink>
+        ) : (
+          <Link to={"/login"} style={{ textDecoration: "none" }}>
+            <Icon name="ArrowRight" label="Login" size={20} />
+          </Link>
+        )}
+        <ThemeTogglerContext.Consumer>
+          {({ toggle }) => (
+            <Icon
+              tabindex={0}
+              onClick={() => toggle()}
+              onKeyPress={() => toggle()}
+              name={theme.name === "Dark" ? "Sun" : "Moon"}
+            />
+          )}
+        </ThemeTogglerContext.Consumer>
       </NavIcons>
     </Nav>
   </Header>
 )
 
-const SimpleNavbar = withTheme(SimpleNav)
+const SimpleNavbar = compose(
+  withAuthentication,
+  withTheme
+)(SimpleNav)
 
 export { SimpleNavbar }
 

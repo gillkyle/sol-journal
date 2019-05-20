@@ -1,6 +1,6 @@
 const theme = {
   LIGHT: {
-    name: "Light",
+    name: "LIGHT",
     colors: {
       logo: "#344157",
       primary: "#2E3136",
@@ -11,10 +11,11 @@ const theme = {
       bodyBackground: "#FFF",
       inputBackground: "#FAFBFC",
       hover: "hsla(233, 5%, 31%, 0.12)",
+      button: "#f2f3f5",
     },
   },
   DARK: {
-    name: "Dark",
+    name: "DARK",
     colors: {
       logo: "#EAEAEA",
       primary: "#F3F6F8",
@@ -25,6 +26,7 @@ const theme = {
       bodyBackground: "#262B34",
       inputBackground: "#272f3d",
       hover: "hsla(233, 100%, 96%, 0.12)",
+      button: "#464d5d",
     },
   },
 }

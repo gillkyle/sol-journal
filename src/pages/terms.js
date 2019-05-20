@@ -1,20 +1,23 @@
 import React from "react"
 
-import { P } from "components/elements"
+import { SimpleH1, SimpleH2, P, Em } from "components/elements"
 import Layout from "components/Layout"
 import Container from "components/container"
+import { SimpleNavbar } from "components/Navbar"
+import { withTheme } from "emotion-theming"
 
-const Terms = () => (
+const Terms = ({ theme }) => (
   <Layout>
+    <SimpleNavbar />
     <Container>
-      <h1>Terms of Service</h1>
-      <em>Last update: April 30, 2019</em>
-      <h2>Scope of Service</h2>
+      <SimpleH1 color={theme.colors.primary}>Terms of Service</SimpleH1>
+      <Em color={theme.colors.secondary}>Last update: April 30, 2019</Em>
+      <SimpleH2 color={theme.colors.secondary}>Scope of Service</SimpleH2>
       <P>
         Sol Journal supports the following browsers: Chrome (latest), Safari
         (latest), Firefox (50+)
       </P>
-      <h2>Rights</h2>
+      <SimpleH2 color={theme.colors.secondary}>Rights</SimpleH2>
       <P>
         You don't have to provide your real name when you register to an
         account, but you need to use a valid/verifiable email address.
@@ -37,7 +40,7 @@ const Terms = () => (
         <br />
         Any new features that affect privacy will be strictly opt-in.
       </P>
-      <h2>Responsibilites</h2>
+      <SimpleH2 color={theme.colors.secondary}>Responsibilites</SimpleH2>
       <P>
         You will not use the site to store illegal information or data under
         United States law (or any law).
@@ -62,7 +65,7 @@ const Terms = () => (
         (millions of entries or overloading services with requests) or use it in
         an unreasonable manner.
       </P>
-      <h2>Other</h2>
+      <SimpleH2 color={theme.colors.secondary}>Other</SimpleH2>
       <P>
         Other important legal stuff Though I want to provide a great service,
         there are certain things about the service I cannot promise. For
@@ -82,4 +85,4 @@ const Terms = () => (
   </Layout>
 )
 
-export default Terms
+export default withTheme(Terms)

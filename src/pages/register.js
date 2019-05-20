@@ -29,7 +29,10 @@ const RegisterPage = ({ theme }) => (
         {firebase => <RegisterForm firebase={firebase} />}
       </FirebaseContext.Consumer>
       <P colors={theme.colors} style={{ fontStyle: "italic" }}>
-        Already have an account? <Link to={"/login"}>Login</Link>
+        Already have an account?{" "}
+        <Link style={{ color: theme.colors.primary }} to={"/login"}>
+          Login
+        </Link>
       </P>
     </RegisterLayout>
   </Layout>
@@ -133,7 +136,7 @@ class RegisterFormBase extends Component {
           </Button>
         </RegisterGrid>
 
-        {error && <p>{error.message}</p>}
+        {error && <P colors={theme.colors}>{error.message}</P>}
       </form>
     )
   }

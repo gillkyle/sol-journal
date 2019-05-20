@@ -120,7 +120,7 @@ class Start extends Component {
               }
             `}
             render={data => {
-              return theme.name === "Light" ? (
+              return theme.name === "LIGHT" ? (
                 <Img
                   style={{
                     maxWidth: 320,
@@ -131,7 +131,15 @@ class Start extends Component {
                   fluid={data.landingGraphicLight.childImageSharp.fluid}
                 />
               ) : (
-                <Img fluid={data.LandingGraphicDark.childImageSharp.fluid} />
+                <Img
+                  style={{
+                    maxWidth: 320,
+                    width: "100%",
+                    maxHeight: 350,
+                    height: "100%",
+                  }}
+                  fluid={data.landingGraphicDark.childImageSharp.fluid}
+                />
               )
             }}
           />

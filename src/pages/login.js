@@ -30,7 +30,10 @@ const LoginPage = ({ theme }) => (
         {firebase => <LoginForm firebase={firebase} />}
       </FirebaseContext.Consumer>
       <P colors={theme.colors} style={{ fontStyle: "italic" }}>
-        Don't have an account? <Link to={"/register"}>Sign Up</Link>
+        Don't have an account?{" "}
+        <Link style={{ color: theme.colors.primary }} to={"/register"}>
+          Sign Up
+        </Link>
       </P>
     </LoginLayout>
   </Layout>
@@ -91,7 +94,7 @@ class LoginFormBase extends Component {
             Login
           </Button>
         </LoginGrid>
-        {error && <p>{error.message}</p>}
+        {error && <P colors={theme.colors}>{error.message}</P>}
       </form>
     )
   }
