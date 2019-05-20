@@ -1,16 +1,15 @@
 module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-offline`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-emotion`,
     },
+    // create routes for client side routing
     {
       resolve: `gatsby-plugin-create-client-paths`,
       options: { prefixes: [`/app/*`] },
     },
+    // provide fonts from Google fonts
     {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
@@ -22,6 +21,8 @@ module.exports = {
         ],
       },
     },
+    // plugins for PWA support
+    `gatsby-plugin-offline`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -34,6 +35,9 @@ module.exports = {
         icon: `src/img/splash.png`,
       },
     },
+    // plugins for optimized images
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -41,6 +45,15 @@ module.exports = {
         path: `${__dirname}/src/img`,
       },
     },
+    // parse data from /src/data as Javascrip objects
+    `gatsby-transformer-json`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `./src/data/`,
+      },
+    },
+    // easier imports and exports
     {
       resolve: "gatsby-plugin-module-resolver",
       options: {
