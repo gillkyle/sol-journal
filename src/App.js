@@ -57,7 +57,7 @@ class App extends Component {
 
   render() {
     const { authUser, online } = this.state
-    const { authUser: propAuthUser, theme } = this.props
+    const { authUser: propAuthUser } = this.props
     const authed = !!propAuthUser || !!authUser
 
     return (
@@ -67,7 +67,7 @@ class App extends Component {
             <FullscreenLayout>
               <Navbar toggleTheme={toggle} />
               <RouteLayout>
-                <Router>
+                <Router style={{ height: "100%" }}>
                   <PrivateRoute
                     authed={authed}
                     path="/app/:year"

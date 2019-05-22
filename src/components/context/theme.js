@@ -1,4 +1,5 @@
 import React from "react"
+import { Helmet } from "react-helmet"
 import theme from "styles/theme"
 
 const ThemeTogglerContext = React.createContext({
@@ -22,6 +23,7 @@ class ThemeToggler extends React.Component {
       "background-color",
       theme[newTheme].colors.bodyBackground
     )
+
     this.setState({ themeName: newTheme })
   }
 
@@ -35,6 +37,12 @@ class ThemeToggler extends React.Component {
           toggle: this.toggle,
         }}
       >
+        <Helmet>
+          <meta
+            name="theme-color"
+            content={theme[themeName].colors.bodyBackground}
+          />
+        </Helmet>
         {children}
       </ThemeTogglerContext.Provider>
     )

@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { Helmet } from "react-helmet"
 import { Link, StaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import styled from "@emotion/styled"
@@ -71,6 +72,12 @@ const features = [
     desc:
       "Download all of your journal entries at any time for back-up or safe keeping ",
   },
+  {
+    icon: "Moon",
+    title: "Dark Mode",
+    desc:
+      "Take it easy on your eyes, with an easily accessible toggle from all screens and detection of night hours to turn on automatically",
+  },
 ]
 
 class Start extends Component {
@@ -78,6 +85,12 @@ class Start extends Component {
     const { theme } = this.props
     return (
       <StartGrid>
+        <Helmet>
+          <meta
+            name="description"
+            label="Connect with your soul through a simple, beautiful journaling experience from any of your devices."
+          />
+        </Helmet>
         <h1>Record what's on your mind, from anywhere</h1>
         <P style={{ letterSpacing: 1.1, marginBottom: 30 }}>
           Journaling can improve your health and help you take inventory of your

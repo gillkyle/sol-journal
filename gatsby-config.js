@@ -60,6 +60,7 @@ module.exports = {
         root: "./src",
         aliases: {
           components: "./components",
+          data: "./data",
           img: "./img",
           routes: "./routes",
           styles: "./styles",
