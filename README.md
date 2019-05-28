@@ -21,7 +21,7 @@ Having a journal that is available on any device makes journaling easier. Being 
 
 There are 2 ways to get started using Sol Journal:
 
-1. You can use the hosted version (this is the simplest way to use the product) on https://journal-app-service.firebaseapp.com/
+1. You can use the hosted version (this is the simplest way to use the product) 
 2. You can host your own version and manage it yourself
 
 Sol Journal uses firebase to support offline functionality and authentication, meaning a new Firebase app will need to be setup with Firestore as a database if you wish to host it yourself. Be sure to add documents for `users` and `entries`, as well as enabling email for user authentication.
