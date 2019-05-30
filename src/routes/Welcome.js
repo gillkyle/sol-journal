@@ -44,8 +44,14 @@ class Welcome extends Component {
             label="Connect with your soul through a simple, beautiful journaling experience from any device."
           />
         </Helmet>
-        <div>
-          <h1>Hello</h1>
+        <div
+          style={{
+            fontFamily: "cursive",
+            fontSize: 100,
+            height: 60,
+          }}
+        >
+          "
         </div>
         <Quote>{todaysQuote.quote}</Quote>
         <QuoteAuthor style={{ letterSpacing: 1.1, marginBottom: 30 }}>
