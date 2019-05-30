@@ -17,21 +17,11 @@ class ThemeToggler extends React.Component {
         : "DARK",
   }
 
-  componentDidMount() {
-    // set the body style property on mount so routes don't flash between transitions
-    const { themeName } = this.state
-    this.toggle(themeName)
-  }
-
-  toggle = newThemeName => {
+  toggle = () => {
     const { themeName } = this.state
     const body = document.body
     let newTheme
-    if (newThemeName) {
-      newTheme = newThemeName
-    } else {
-      newTheme = themeName === "LIGHT" ? "DARK" : "LIGHT"
-    }
+    newTheme = themeName === "LIGHT" ? "DARK" : "LIGHT"
     body.style.setProperty(
       "background-color",
       theme[newTheme].colors.bodyBackground

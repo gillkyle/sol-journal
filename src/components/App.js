@@ -21,7 +21,7 @@ import { withAuthentication } from "./components/session"
 import { withFirebase } from "./components/firebase"
 import ThemeTogglerContext from "components/context/theme"
 
-const FullscreenLayout = styled.div`
+const FullscreenBgColor = styled.div`
   background-color: ${props => props.theme.colors.bodyBackground};
 `
 const RouteLayout = styled.div`
@@ -32,7 +32,7 @@ const RouteLayout = styled.div`
   padding: 0 10px;
   max-width: ${SIZES.maxWidth};
   min-height: calc(100vh - 60px);
-  background-color: ${props => props.theme.colors.bodyBackground};
+  background-color: transparent;
 `
 
 class App extends Component {
@@ -64,7 +64,7 @@ class App extends Component {
       <ThemeTogglerContext.Consumer>
         {({ toggle }) => (
           <OnlineContext.Provider value={online}>
-            <FullscreenLayout>
+            <FullscreenBgColor>
               <Navbar toggleTheme={toggle} />
               <RouteLayout>
                 <Router style={{ height: "100%" }}>
@@ -101,7 +101,7 @@ class App extends Component {
                   <Welcome authed={authed} path="/app" exact />
                 </Router>
               </RouteLayout>
-            </FullscreenLayout>
+            </FullscreenBgColor>
           </OnlineContext.Provider>
         )}
       </ThemeTogglerContext.Consumer>
