@@ -1,6 +1,6 @@
 import React from "react"
 
-import App from "../App"
+import App from "components/App"
 import Layout from "components/Layout"
 
 /* similar to create-react-app, the App.js is like the 

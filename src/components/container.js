@@ -11,7 +11,6 @@ const Container = styled.div`
   padding: 0 10px;
   max-width: ${SIZES.maxWidth};
   min-height: calc(100vh - 60px);
-  background-color: ${props => props.theme.colors.bodyBackground};
 `
 
 export default Container

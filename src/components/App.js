@@ -4,21 +4,21 @@ import { compose } from "recompose"
 import styled from "@emotion/styled"
 import { withTheme } from "emotion-theming"
 
-import { SIZES } from "./styles/constants"
+import { SIZES } from "styles/constants"
 
 // import theme from "./styles/theme"
-import Navbar from "./components/Navbar"
 import Day from "routes/Day"
 import Month from "routes/Month"
 import Year from "routes/Year"
 import User from "routes/User"
 import Search from "routes/Search"
 import Welcome from "routes/Welcome"
-import PrivateRoute from "./components/PrivateRoute"
 
-import { OnlineContext } from "./components/context/online"
-import { withAuthentication } from "./components/session"
-import { withFirebase } from "./components/firebase"
+import Navbar from "components/Navbar"
+import PrivateRoute from "components/PrivateRoute"
+import { OnlineContext } from "components/context/online"
+import { withAuthentication } from "components/session"
+import { withFirebase } from "components/firebase"
 import ThemeTogglerContext from "components/context/theme"
 
 const FullscreenBgColor = styled.div`
@@ -32,7 +32,6 @@ const RouteLayout = styled.div`
   padding: 0 10px;
   max-width: ${SIZES.maxWidth};
   min-height: calc(100vh - 60px);
-  background-color: transparent;
 `
 
 class App extends Component {
