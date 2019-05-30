@@ -8,6 +8,7 @@ import { withTheme } from "emotion-theming"
 const Layout = ({ children, theme }) => (
   <>
     <Helmet title="Sol Journal" />
+    {/* some styles should applied globally via the layout */}
     <Global
       styles={css`
         * {

@@ -1,3 +1,6 @@
+// standardized role-based design tokens used throughout the whole app
+// a name like lightGray doesn't make sense with themese when light
+// and dark are possibile
 const theme = {
   LIGHT: {
     name: "LIGHT",

@@ -71,6 +71,7 @@ export const P = styled.p`
   color: ${props => props.theme.colors.secondary};
 `
 
+// prepend links used within the app section with app
 export const AppLink = props => <Link {...props} to={"/app" + props.to} />
 
 export const StyledLink = withTheme(styled(AppLink)`

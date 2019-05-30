@@ -116,6 +116,7 @@ class Day extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    // check if a new route was hit, to save the entry and load the next one
     if (this.props.uri !== prevProps.uri) {
       const [
         ,

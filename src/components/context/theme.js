@@ -2,6 +2,8 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import theme from "styles/theme"
 
+// create an app-wide context for the theme being used as
+// well as a function to toggle it back and forth
 const ThemeTogglerContext = React.createContext({
   themeName: "LIGHT",
   toggle: () => {},

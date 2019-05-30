@@ -2,6 +2,8 @@ import app from "firebase/app"
 import "firebase/auth"
 import "firebase/firestore"
 
+// store private keys in .env file
+// the prefix GATSBY_ is necessary here
 const config = {
   apiKey: process.env.GATSBY_FIREBASE_API_KEY,
   authDomain: process.env.GATSBY_DEV_AUTH_DOMAIN,
@@ -13,6 +15,8 @@ const config = {
 
 class Firebase {
   constructor() {
+    // protect with conditional so gatsby build doesn't have
+    // issues trying to access the window object
     if (typeof window !== "undefined") {
       app.initializeApp(config)
       this.auth = app.auth()
@@ -34,20 +38,25 @@ class Firebase {
     }
   }
 
-  // Auth
+  // authentication
+  // create user in the database
   doCreateUserWithEmailAndPassword = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password)
 
+  // login already existing user
   doSignInWithEmailAndPassword = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password)
 
+  // sign out user
   doSignOut = () => {
     this.auth.signOut()
     window.location.replace("/login")
   }
 
+  // send email reset to email provided
   doPasswordReset = email => this.auth.sendPasswordResetEmail(email)
 
+  // change password to password provided
   doPasswordUpdate = password => this.auth.currentUser.updatePassword(password)
 }
 

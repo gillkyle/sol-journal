@@ -79,6 +79,8 @@ class Search extends Component {
     }
   }
 
+  // all entries for a user are fetched this scales poorly but is much
+  // simpler than an API key and setting up an index for Algolia
   getEntries = async _ => {
     const { firebase, authUser } = this.props
     const entriesRef = await firebase.db
@@ -86,13 +88,7 @@ class Search extends Component {
       .where("userId", "==", authUser.uid)
       .get()
     const entries = entriesRef.docs.map(doc => doc.data()).reverse()
-    // const sortedEntries = entries.sort((a, b) => {
-    //   return (
-    //     new Date(b.year, b.month - 1, b.day) -
-    //     new Date(a.year, a.month - 1, a.day)
-    //   )
-    // })
-    // console.log(sortedEntries)
+
     this.setState({ entries, allEntries: entries, loading: false })
   }
 

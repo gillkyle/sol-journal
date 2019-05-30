@@ -1,5 +1,6 @@
 import React from "react"
 
+// create context of firebase instance
 const FirebaseContext = React.createContext(null)
 
 export const withFirebase = Component => props => (

@@ -1,9 +1,7 @@
 module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-plugin-emotion`,
-    },
+    `gatsby-plugin-emotion`,
     // create routes for client side routing
     {
       resolve: `gatsby-plugin-create-client-paths`,
@@ -53,7 +51,8 @@ module.exports = {
         path: `./src/data/`,
       },
     },
-    // easier imports and exports
+    // easier imports and exports by defining aliases
+    // for commonly used folders
     {
       resolve: "gatsby-plugin-module-resolver",
       options: {

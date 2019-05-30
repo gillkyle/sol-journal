@@ -111,6 +111,7 @@ const Navbar = ({ authUser, theme, toggleTheme }) => (
   </Header>
 )
 
+// on langing page and simple pages outside the app, simplify link options
 const SimpleNav = ({ authUser, theme }) => (
   <Header>
     <Nav>
