@@ -26,7 +26,7 @@ module.exports = {
       options: {
         name: `Sol Journal`,
         short_name: `Sol Journal`,
-        start_url: `/app`,
+        start_url: `/`,
         background_color: `#FFF`,
         theme_color: `#FFF`,
         display: `standalone`,
