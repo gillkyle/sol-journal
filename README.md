@@ -45,13 +45,13 @@ In the spirit of minimalism, key features are what are in place for a quick, lig
 
 Files are organized into these folders:
 
-`/components`: user interface pieces to construct the design and layout of the site
-`/data`: local data transformed by gatsby to become queryable by Gatsby's GraphQL data layer
-`/img`: images used by places like landing pages that are optimized by gatsby-image and then queryable in the GraphQL layer
-`/pages`: public pages that can be seen by unauthenticated users and are completely server side rendered by Gatsby during `gatsby build`
-`/routes`: private, client only routes only visible to authenticated users that are used by the app section of the journal
-`/styles`: role based design tokens and theme definitions
-`/util`: simple utility functions, for things like formatting dates
+`/components`: user interface pieces to construct the design and layout of the site  
+`/data`: local data transformed by gatsby to become queryable by Gatsby's GraphQL data layer  
+`/img`: images used by places like landing pages that are optimized by gatsby-image and then queryable in the GraphQL layer  
+`/pages`: public pages that can be seen by unauthenticated users and are completely server side rendered by Gatsby during `gatsby build`  
+`/routes`: private, client only routes only visible to authenticated users that are used by the app section of the journal  
+`/styles`: role based design tokens and theme definitions  
+`/util`: simple utility functions, for things like formatting dates  
 
 ## Developing
 
