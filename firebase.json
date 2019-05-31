@@ -4,6 +4,7 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
+    "target": "soljournal",
     "public": "build",
     "ignore": [
       "firebase.json",

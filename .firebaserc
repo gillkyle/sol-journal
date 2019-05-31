@@ -2,5 +2,14 @@
   "projects": {
     "default": "journal-app-service",
     "prod": "sol-journal"
+  },
+  "targets": {
+    "sol-journal": {
+      "hosting": {
+        "soljournal": [
+          "soljournal"
+        ]
+      }
+    }
   }
 }

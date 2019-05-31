@@ -2,7 +2,6 @@
 
 Setting up Sol Journal requires a free Firebase account since many of the features rely on built in Firebase capabilities to allow functionality offline. The free plan gives you 50,000 reads and 20,000 writes per day, meaning you can easily run a personal version for yourself.
 
-
 ## Setting up Firebase
 
 You will need a Google account to create a Firebase project, then navigate to the Firebase Console: https://console.firebase.google.com/
@@ -71,7 +70,7 @@ In order to prevent would be hackers or nefarious folks from messing with data i
 
 ##### Configuration
 
-## Code Setup
+## Setting up Code
 
 Having node installed is a prerequistie, you can follow instructions to get it setup yourself.
 
@@ -88,3 +87,30 @@ firebase login
 ```
 
 Follow the prompted instructions to connect your account.
+
+Clone the repository:
+
+```bash
+git clone https://github.com/gillkyle/sol-journal
+```
+
+Then change the name of the `.env.sample` file to `.env` (or `.env.production`/`.env.development` if you would like to run the app in different environments) and fill it in, mapping your own keys from your Firebase project to the corresponding names in the file.
+
+```env
+GATSBY_FIREBASE_API_KEY=<BUNCHofRandomNumbersAndChars>
+GATSBY_DEV_AUTH_DOMAIN=<name>.firebaseapp.com
+GATSBY_DEV_DATABASE_URL=https://<name>.firebaseio.com
+GATSBY_DEV_PROJECT_ID=<name>
+GATSBY_DEV_STORAGE_BUCKET=<name>.appspot.com
+GATSBY_DEV_MESSAGING_SENDER_ID=############
+
+GATSBY_CONFIRMATION_EMAIL_REDIRECT=https://<name>.firebaseapp.com
+```
+
+Then run the build command to generate an optimized build in the public directory.
+
+```bash
+gatsby build
+```
+
+You can upload your `/public` folder to S3, or run the surge command inside the directory to deploy it to a free subdomain.

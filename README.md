@@ -5,10 +5,13 @@
   Personal Journaling Platform
 </h2>
 
-Sol Journal is a simple, minimal, journaling platform that works offline and across all devices. It can be self-hosted through Firebase and then installed as a PWA, on mobile devices for easy access on a phone, or on Desktops. 
+Sol Journal is a simple, minimal, journaling platform that works offline and across all devices. It can be hosted yourself on Firebase and then installed as a PWA, on mobile devices for easy access on a phone, or on Desktops.
 
 <p align="center">
-  <img alt="preview of page" src="https://raw.githubusercontent.com/gillkyle/images/master/hero-mixed.png" />
+  <img
+    alt="preview of page"
+    src="https://raw.githubusercontent.com/gillkyle/images/master/hero-mixed.png"
+  />
 </p>
 
 ## Introduction
@@ -21,7 +24,7 @@ Having a journal that is available on any device makes journaling easier. Being 
 
 There are 2 ways to get started using Sol Journal:
 
-1. You can use the hosted version (this is the simplest way to use the product) 
+1. You can use the hosted version (this is the simplest way to use the product) at [soljournal.netlify.com](soljournal.netlify.com)
 2. You can host your own version and manage it yourself
 
 Sol Journal uses firebase to support offline functionality and authentication, meaning a new Firebase app will need to be setup with Firestore as a database if you wish to host it yourself. Be sure to add documents for `users` and `entries`, as well as enabling email for user authentication.
@@ -31,12 +34,24 @@ Sol Journal uses firebase to support offline functionality and authentication, m
 In the spirit of minimalism, key features are what are in place for a quick, lightweight journaling experience that can work across devices, including:
 
 - 🔥 Authentication: Cloud firestore persists registered users to a users document and saved journal entries to an entries document
-- 🎨 Dark Theme: the `src/styles/theme.js` file contains a set of colors and default styles that are applied to components with Emotion. A default light and dark theme are already in the file
+- 🎨 Theming: the `src/styles/theme.js` file contains a set of colors and default styles that are applied to components with Emotion. A default light and dark theme are already in the file
 - 🔍 Search: full-text search of a user's entries stored in Firestore for quick access to past entries
 - 🖥 Mobile Friendly: designed to look great on mobile as well as desktop, with easy navigation on both
 - 💡 PWA: being a progressive web app makes it installable from Chrome/Safari on desktop, or be added to the homescreen on iOS/Android
-- 🔌 Offline Support: read/write when you're offline and let the updates happen when your connection is restored  
+- 🔌 Offline Support: read/write when you're offline and let the updates happen when your connection is restored
 - 🗄 Export: backup all of your entries at any time to save your data
+
+## Project setup
+
+Files are organized into these folders:
+
+`/components`: user interface pieces to construct the design and layout of the site
+`/data`: local data transformed by gatsby to become queryable by Gatsby's GraphQL data layer
+`/img`: images used by places like landing pages that are optimized by gatsby-image and then queryable in the GraphQL layer
+`/pages`: public pages that can be seen by unauthenticated users and are completely server side rendered by Gatsby during `gatsby build`
+`/routes`: private, client only routes only visible to authenticated users that are used by the app section of the journal
+`/styles`: role based design tokens and theme definitions
+`/util`: simple utility functions, for things like formatting dates
 
 ## Developing
 
@@ -59,24 +74,25 @@ yarn
 ```
 
 Then configure a file in a new `.env` file (using the `.env.sample` file as a reference) with the following keys from the firebase console:
-```env
-REACT_APP_FIREBASE_API_KEY=<BUNCHofRandomNumbersAndChars>
-REACT_APP_DEV_AUTH_DOMAIN=<name>.firebaseapp.com
-REACT_APP_DEV_DATABASE_URL=https://<name>.firebaseio.com
-REACT_APP_DEV_PROJECT_ID=<name>
-REACT_APP_DEV_STORAGE_BUCKET=<name>.appspot.com
-REACT_APP_DEV_MESSAGING_SENDER_ID=############
 
-REACT_APP_CONFIRMATION_EMAIL_REDIRECT=https://<name>.firebaseapp.com
+```env
+GATSBY_FIREBASE_API_KEY=<BUNCHofRandomNumbersAndChars>
+GATSBY_DEV_AUTH_DOMAIN=<name>.firebaseapp.com
+GATSBY_DEV_DATABASE_URL=https://<name>.firebaseio.com
+GATSBY_DEV_PROJECT_ID=<name>
+GATSBY_DEV_STORAGE_BUCKET=<name>.appspot.com
+GATSBY_DEV_MESSAGING_SENDER_ID=############
+
+GATSBY_CONFIRMATION_EMAIL_REDIRECT=https://<name>.firebaseapp.com
 ```
 
 Navigate into the project directory, and then launch the site with this command:
 
 ```bash
-yarn develop
+gatsby develop
 ```
 
-The site will be opened up in your default browser on http://localhost:3000
+The site will be opened up in your default browser on http://localhost:8000
 
 Edit code in the `/src`, save your changes, and they'll reload instantly in the browser.
 
@@ -85,13 +101,15 @@ Edit code in the `/src`, save your changes, and they'll reload instantly in the 
 To create an optimized build of the site run this command:
 
 ```bash
-yarn build
+gatsby build
 ```
 
-A `/build` folder will be assembled that can be deployed with this command:
+A `/public` folder will be assembled that can be deployed to any static file hosting service like Netlify or surge.
+
+It can be deployed to firebase with this command:
 
 ```bash
-firebase deploy
+firebase deploy -p public
 ```
 
 ## Inspiration

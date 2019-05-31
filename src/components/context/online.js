@@ -1,5 +1,6 @@
-import React from 'react'
+import React from "react"
 
+// when navigator is available outside of the build phase, provide it through Context
 export const OnlineContext = React.createContext({
-  online: navigator.onLine,
-});
+  online: typeof window !== "undefined" && navigator && navigator.onLine,
+})
