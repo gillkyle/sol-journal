@@ -5,7 +5,7 @@
   Personal Journaling Platform
 </h2>
 
-Sol Journal is a simple, minimal, journaling platform that works offline and across all devices. It can be self-hosted through Firebase and then installed as a PWA, on mobile devices for easy access on a phone, or on Desktops.
+Sol Journal is a simple, minimal, journaling platform that works offline and across all devices. It can be hosted yourself on Firebase and then installed as a PWA, on mobile devices for easy access on a phone, or on Desktops.
 
 <p align="center">
   <img
@@ -104,12 +104,12 @@ To create an optimized build of the site run this command:
 gatsby build
 ```
 
-A `/build` folder will be assembled that can be deployed to any static file hosting service like Netlify or surge.
+A `/public` folder will be assembled that can be deployed to any static file hosting service like Netlify or surge.
 
 It can be deployed to firebase with this command:
 
 ```bash
-firebase deploy
+firebase deploy -p public
 ```
 
 ## Inspiration

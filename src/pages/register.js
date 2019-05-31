@@ -29,6 +29,12 @@ const RegisterPage = ({ theme }) => (
         {firebase => <RegisterForm firebase={firebase} />}
       </FirebaseContext.Consumer>
       <P colors={theme.colors} style={{ fontStyle: "italic" }}>
+        By registering for this site you are agreeing to the{" "}
+        <Link style={{ color: theme.colors.primary }} to={"/terms"}>
+          Terms of Service
+        </Link>
+      </P>
+      <P colors={theme.colors} style={{ fontStyle: "italic" }}>
         Already have an account?{" "}
         <Link style={{ color: theme.colors.primary }} to={"/login"}>
           Login
