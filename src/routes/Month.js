@@ -11,29 +11,44 @@ import {
   startOfMonth,
 } from "date-fns"
 
+import { SIZES } from "styles/constants"
+
 import { AppLink as Link } from "components/elements"
 import Seek from "components/Seek"
 
-const YearCardGrid = styled.div`
+const DayCardGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-gap: 20px;
   margin-top: 20px;
 `
-const YearCard = styled.div`
+const DayCard = styled.div`
   color: ${props =>
     props.disabled
       ? props.theme.colors.quarternary
       : props.theme.colors.secondary};
   border: 1px solid;
   border-color: ${props => props.theme.colors.quarternary};
-  padding: 25px;
   border-radius: 5px;
   text-align: center;
   user-select: none;
   &:hover {
     border-color: ${props => !props.disabled && props.theme.colors.tertiary};
   }
+`
+const DayCardBanner = styled.div`
+  font-size: ${SIZES.tiny};
+  position: relative;
+  top: -0px;
+  background-color: ${props => props.theme.colors.headerBackground};
+  border-bottom: 1px solid;
+  border-bottom-color: ${props => props.theme.colors.quarternary};
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 5px 0px;
+`
+const DayCardContent = styled.div`
+  padding: 20px 25px;
 `
 
 class Month extends Component {
@@ -47,23 +62,31 @@ class Month extends Component {
       dayIndexesToInclude = new Date().getDate()
     }
 
-    let yearCards = []
+    let dayCards = []
     for (let i = 0; i < getDaysInMonth(currentDay); i++) {
       const isDisabled = dayIndexesToInclude <= i && isThisMonth(currentDay)
       if (isDisabled) {
-        yearCards.push(
-          <YearCard disabled={isDisabled} key={i}>
-            {i + 1}
-          </YearCard>
+        dayCards.push(
+          <DayCard disabled={isDisabled} key={i}>
+            <DayCardBanner>
+              {format(new Date(year, month - 1, i + 1), "dddd")}
+            </DayCardBanner>
+            <DayCardContent>{i + 1}</DayCardContent>
+          </DayCard>
         )
       } else {
-        yearCards.push(
+        dayCards.push(
           <Link
             key={i}
             to={format(new Date(year, month - 1, i + 1), "/YYYY/MM/DD")}
             style={{ textDecoration: "none" }}
           >
-            <YearCard key={i}>{i + 1}</YearCard>
+            <DayCard key={i}>
+              <DayCardBanner>
+                {format(new Date(year, month - 1, i + 1), "dddd")}
+              </DayCardBanner>
+              <DayCardContent>{i + 1}</DayCardContent>
+            </DayCard>
           </Link>
         )
       }
@@ -80,7 +103,7 @@ class Month extends Component {
             startOfMonth(subMonths(new Date(), 1))
           )}
         />
-        <YearCardGrid>{yearCards}</YearCardGrid>
+        <DayCardGrid>{dayCards}</DayCardGrid>
       </>
     )
   }
