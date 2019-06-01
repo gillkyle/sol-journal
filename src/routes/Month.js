@@ -69,7 +69,7 @@ class Month extends Component {
         dayCards.push(
           <DayCard disabled={isDisabled} key={i}>
             <DayCardBanner>
-              {format(new Date(year, month - 1, i + 1), "dddd")}
+              {format(new Date(year, month - 1, i + 1), "ddd")}
             </DayCardBanner>
             <DayCardContent>{i + 1}</DayCardContent>
           </DayCard>
@@ -83,7 +83,7 @@ class Month extends Component {
           >
             <DayCard key={i}>
               <DayCardBanner>
-                {format(new Date(year, month - 1, i + 1), "dddd")}
+                {format(new Date(year, month - 1, i + 1), "ddd")}
               </DayCardBanner>
               <DayCardContent>{i + 1}</DayCardContent>
             </DayCard>
