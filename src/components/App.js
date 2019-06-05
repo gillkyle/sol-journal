@@ -69,30 +69,37 @@ class App extends Component {
                 <Router style={{ height: "100%" }}>
                   <PrivateRoute
                     authed={authed}
+                    authUser={propAuthUser}
                     path="/app/:year"
                     component={Year}
                     exact
                   />
                   <PrivateRoute
                     authed={authed}
+                    authUser={propAuthUser}
                     path="/app/:year/:month"
                     component={Month}
                     exact
                   />
                   <PrivateRoute
                     authed={authed}
+                    authUser={propAuthUser}
+                    emailVerificationUnnecessary={false}
                     path="/app/:year/:month/:day"
                     component={Day}
                     exact
                   />
                   <PrivateRoute
                     authed={authed}
+                    authUser={propAuthUser}
+                    emailVerificationUnnecessary={false}
                     path="/app/search"
                     component={Search}
                     exact
                   />
                   <PrivateRoute
                     authed={authed}
+                    authUser={propAuthUser}
                     path="/app/user"
                     component={User}
                     exact

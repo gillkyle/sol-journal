@@ -94,9 +94,21 @@ class User extends React.Component {
             User: <ProfileSectionText>{authUser.email}</ProfileSectionText>
             <div>
               <ProfileSectionText style={{ fontWeight: 400 }}>
-                {authUser.emailVerified
-                  ? "Email has been verified"
-                  : "Email not verified"}
+                {authUser.emailVerified ? (
+                  "Email has been verified"
+                ) : (
+                  <span>
+                    Email not verified{" "}
+                    <span
+                      onClick={() => {
+                        console.log("resent!")
+                        firebase.resendVerification(authUser.email)
+                      }}
+                    >
+                      Resend?
+                    </span>
+                  </span>
+                )}
               </ProfileSectionText>
             </div>
           </ProfileSectionHeader>

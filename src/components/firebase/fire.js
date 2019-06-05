@@ -54,6 +54,9 @@ class Firebase {
   }
 
   // send email reset to email provided
+  resendVerification = () => this.auth.currentUser.sendEmailVerification()
+
+  // send email reset to email provided
   doPasswordReset = email => this.auth.sendPasswordResetEmail(email)
 
   // change password to password provided
