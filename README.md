@@ -24,8 +24,8 @@ Having a journal that is available on any device makes journaling easier. Being 
 
 There are 2 ways to get started using Sol Journal:
 
-1. You can use the hosted version (this is the simplest way to use the product) at [soljournal.netlify.com](https://soljournal.netlify.com)
-2. You can host your own version and manage it yourself following the [setup docs](https://github.com/gillkyle/sol-journal/blob/master/SETUP.md)
+1. You can develop it locally after hooking it up to your own Firebase project by following the instructions below
+2. You can host your own version and manage it yourself by following the [setup docs](https://github.com/gillkyle/sol-journal/blob/master/SETUP.md)
 
 Sol Journal uses firebase to support offline functionality and authentication, meaning a new Firebase app will need to be setup with Firestore as a database if you wish to host it yourself. Be sure to add documents for `users` and `entries`, as well as enabling email for user authentication.
 
@@ -51,7 +51,7 @@ Files are organized into these folders:
 `/pages`: public pages that can be seen by unauthenticated users and are completely server side rendered by Gatsby during `gatsby build`  
 `/routes`: private, client only routes only visible to authenticated users that are used by the app section of the journal  
 `/styles`: role based design tokens and theme definitions  
-`/util`: simple utility functions, for things like formatting dates  
+`/util`: simple utility functions, for things like formatting dates
 
 ## Developing
 
@@ -85,6 +85,8 @@ GATSBY_DEV_MESSAGING_SENDER_ID=############
 
 GATSBY_CONFIRMATION_EMAIL_REDIRECT=https://<name>.firebaseapp.com
 ```
+
+Again, be sure to add documents for `users` and `entries`, as well as enabling email for user authentication.
 
 Navigate into the project directory, and then launch the site with this command:
 

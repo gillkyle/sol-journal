@@ -85,7 +85,8 @@ const Terms = ({ theme }) => (
         <br />
         <br />
         These Terms can change at any time, but I'll try to be reasonable. This
-        is a service I've always and hope to be able to run it for a long time.
+        is a service I've always wanted and hope to be able to run it for a long
+        time.
       </P>
     </Container>
   </Layout>

@@ -5,7 +5,6 @@ service cloud.firestore {
       						&& request.auth.uid == resource.data.userId
                   && request.auth.token.email_verified;
       allow write: if request.auth != null
-      						&& request.auth.uid == resource.data.userId
                   && request.auth.token.email_verified;
     }
   }
