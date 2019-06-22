@@ -124,7 +124,7 @@ class Search extends Component {
                 entry.text.length > 1 && (
                   <Link
                     key={index}
-                    to={`${entry.year}/${pad(entry.month)}/${pad(entry.day)}`}
+                    to={`/${entry.year}/${pad(entry.month)}/${pad(entry.day)}`}
                     style={{ textDecoration: "none" }}
                   >
                     <SearchResult
