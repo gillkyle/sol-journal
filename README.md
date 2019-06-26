@@ -16,6 +16,8 @@ Sol Journal is a simple, minimal, journaling platform that works offline and acr
 
 ## Introduction
 
+<a href="https://www.producthunt.com/posts/sol-journal?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-sol-journal" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=157146&theme=light" alt="Sol Journal - A simple, open-source personal journaling platform | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px" /></a>
+
 Journaling is a keystone habit that can improve your happiness and [overall health](https://psycnet.apa.org/record/2004-16777-010). Writing in a journal with pen and paper is effective, but not as easily accessible, maintained, or preserved as taking advantage of digital platforms.
 
 Having a journal that is available on any device makes journaling easier. Being tailored specifically to journaling makes it less cumbersome than trying to utilize a note taking app or document for recording thoughts and impressions.
