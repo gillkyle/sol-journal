@@ -34,6 +34,11 @@ const LoginPage = ({ theme }) => (
         <Link style={{ color: theme.colors.primary }} to={"/register"}>
           Sign Up
         </Link>
+      <br />
+      Or{" "}
+        <Link style={{ color: theme.colors.primary }} to={"/resetpassword"}>
+          Reset Password
+        </Link>
       </P>
     </LoginLayout>
   </Layout>
