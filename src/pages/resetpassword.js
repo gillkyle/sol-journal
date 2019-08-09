@@ -26,6 +26,9 @@ const LoginPage = ({ theme }) => (
   <Layout>
     <SimpleNavbar />
     <LoginLayout>
+    <P colors={theme.colors.primary} style={{ fontStyle: "italic" }}>
+        Enter your email and we'll email you a password reset link!
+      </P>
       <FirebaseContext.Consumer>
         {firebase => <LoginForm firebase={firebase} />}
       </FirebaseContext.Consumer>
@@ -33,11 +36,6 @@ const LoginPage = ({ theme }) => (
         Don't have an account?{" "}
         <Link style={{ color: theme.colors.primary }} to={"/register"}>
           Sign Up
-        </Link>
-      <br />
-      Or{" "}
-        <Link style={{ color: theme.colors.primary }} to={"/resetpassword"}>
-          Reset Password
         </Link>
       </P>
     </LoginLayout>
@@ -48,18 +46,18 @@ class LoginFormBase extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { email: "", password: "", error: null }
+    this.state = { email: "", error: null }
   }
 
   onSubmit = event => {
     event.preventDefault()
-    const { email, password } = this.state
+    const { email } = this.state
 
     this.props.firebase
-      .doSignInWithEmailAndPassword(email, password)
+      .doPasswordReset(email)
       .then(() => {
-        this.setState({ email: "", password: "", error: null })
-        navigate(`app/${format(new Date(), "/")}`)
+        this.setState({ email: "", error: null })
+        navigate(`index`)
       })
       .catch(error => {
         this.setState({ error })
@@ -71,10 +69,10 @@ class LoginFormBase extends Component {
   }
 
   render() {
-    const { email, password, error } = this.state
+    const { email, error } = this.state
     const { theme } = this.props
 
-    const isInvalid = password === "" || email === ""
+    const isInvalid = email === ""
 
     return (
       <form onSubmit={this.onSubmit}>
@@ -87,16 +85,9 @@ class LoginFormBase extends Component {
             placeholder="Email Address"
             colors={theme.colors}
           />
-          <Input
-            name="password"
-            value={password}
-            onChange={this.onChange}
-            type="password"
-            placeholder="Password"
-            colors={theme.colors}
-          />
+          
           <Button colors={theme.colors} disabled={isInvalid} type="submit">
-            Login
+            Reset Password
           </Button>
         </LoginGrid>
         {error && <P colors={theme.colors}>{error.message}</P>}
