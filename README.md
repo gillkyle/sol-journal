@@ -36,7 +36,7 @@ Sol Journal uses firebase to support offline functionality and authentication, m
 In the spirit of minimalism, key features are what are in place for a quick, lightweight journaling experience that can work across devices, including:
 
 - 🔥 Authentication: Cloud firestore persists registered users to a users document and saved journal entries to an entries document
-- 🎨 Theming: the `src/styles/theme.js` file contains a set of colors and default styles that are applied to components with Emotion. A default light and dark theme are already in the file
+- 🎨 Theming: the `src/styles/theme.js` file contains a set of colors and default styles that are applied to components with Emotion. A default light and dark theme are already in the file (adding [theme-ui](https://theme-ui.com/) support would be a great future addition)
 - 🔍 Search: full-text search of a user's entries stored in Firestore for quick access to past entries
 - 🖥 Mobile Friendly: designed to look great on mobile as well as desktop, with easy navigation on both
 - 💡 PWA: being a progressive web app makes it installable from Chrome/Safari on desktop, or be added to the homescreen on iOS/Android
@@ -48,7 +48,7 @@ In the spirit of minimalism, key features are what are in place for a quick, lig
 Files are organized into these folders:
 
 `/components`: user interface pieces to construct the design and layout of the site  
-`/data`: local data transformed by gatsby to become queryable by Gatsby's GraphQL data layer  
+`/data`: local data transformed by Gatsby to become queryable by Gatsby's GraphQL data layer  
 `/img`: images used by places like landing pages that are optimized by gatsby-image and then queryable in the GraphQL layer  
 `/pages`: public pages that can be seen by unauthenticated users and are completely server side rendered by Gatsby during `gatsby build`  
 `/routes`: private, client only routes only visible to authenticated users that are used by the app section of the journal  
