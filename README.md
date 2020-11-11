@@ -116,6 +116,8 @@ It can be deployed to firebase with this command:
 firebase deploy -p public
 ```
 
-## Inspiration
+## Inspiration and Other Projects
 
 Sol Journal is inspired by [JournalBook](https://github.com/trys/JournalBook) and borrows much of its design and navigation.
+
+If you're interested in a comparable version of the project, you can check out [this fork that adds rich text support](https://github.com/garrowp/sol-journal) to the journaling block.
