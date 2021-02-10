@@ -28,3 +28,4 @@ yarn-error.log*
 
 .cache
 public
+/public

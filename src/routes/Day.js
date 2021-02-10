@@ -31,30 +31,30 @@ const EntryInfo = styled.div`
 const JournalHeading = styled.h2`
   font-weight: 700;
   font-size: ${SIZES.tiny};
-  color: ${props => props.theme.colors.secondary};
+  color: ${(props) => props.theme.colors.secondary};
   display: block;
 `
 const SavedMessaged = styled.div`
   display: grid;
   grid-template-columns: auto auto;
   grid-gap: 5px;
-  color: ${props => props.theme.colors.secondary};
+  color: ${(props) => props.theme.colors.secondary};
   font-size: ${SIZES.tiny};
   user-select: none;
 `
 const OfflineNotice = styled.div`
   padding: 5px;
-  color: ${props => props.theme.colors.secondary};
+  color: ${(props) => props.theme.colors.secondary};
   border: 1px solid;
-  border-color: ${props => props.theme.colors.tertiary};
+  border-color: ${(props) => props.theme.colors.tertiary};
   font-size: ${SIZES.tiny};
   border-radius: 3px;
 `
 const JournalEntryArea = styled.textarea`
   font-family: sans-serif;
   flex-grow: 0.85;
-  color: ${props => props.theme.colors.primary};
-  caret-color: ${props => props.theme.colors.secondary};
+  color: ${(props) => props.theme.colors.primary};
+  caret-color: ${(props) => props.theme.colors.secondary};
   background-color: transparent;
   line-height: 1.5;
   letter-spacing: 0.5px;
@@ -69,14 +69,14 @@ const JournalEntryArea = styled.textarea`
   padding-top: 0px;
   padding-bottom: 0px;
   &::placeholder {
-    color: ${props => props.theme.colors.tertiary};
+    color: ${(props) => props.theme.colors.tertiary};
   }
   &::selection {
-    background: ${props => props.theme.colors.hover};
+    background: ${(props) => props.theme.colors.hover};
   }
   &:focus {
-    box-shadow: 0 0 0 8px ${props => props.theme.colors.bodyBackground},
-      0 0 0 10px ${props => props.theme.colors.hover};
+    box-shadow: 0 0 0 8px ${(props) => props.theme.colors.bodyBackground},
+      0 0 0 10px ${(props) => props.theme.colors.hover};
   }
 `
 const Buttons = styled.div`
@@ -151,14 +151,14 @@ class Day extends React.Component {
   getData = (docRef, options) => {
     docRef
       .get(options)
-      .then(doc => {
+      .then((doc) => {
         if (doc.data()) {
           this.setState({ text: doc.data().text, loading: false })
         } else {
           this.setState({ text: "", loading: false })
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.warn("entry not found in cache")
         // no doc was found, so reset the entry area to blank
         this.setState({ loading: false, text: "" })
@@ -173,7 +173,7 @@ class Day extends React.Component {
       })
   }
 
-  onChangeText = e => {
+  onChangeText = (e) => {
     if (this.timeout) clearTimeout(this.timeout)
     const text = e.target.value
     const { year, month, day } = this.props
@@ -243,7 +243,7 @@ class Day extends React.Component {
           disableNext={isAfter(currentDay, startOfYesterday())}
         />
         <EntryHeading>
-          <JournalHeading>RECORD THOUGHTS ABOUT YOUR DAY</JournalHeading>
+          <JournalHeading>Record thoughts about the day</JournalHeading>
           <EntryInfo>
             {online && (
               <SavedMessaged>
@@ -285,7 +285,7 @@ class Day extends React.Component {
               id="entry-text-area"
               autoFocus={true}
               placeholder="Start writing..."
-              onChange={e => this.onChangeText(e)}
+              onChange={(e) => this.onChangeText(e)}
               value={text}
               css={css`
                 animation: ${fadeKeyFrames} 0.2s ease-in;
@@ -306,8 +306,4 @@ class Day extends React.Component {
   }
 }
 
-export default compose(
-  withFirebase,
-  withTheme,
-  withAuthentication
-)(Day)
+export default compose(withFirebase, withTheme, withAuthentication)(Day)
