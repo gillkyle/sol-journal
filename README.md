@@ -16,6 +16,8 @@ Sol Journal is a simple, minimal, journaling platform that works offline and acr
 
 ## Introduction
 
+<a href="https://www.producthunt.com/posts/sol-journal?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-sol-journal" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=157146&theme=light" alt="Sol Journal - A simple, open-source personal journaling platform | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px" /></a>
+
 Journaling is a keystone habit that can improve your happiness and [overall health](https://psycnet.apa.org/record/2004-16777-010). Writing in a journal with pen and paper is effective, but not as easily accessible, maintained, or preserved as taking advantage of digital platforms.
 
 Having a journal that is available on any device makes journaling easier. Being tailored specifically to journaling makes it less cumbersome than trying to utilize a note taking app or document for recording thoughts and impressions.
@@ -34,7 +36,7 @@ Sol Journal uses firebase to support offline functionality and authentication, m
 In the spirit of minimalism, key features are what are in place for a quick, lightweight journaling experience that can work across devices, including:
 
 - 🔥 Authentication: Cloud firestore persists registered users to a users document and saved journal entries to an entries document
-- 🎨 Theming: the `src/styles/theme.js` file contains a set of colors and default styles that are applied to components with Emotion. A default light and dark theme are already in the file
+- 🎨 Theming: the `src/styles/theme.js` file contains a set of colors and default styles that are applied to components with Emotion. A default light and dark theme are already in the file (adding [theme-ui](https://theme-ui.com/) support would be a great future addition)
 - 🔍 Search: full-text search of a user's entries stored in Firestore for quick access to past entries
 - 🖥 Mobile Friendly: designed to look great on mobile as well as desktop, with easy navigation on both
 - 💡 PWA: being a progressive web app makes it installable from Chrome/Safari on desktop, or be added to the homescreen on iOS/Android
@@ -46,7 +48,7 @@ In the spirit of minimalism, key features are what are in place for a quick, lig
 Files are organized into these folders:
 
 `/components`: user interface pieces to construct the design and layout of the site  
-`/data`: local data transformed by gatsby to become queryable by Gatsby's GraphQL data layer  
+`/data`: local data transformed by Gatsby to become queryable by Gatsby's GraphQL data layer  
 `/img`: images used by places like landing pages that are optimized by gatsby-image and then queryable in the GraphQL layer  
 `/pages`: public pages that can be seen by unauthenticated users and are completely server side rendered by Gatsby during `gatsby build`  
 `/routes`: private, client only routes only visible to authenticated users that are used by the app section of the journal  
@@ -114,6 +116,8 @@ It can be deployed to firebase with this command:
 firebase deploy -p public
 ```
 
-## Inspiration
+## Inspiration and Other Projects
 
 Sol Journal is inspired by [JournalBook](https://github.com/trys/JournalBook) and borrows much of its design and navigation.
+
+If you're interested in a comparable version of the project, you can check out [this fork that adds rich text support](https://github.com/garrowp/sol-journal) to the journaling block.
