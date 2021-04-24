@@ -33,7 +33,7 @@ Sol Journal uses firebase to support offline functionality and authentication, m
 
 ## Features
 
-In the spirit of minimalism, key features are what are in place for a quick, lightweight journaling experience that can work across devices, including:
+In the spirit of minimalism, a few key features are in place for a quick, lightweight journaling experience that can work across devices, including:
 
 - 🔥 Authentication: Cloud firestore persists registered users to a users document and saved journal entries to an entries document
 - 🎨 Theming: the `src/styles/theme.js` file contains a set of colors and default styles that are applied to components with Emotion. A default light and dark theme are already in the file (adding [theme-ui](https://theme-ui.com/) support would be a great future addition)
