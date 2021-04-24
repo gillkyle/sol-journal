@@ -8,16 +8,24 @@ module.exports = {
       options: { prefixes: [`/app/*`] },
     },
     // provide fonts from Google fonts
+    // {
+    //   resolve: `gatsby-plugin-prefetch-google-fonts`,
+    //   options: {
+    //     fonts: [
+    //       {
+    //         family: `Montserrat`,
+    //         variants: [`400`, `700`],
+    //       },
+    //     ],
+    //   },
+    // },
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: 'gatsby-plugin-web-font-loader',
       options: {
-        fonts: [
-          {
-            family: `Montserrat`,
-            variants: [`400`, `700`],
-          },
-        ],
-      },
+        google: {
+          families: ['Montserrat:400,700']
+        }
+      }
     },
     // plugins for PWA support
     `gatsby-plugin-offline`,
